@@ -101,11 +101,15 @@ ul{
     color: white;
     text-decoration: overline;
 }
-.card{
+.card, .cardDisabled{
     width: 100%;
     height: 100%;
     background-color: rgba(218, 165, 32, 0.801);
     @include center();
+}
+
+.cardDisabled{
+
 }
 
 .container-fluid-iscriviti{
@@ -128,11 +132,15 @@ ul{
 }
 
 // da cancellare -------------------------
-.colRighecampo{
+.colRighecampo, .colRighecampoDisabled{
     border: 1px dotted white;
     height: 13vh;
     width: 14.5vw;
     cursor: pointer;
+}
+
+.colRighecampoDisabled{
+    cursor: not-allowed;
 }
 
 .colRighecampo:hover{

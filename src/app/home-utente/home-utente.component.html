@@ -43,7 +43,44 @@
                 </div>
             </div>
             <div class="row rowCard">
-                <div class="card">
+                <!-- questa di sotto è quando l'utente NON ha selezionato la partita-->
+                <div *ngIf="!partitaSelezionata" class="cardDisabled pointerDisabled">
+                    <!--Quando sei sulla tab iscriviti-->
+                    <div *ngIf="iscriviti && !impostazioni" class="container-fluid-iscriviti">
+                        <div class="row rowRighecampo">
+                            <!--da cancellare-->
+                            <div class="col-3 colRighecampoDisabled"></div>
+                            <div class="col-3 colRighecampoDisabled"></div>
+                            <div class="col-3 colRighecampoDisabled"></div>
+                        </div>
+                        <div class="row rowRighecampo py-2">
+                            <div class="col-3 colRighecampoDisabled"></div>
+                            <div class="col-3 colRighecampoDisabled"></div>
+                            <div class="col-3 colRighecampoDisabled"></div>
+                        </div>
+                        <div class="row rowRighecampo">
+                            <div class="col-3 colRighecampoDisabled"></div>
+                            <div class="col-3 colRighecampoDisabled"></div>
+                            <div class="col-3 colRighecampoDisabled"></div>
+                        </div>
+                        <div class="row rowRighecampo pt-2 justify-content-center">
+                            <div class="col-9 colRighecampoDisabled"></div>
+                        </div>
+                    </div>
+
+                    <!--Quando sei sulla tab tornei-->
+                    <div *ngIf="!iscriviti && !impostazioni" class="container-fluid-tornei">
+                        <span>Tornei</span>
+                    </div>
+
+                    <!--Quando sei sulla tab impostazioni-->
+                    <div *ngIf="!iscriviti && impostazioni" class="container-fluid-impostazioni">
+                        <span>Impostazioni</span>
+                    </div>
+                </div>
+
+                <!-- questa di sotto è quando l'utente ha selezionato la partita-->
+                <div *ngIf="partitaSelezionata" class="card">
                     <!--Quando sei sulla tab iscriviti-->
                     <div *ngIf="iscriviti && !impostazioni" class="container-fluid-iscriviti">
                         <div class="row rowRighecampo">
@@ -113,7 +150,7 @@
             </div>
             <div class="row mt-5">
                 <!--TODO cambiare routerlink-->
-                <div class="col-5 col pointer" routerLink="/scegliPartita">
+                <div class="col-5 col pointer" (click)="toggleCampo()" routerLink="/scegliPartita">
                     <div class="row">
                         <div class="col-12 pt-2 align-items-center text-center pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="white" class="bi bi-check2-square" viewBox="0 0 16 16">
