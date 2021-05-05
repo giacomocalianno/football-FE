@@ -1,21 +1,21 @@
-<div class="row">
+<div class="row m-0 p-0">
     <div class="container-fluid">
         <div class="row rowHome m-0">
-            <div class="col-12" style="display: flex; justify-content: flex-start;">
-                <svg routerLink="/homeUtente" xmlns="http://www.w3.org/2000/svg" width="55px" height="55px" fill="white" class="bi bi-house-door-fill pointer m-0" viewBox="0 0 16 16">
-                    <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
-                </svg>
-            </div>
+            <svg routerLink="/homeUtente" xmlns="http://www.w3.org/2000/svg" width="55px" height="55px" fill="white"
+                class="bi bi-house-door-fill pointer m-0" viewBox="0 0 16 16">
+                <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
+            </svg>
         </div>
         <!--Scrivi recensione-->
-        <div class="row rowScrivi m-0 p-0">
-    
+        <div class="row rowScrivi mb-5">
+
             <!--Colonna recensione utente-->
             <div class="col-6" style="display: flex; justify-content: center;">
                 <div class="cardRecensione">
                     <form class="form pb-3">
                         <div class="form-group">
-                            <label for="inputUsername" class="font bold testo pt-0 pb-2">Nome <strong><i>utente</i></strong>
+                            <label for="inputUsername" class="font bold testo pt-0 pb-2">Nome
+                                <strong><i>utente</i></strong>
                                 di cui vuoi inserire il feedback</label>
                             <input type="text" class="form-control" id="inputUsername" aria-describedby="emailHelp"
                                 placeholder="nome.cognome">
@@ -30,17 +30,20 @@
                         <p class="mb-0 py-2">
                         </p>
                         <div class="row justify-content-center">
-                            <div class="col-8" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                            <div class="col-8"
+                                style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
                                 <button type="submit" class="btn btn-primary font my-3">Invia feedback</button>
-                                <button type="button" class="aiuto" placement="right" ngbPopover="Inserisci un numero da 1 a 5 su un utente a tua scelta. Questo ci aiuterà a gestire meglio l'algoritmo che crea le squadre e sarà utile agli altri utenti"> ?
+                                <button type="button" class="aiuto" placement="right"
+                                    ngbPopover="Inserisci un numero da 1 a 5 su un utente a tua scelta. Questo ci aiuterà a gestire meglio l'algoritmo che crea le squadre e sarà utile agli altri utenti">
+                                    ?
                                 </button>
                             </div>
-                                
+
                         </div>
                     </form>
                 </div>
             </div>
-    
+
             <!--Colonna recensione struttura-->
             <div class="col-6" style="display: flex; justify-content: center;">
                 <div class="cardRecensione">
@@ -61,17 +64,20 @@
                         <p class="mb-0 py-2">
                         </p>
                         <div class="row justify-content-center">
-                            <div class="col-8" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                            <div class="col-8"
+                                style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
                                 <button type="submit" class="btn btn-primary font my-3">Invia feedback</button>
-                                <button type="button" class="aiuto" placement="right" ngbPopover="Inserisci un numero da 1 a 5 su una struttra in base ai servizi che ha offerto. Questo ci aiuterà a gestire meglio le strutture e i loro benefit e sarà utile agli altri utenti"> ? </button>
+                                <button type="button" class="aiuto" placement="right"
+                                    ngbPopover="Inserisci un numero da 1 a 5 su una struttra in base ai servizi che ha offerto. Questo ci aiuterà a gestire meglio le strutture e i loro benefit e sarà utile agli altri utenti">
+                                    ? </button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-    
+
         </div>
-    
+
         <!--Recensione su di te-->
         <div class="row rowSuDiTe">
             <div class="col-4 col">
@@ -97,7 +103,7 @@
                 </div>
             </div>
             <div class="col-4 col">
-    
+
                 <div class="cardRating">
                     <ngb-rating max=5 readonly=true [(rate)]="currentRate3">
                         <ng-template let-fill="fill" let-index="index">
@@ -107,9 +113,9 @@
                     <hr>
                     <pre class="scrittaVoto">Voto su di te: <i><b>{{currentRate3}}</b></i> </pre>
                 </div>
-    
+
             </div>
         </div>
-    
+
     </div>
 </div>
