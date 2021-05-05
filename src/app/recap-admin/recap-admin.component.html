@@ -1,0 +1,46 @@
+<div class="row bottoni m-0 p-0">
+    <div class="col-5"></div>
+    <div class="col-1">
+        <button disabled class="btnAvanzamento1 mt-3"></button>
+    </div>
+    <div class="col-1">
+        <button disabled class="btnAvanzamento2 mt-3"></button>
+    </div>
+    <div class="col-1">
+        <button disabled class="btnAvanzamento3 mt-3"></button>
+    </div>
+    <div class="col-4"></div>
+</div>
+
+<div class="container-fluid">
+    <div style="display: flex; justify-content: center;">
+        <h1 class="h1recap mb-2">Recap registrazione</h1>
+    </div>
+    <div class="contenitoreRecap">
+
+        <div class="row">
+            <div class="col-6 col" style="display:flex; justify-content: flex-end;">
+                <span class="spanDati"> Nome struttura:  <i>{{recapDati.nomestruttura}}</i> </span>
+            </div>
+            <div class="col-6 col">
+                <span class="spanDati"> Città: <i>{{recapDati.citta}}</i> </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 col" style="display:flex; justify-content: flex-end;">
+                <span class="spanDati"> Via: <i>{{recapDati.via}}</i> </span>
+            </div>
+            <div class="col-6 col">
+                <span class="spanDati"> CAP: <i>{{recapDati.cap}}</i> </span>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="divBtnAvanti">
+                <button type="submit" [routerLink]="['/adminDashboard']" routerLinkActive="router-link-active" class="btn btn-primary signin">Avanti</button>
+            </div>
+        </div>
+    </div>
+
+</div>

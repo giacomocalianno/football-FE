@@ -1,0 +1,35 @@
+<div class="container-fluid justify-content-center align-items-center">
+    <div class="row">
+        <h1>Sei un</h1>
+    </div>
+    <div class="row contenitore">
+        
+        <!--utente-->
+        <div class="col-5 col" routerLink="/registrazione">
+            <div class="card justify-content-center align-items-center" ngbPopover="Se sei una giocatore/giocatrice e vuoi iscriverti alle partite" triggers="mouseenter:mouseleave">
+                <div class="row">
+                    <div class="col-12 text-center pointer icona">
+
+                    </div>
+                </div>
+                <div class="row pt-4 justify-content-center pointer">
+                    <span class="titolo">GIOCATORE</span>
+                </div>
+            </div>
+        </div>
+
+        <!--admin-->
+        <div class="col-5 col" routerLink="/registrazioneAdmin">
+            <div class="card justify-content-center align-items-center" ngbPopover="Se sei una struttura o il gestore di una struttura" triggers="mouseenter:mouseleave">
+                <div class="row">
+                    <div class="col-12 text-center pointer icona2">
+
+                    </div>
+                </div>
+                <div class="row pt-4 justify-content-center pointer">
+                    <span class="titolo">GESTORE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

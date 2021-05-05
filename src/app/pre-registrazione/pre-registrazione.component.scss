@@ -1,0 +1,149 @@
+$font : -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+html, body {
+    height: 100%;
+}
+h1{
+    color: rgb(255, 255, 255);
+    font-family: $font;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.titolo{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 38px;
+    color: white;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.container-fluid{
+    border: none;
+    background-image: url("../../assets/campo2.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    @include center();
+}
+
+.contenitore{
+    width: 90%;
+    height: 55%;
+    justify-content: space-evenly;
+}
+
+.icona, .icona2{
+    background-image: url(../../assets/soccer-player.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 35vw;
+    height: 35vh;
+}
+.icona2{
+    background-image: url(../../assets/admin.svg);
+    background-position-x: 55%;  
+}
+
+.col{
+    padding: 0%;
+}
+
+.card{
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: rgba( 255, 255, 255, 0.13 );
+    box-shadow: 0 8px 32px 0 rgba(202, 231, 197, 0.37);
+    backdrop-filter: blur( 6px );
+    -webkit-backdrop-filter: blur( 6px );
+    border-radius: 10px;
+    border: none;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 1400px) {
+    .icona, .icona2 {
+        width: 30vw;
+        height: 30vh;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .titolo{
+        font-size: 45px;
+    }
+    .icona, .icona2 {
+        width: 24vw;
+        height: 24vh;
+    }
+    .card{
+        cursor: pointer;
+        width: 90%;
+        height: 70%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .titolo{
+        font-size: 35px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .titolo{
+        font-size: 29px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .titolo{
+        font-size: 23px;
+    }
+    .card{
+        cursor: pointer;
+        height: 60%;
+    }
+    .icona, .icona2 {
+        width: 23vw;
+        height: 23vh;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .titolo{
+        font-size: 20px;
+    }
+    .card{
+        cursor: pointer;
+        height: 60%;
+    }
+    .icona, .icona2 {
+        width: 22vw;
+        height: 22vh;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .titolo{
+        font-size: 18px;
+    }
+    .card{
+        cursor: pointer;
+        height: 50%;
+    }
+    .icona, .icona2 {
+        width: 20vw;
+        height: 20vh;
+    }
+}

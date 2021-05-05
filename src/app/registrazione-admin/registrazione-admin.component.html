@@ -1,0 +1,73 @@
+<div class="row bottoni m-0 p-0">
+    <div class="col-5"></div>
+    <div class="col-1">
+        <button disabled class="btnAvanzamento1 mt-3"></button>
+    </div>
+    <div class="col-1">
+        <button disabled class="btnAvanzamento2 mt-3"></button>
+    </div>
+    <div class="col-4"></div>
+    
+</div>
+<div class="container-fluid registrazione">
+    <div id="contenitoreform">
+        <form class="form" [formGroup]="formRegistrazioneAdmin" (ngSubmit)="sendData()">
+            <div class="row m-0 p-0">
+                <div class="col-6 m-0 p-0 ">
+                    <div class="col-12 m-0 p-0">
+                        <span class="col-sm-2 inputLabel">Nome struttura </span>
+                    </div>
+                    <div class="col-12 m-0 p-0">
+                        <input type="text" class="input" placeholder="Es. Campo ELIS" formControlName="nomestruttura">
+                    </div>
+                </div>
+                <div class="col-6 m-0 p-0">
+                    <div class="col-12 m-0 p-0">
+                        <label class="col-sm-2 inputLabel pr-3">Città</label>
+                    </div>
+                    <div class="col-12 m-0 p-0">
+                        <input type="text" class="input" placeholder="Es. Roma" formControlName="citta">
+                    </div>
+                </div>
+                <div class="col-6 m-0 p-0 mt-5">
+                    <div class="col-12 m-0 p-0">
+                        <label class="col-sm-2 inputLabel m-0 p-0">Via</label>
+                    </div>
+                    <div class="col-12 m-0 p-0">
+                        <input type="text" class="input" placeholder="Es. Via Tiburtina 10" formControlName="via">
+                    </div>
+                </div>
+                <div class="col-6 m-0 p-0 mt-5">
+                    <div class="col-12 m-0 p-0">
+                        <label class="col-sm-2 inputLabel m-0 p-0">CAP</label>
+                    </div>
+                    <div class="col-12 m-0 p-0">
+                        <input type="number" class="input" placeholder="Es. 00159" formControlName="cap">
+                    </div>
+                </div>
+                <div class="col-6 m-0 p-0 mt-5">
+                    <div class="col-12 m-0 p-0">
+                        <label class="col-sm-2 inputLabel m-0 p-0">Email</label>
+                    </div>
+                    <div class="col-12 m-0 p-0">
+                        <input type="email" class="input" placeholder="example@gmail.com" formControlName="email">
+                    </div>
+                </div>
+                <div class="col-6 m-0 p-0 mt-5">
+                    <div class="col-12 m-0 p-0">
+                        <label class="col-sm-2 inputLabel m-0 p-0">Password</label>
+                    </div>
+                    <div class="col-12 m-0 p-0">
+                        <input type="password" class="input" formControlName="password">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row mt-5">
+                <div class="col-6 offset-3">
+                    <button type="submit" [disabled]="!this.formRegistrazioneAdmin.valid" class="btn btn-primary signin">Avanti</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

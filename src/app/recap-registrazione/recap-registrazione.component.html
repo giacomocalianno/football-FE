@@ -1,0 +1,56 @@
+<div class="row bottoni m-0 p-0">
+    <div class="col-5"></div>
+    <div class="col-1">
+        <button disabled class="btnAvanzamento1 mt-3"></button>
+    </div>
+    <div class="col-1">
+        <button disabled class="btnAvanzamento2 mt-3"></button>
+    </div>
+    <div class="col-1">
+        <button disabled class="btnAvanzamento3 mt-3"></button>
+    </div>
+    <div class="col-4"></div>
+</div>
+
+<div class="container-fluid">
+    <div style="display: flex; justify-content: center;">
+        <h1 class="h1recap mb-2">Recap registrazione</h1>
+    </div>
+    <div class="contenitoreRecap">
+        <!--Visualizzazione nome e cognome-->
+        <div class="row">
+            <div class="col-6 col" style="display:flex; justify-content: flex-end;">
+                <span class="spanDati"> Il tuo nome è:  <i>{{recapDati.nome}}</i> </span>
+            </div>
+            <div class="col-6 col">
+                <span class="spanDati"> Il tuo cognome è: <i>{{recapDati.cognome}}</i> </span>
+            </div>
+        </div>
+
+        <!--Visualizzazione email e password-->
+        <div class="row">
+            <div class="col-6 col" style="display:flex; justify-content: flex-end;">
+                <span class="spanDati"> La tua email è: <i>{{recapDati.email}}</i> </span>
+            </div>
+            <div class="col-6 col">
+                <span class="spanDati"> La tua username è: <i>{{recapDati.username}}</i> </span>
+            </div>
+        </div>
+
+        <!--Visualizzazione autovalutazione e ruolo-->
+        <div class="row">
+            <div class="col-6 col" style="display:flex; justify-content: flex-end;">
+                <span class="spanDati"> La tua autovalutazione è: <i>{{recapDati.autovalutazione}}</i> </span>
+            </div>
+            <div class="col-6 col">
+                <span class="spanDati"> Il tuo ruolo è: <i>{{recapDati.ruolo}}</i> </span>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="divBtnAvanti">
+                <button type="submit" [routerLink]="['/homeUtente']" routerLinkActive="router-link-active"  class="btn btn-primary signin">Avanti</button>
+            </div>
+        </div>
+    </div>
+
+</div>

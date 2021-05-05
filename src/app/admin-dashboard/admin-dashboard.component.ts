@@ -1,0 +1,192 @@
+import { Component, OnInit } from '@angular/core';
+import { UtilsService } from '../utils.service';
+import {NgbNavConfig} from '@ng-bootstrap/ng-bootstrap';
+
+@Component({
+  selector: 'app-admin-dashboard',
+  templateUrl: './admin-dashboard.component.html',
+  styleUrls: ['./admin-dashboard.component.scss']
+})
+export class AdminDashboardComponent implements OnInit {
+
+  vediPrenotazioni = true;
+  feedback = false;
+  impostazioni = false;
+  idCorrente: number;
+
+  creaSquadra; modificaSquadra; eliminaSquadra;
+
+  vediInnerTabella = false;
+  vediInnerTabellaImpostazioni = false;
+  arrayPartitaScelta = [{}];
+
+  suffix = "users.json";
+
+  showFiller = false;
+  users:any;
+
+  // TODO da cambiare i valori HARDCODE con query al DATABASE 
+
+  dataSourceimpostazioni = [
+    { idpartita : 1, ora : "14:30", data : "27/05/2021"},
+    { idpartita : 2, ora : "15:30", data : "27/05/2021"},
+    { idpartita : 3, ora : "16:30", data : "28/05/2021"}
+  ];
+
+  dataSourceFeedback = [
+    { idpartita : 1, ora : "14:30", data : "27/05/2021"},
+    { idpartita : 2, ora : "15:30", data : "27/05/2021"},
+    { idpartita : 3, ora : "16:30", data : "28/05/2021"}
+  ];
+
+  dataSource = [
+    { idpartita : 1, ora : "14:30", data : "27/05/2021"},
+    { idpartita : 2, ora : "15:30", data : "27/05/2021"},
+    { idpartita : 3, ora : "16:30", data : "28/05/2021"}
+  ];
+
+  dataSource2 = [
+    { idpartita : 1, idgiocatore : 2, name : "Luca", surname : "Calianno", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
+    { idpartita : 3, idgiocatore : 6, name : "Massimo", surname : "Vtere", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"},
+    { idpartita : 3, idgiocatore : 7, name : "Antonio", surname : "Eder", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
+    { idpartita : 1, idgiocatore : 8, name : "Nicola", surname : "Wasteryuio", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
+    { idpartita : 3, idgiocatore : 9, name : "Alessandro", surname : "Xeder", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"}
+    ,{ idpartita : 3, idgiocatore : 9, name : "Alessandro", surname : "Xeder", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"}
+    ,{ idpartita : 3, idgiocatore : 9, name : "Alessandro", surname : "Xeder", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"}
+    ,{ idpartita : 3, idgiocatore : 9, name : "Alessandro", surname : "Xeder", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"}
+    ,{ idpartita : 1, idgiocatore : 1, name : "Giacomo", surname : "Calianno", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
+    { idpartita : 1, idgiocatore : 2, name : "Luca", surname : "Calianno", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
+    { idpartita : 2, idgiocatore : 3, name : "Francesco", surname : "Rossini", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"},
+    { idpartita : 2, idgiocatore : 4, name : "Sasy", surname : "Kek", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
+    { idpartita : 2, idgiocatore : 5, name : "Heh", surname : "Pop", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
+    { idpartita : 3, idgiocatore : 6, name : "Massimo", surname : "Vtere", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"},
+    { idpartita : 3, idgiocatore : 7, name : "Antonio", surname : "Eder", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
+    { idpartita : 1, idgiocatore : 8, name : "Nicola", surname : "Wasteryuio", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
+    { idpartita : 3, idgiocatore : 9, name : "Alessandro", surname : "Xeder", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"}
+    ,{ idpartita : 1, idgiocatore : 1, name : "Giacomo", surname : "Calianno", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
+    { idpartita : 1, idgiocatore : 2, name : "Luca", surname : "Calianno", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
+    { idpartita : 2, idgiocatore : 3, name : "Francesco", surname : "Rossini", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"},
+    { idpartita : 2, idgiocatore : 4, name : "Sasy", surname : "Kek", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
+    { idpartita : 2, idgiocatore : 5, name : "Heh", surname : "Pop", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
+    { idpartita : 3, idgiocatore : 6, name : "Massimo", surname : "Vtere", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"},
+    { idpartita : 1, idgiocatore : 8, name : "Nicola", surname : "Wasteryuio", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
+    { idpartita : 3, idgiocatore : 9, name : "Alessandro", surname : "Xeder", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"}
+    ,{ idpartita : 1, idgiocatore : 1, name : "Giacomo", surname : "Calianno", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
+    { idpartita : 1, idgiocatore : 2, name : "Luca", surname : "Calianno", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
+    { idpartita : 2, idgiocatore : 3, name : "Francesco", surname : "Rossini", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"},
+    { idpartita : 2, idgiocatore : 4, name : "Sasy", surname : "Kek", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
+    { idpartita : 2, idgiocatore : 5, name : "Heh", surname : "Pop", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
+    { idpartita : 3, idgiocatore : 6, name : "Massimo", surname : "Vtere", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"},
+    { idpartita : 3, idgiocatore : 7, name : "Antonio", surname : "Eder", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
+    { idpartita : 1, idgiocatore : 8, name : "Nicola", surname : "Wasteryuio", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
+    { idpartita : 3, idgiocatore : 9, name : "Alessandro", surname : "Xeder", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"}
+  
+  ];
+
+  // -------------- 
+
+  displayedColumns1: string[] = ['idpartita', 'ora', 'data'];
+
+  displayedColumnsModificaSquadra: string[] = ['checkbox', 'idgiocatore', 'name', 'surname', "username", "autovalutazione", "ruolo"];
+
+  displayedColumns2: string[] = ['checkbox', 'idgiocatore', 'name', 'surname', "username", "autovalutazione", "ruolo"];
+
+
+  displayedColumnsFeedback: string[] = ["idgiocatore", "valutazione"];
+
+  // TODO da cambiare nome colonne
+  displayedColumnsImpostazioni: string[] = ["Crea squadra", "Modifica squadra", "Elimina squadra"];
+
+  constructor(private utils: UtilsService, config: NgbNavConfig /*, private auth: AuthService */) {
+    config.destroyOnHide = false;
+    config.roles = false;
+  }
+
+  modificaSi = false;
+  eliminaSi = false;
+
+  visualizzaPrenotazioni(){
+    this.vediPrenotazioni = true;
+    this.feedback = false;
+    this.impostazioni = false;
+  }
+
+  visualizzaFeedback(){
+    this.vediPrenotazioni = false;
+    this.feedback = true;
+    this.impostazioni = false;
+  }
+
+  visualizza3(){
+    this.vediPrenotazioni = false;
+    this.feedback = false;
+    this.impostazioni = true;
+  }
+
+
+
+  /* TODO controllare se questo sotto serve
+
+  getData(){
+      this.auth.get(this.suffix).subscribe((response) => {
+      this.users = response;
+      this.dataSource = new MatTableDataSource(this.users);
+      console.log(this.users);
+    });
+  }
+
+  */
+
+  checkedCheckbox = false;
+
+  visualizzaQuesta(element){
+    console.log(element)
+    this.idCorrente = element.idpartita;
+    let temp = this.dataSource2.filter( (player) => {
+      return player.idpartita == element.idpartita;
+    })    
+    this.arrayPartitaScelta = temp;
+    this.vediInnerTabella = true;
+  }
+
+  visualizzaQuesta2(){
+    this.vediInnerTabellaImpostazioni = true;
+  }
+
+  visualizzaCreaSquadra(){
+    this.creaSquadra = true;
+    this.modificaSquadra = false;
+    this.eliminaSquadra = false;
+  }
+
+  visualizzaModificaSquadra(){
+    this.creaSquadra = false;
+    this.modificaSquadra = true;
+    this.eliminaSquadra = false;
+  }
+
+  visualizzaEliminaSquadra(){
+    this.creaSquadra = false;
+    this.modificaSquadra = false;
+    this.eliminaSquadra = true;
+  }
+
+  checked(){
+    this.checkedCheckbox = true;
+  }
+
+  formaSquadre(){
+    // TODO funzione CREA SQUADRA
+
+  }
+
+  rimuoviGiocatori(){
+    //TODO funzione che rimuove giocatore/i selezionato/i
+
+  }
+
+  ngOnInit(): void {
+    // this.getData();
+  }
+
+}

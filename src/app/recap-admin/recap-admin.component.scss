@@ -1,0 +1,116 @@
+$font : -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+html, body {
+    height: 100%;
+}
+
+.container-fluid{
+    border: none;
+    background-image: url("../../assets/campo2.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    @include center();
+}
+
+.spanDati{
+    font-family: $font;
+    font-size: 22px;
+    color: white;
+}
+.h1recap{
+    font-family: $font;
+    font-size: 28px;
+    color: white;
+}
+.col{
+    width: 60%;
+    padding: 3%;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+.contenitoreRecap{
+    position: relative;
+    width: 55%;
+}
+
+.btnAvanzamento1, .btnAvanzamento2, .btnAvanzamento3{
+    position: absolute;
+    top: 1%;
+    border-radius: 12px;
+    width: 12px;
+    height: 12px;
+    background-color: #137238;
+    border:none;
+}
+
+.signin{
+    width: 80%;
+    font-family: $font;
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 10px;
+    border: none;
+    background-color: #137238;
+    border: none;
+    box-shadow: 1px 1px #fff;
+}
+
+.divBtnAvanti{
+    @include center();
+    width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+    .h1recap{
+        font-size: 25px;
+    }
+    .spanDati{
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .h1recap{
+        font-size: 22px;
+    }
+    .spanDati{
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .h1recap{
+        font-size: 20px;
+    }
+    .spanDati{
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 325px) {
+    .h1recap{
+        font-size: 18px;
+    }
+    .spanDati{
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 30px) {
+    .h1recap{
+        font-size: 16px;
+    }
+    .spanDati{
+        font-size: 6px;
+    }
+}
