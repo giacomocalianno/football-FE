@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TorneiUtenteComponent } from './tornei-utente.component';
+import { ScegliPartitaUserComponent } from './scegli-partita-user.component';
 
-describe('TorneiUtenteComponent', () => {
-  let component: TorneiUtenteComponent;
-  let fixture: ComponentFixture<TorneiUtenteComponent>;
+describe('ScegliPartitaUserComponent', () => {
+  let component: ScegliPartitaUserComponent;
+  let fixture: ComponentFixture<ScegliPartitaUserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TorneiUtenteComponent ]
+      declarations: [ ScegliPartitaUserComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TorneiUtenteComponent);
+    fixture = TestBed.createComponent(ScegliPartitaUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

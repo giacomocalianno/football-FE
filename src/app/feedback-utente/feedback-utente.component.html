@@ -1,14 +1,14 @@
 <div class="row">
     <div class="container-fluid">
-        <div class="row rowHome">
-            <div class="col-12 w-100 h-100" style="display: flex; justify-content: flex-start;">
-                <svg routerLink="/homeUtente" xmlns="http://www.w3.org/2000/svg" width="55px" height="55px" fill="white" class="bi bi-house-door-fill pointer" viewBox="0 0 16 16">
+        <div class="row rowHome m-0">
+            <div class="col-12" style="display: flex; justify-content: flex-start;">
+                <svg routerLink="/homeUtente" xmlns="http://www.w3.org/2000/svg" width="55px" height="55px" fill="white" class="bi bi-house-door-fill pointer m-0" viewBox="0 0 16 16">
                     <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
                 </svg>
             </div>
         </div>
         <!--Scrivi recensione-->
-        <div class="row rowScrivi">
+        <div class="row rowScrivi m-0 p-0">
     
             <!--Colonna recensione utente-->
             <div class="col-6" style="display: flex; justify-content: center;">
@@ -20,7 +20,7 @@
                             <input type="text" class="form-control" id="inputUsername" aria-describedby="emailHelp"
                                 placeholder="nome.cognome">
                         </div>
-                        <label for="inputUsername" class="font bold testo pb-0 mb-0">Inserisci valutazione</label>
+                        <label for="inputUsername" class="font bold testo pb-0 my-4">Inserisci valutazione</label>
                         <ngb-rating max=5 [(rate)]="currentRateRecensione">
                             <ng-template let-fill="fill" let-index="index">
                                 <span class="starRecensione" [class.filledRecensione]="fill === 100"
@@ -28,18 +28,14 @@
                             </ng-template>
                         </ngb-rating>
                         <p class="mb-0 py-2">
-                            <ngb-alert class="alert">
-                                <strong>Ricorda</strong>, il feedback è anonimo
-                            </ngb-alert>
                         </p>
-                        <div class="row">
-                            <div class="col-8" style="display: flex; justify-content: flex-end; align-items: center;">
+                        <div class="row justify-content-center">
+                            <div class="col-8" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
                                 <button type="submit" class="btn btn-primary font my-3">Invia feedback</button>
-                            </div>
-                            <div class="col-4" style="display: flex; justify-content: flex-start; align-items: center;">
-                                <button type="button" class="btn aiuto" placement="right" ngbPopover="Inserisci un numero da 1 a 5 su un utente a tua scelta. Questo ci aiuterà a gestire meglio l'algoritmo che crea le squadre e sarà utile agli altri utenti"> ?
+                                <button type="button" class="aiuto" placement="right" ngbPopover="Inserisci un numero da 1 a 5 su un utente a tua scelta. Questo ci aiuterà a gestire meglio l'algoritmo che crea le squadre e sarà utile agli altri utenti"> ?
                                 </button>
                             </div>
+                                
                         </div>
                     </form>
                 </div>
@@ -55,7 +51,7 @@
                             <input type="text" class="form-control" id="inputUsername" aria-describedby="emailHelp"
                                 placeholder="ES. Campo ELIS">
                         </div>
-                        <label for="inputUsername" class="font bold testo pb-0 mb-0">Inserisci valutazione</label>
+                        <label for="inputUsername" class="font bold testo pb-0 my-4">Inserisci valutazione</label>
                         <ngb-rating max=5 [(rate)]="currentRateRecensione2">
                             <ng-template let-fill="fill" let-index="index">
                                 <span class="starRecensione2" [class.filledRecensione2]="fill === 100"
@@ -63,17 +59,11 @@
                             </ng-template>
                         </ngb-rating>
                         <p class="mb-0 py-2">
-                            <ngb-alert class="alert">
-                                <strong>Ricorda</strong>, il feedback è anonimo
-                            </ngb-alert>
                         </p>
-                        <div class="row">
-                            <div class="col-8" style="display: flex; justify-content: flex-end; align-items: center;">
+                        <div class="row justify-content-center">
+                            <div class="col-8" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
                                 <button type="submit" class="btn btn-primary font my-3">Invia feedback</button>
-                            </div>
-                            <div class="col-4" style="display: flex; justify-content: flex-start; align-items: center;">
-                                <button type="button" class="btn aiuto" placement="right" ngbPopover="Inserisci un numero da 1 a 5 su una struttra in base ai servizi che ha offerto. Questo ci aiuterà a gestire meglio le strutture e i loro benefit e sarà utile agli altri utenti"> ?
-                                </button>
+                                <button type="button" class="aiuto" placement="right" ngbPopover="Inserisci un numero da 1 a 5 su una struttra in base ai servizi che ha offerto. Questo ci aiuterà a gestire meglio le strutture e i loro benefit e sarà utile agli altri utenti"> ? </button>
                             </div>
                         </div>
                     </form>
@@ -88,7 +78,7 @@
                 <div class="cardRating">
                     <ngb-rating max=5 readonly=true [(rate)]="currentRate">
                         <ng-template let-fill="fill" let-index="index">
-                            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                            <span class="star mt-5" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
                         </ng-template>
                     </ngb-rating>
                     <hr>

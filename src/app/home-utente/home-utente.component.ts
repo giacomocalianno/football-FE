@@ -37,24 +37,15 @@ export class HomeUtenteComponent implements OnInit {
   }
 
   iscriviti = true;
-  tornei = false;
   impostazioni = false;
   popup = false;
 
-  setTorneiTrue(){
-    this.tornei = true;
-    this.impostazioni = false;
-    this.iscriviti = false;
-  }
-
   setImpostazioniTrue(){
-    this.tornei = false;
     this.impostazioni = true;
     this.iscriviti = false;
   }
 
   setIscrivitiTrue(){
-    this.tornei = false;
     this.impostazioni = false;
     this.iscriviti = true;
   }

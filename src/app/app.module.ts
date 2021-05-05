@@ -12,7 +12,6 @@ import { HomeUtenteComponent } from './home-utente/home-utente.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FeedbackUtenteComponent } from './feedback-utente/feedback-utente.component';
 import { StoricoUtenteComponent } from './storico-utente/storico-utente.component';
-import { TorneiUtenteComponent } from './tornei-utente/tornei-utente.component';
 import { ImpostazioniUtenteComponent } from './impostazioni-utente/impostazioni-utente.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -24,6 +23,7 @@ import {MatTableModule} from '@angular/material/table';
 import { PreRegistrazioneComponent } from './pre-registrazione/pre-registrazione.component';
 import { RegistrazioneAdminComponent } from './registrazione-admin/registrazione-admin.component';
 import { RecapAdminComponent } from './recap-admin/recap-admin.component';
+import { ScegliPartitaUserComponent } from './scegli-partita-user/scegli-partita-user.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +35,12 @@ import { RecapAdminComponent } from './recap-admin/recap-admin.component';
     HomeUtenteComponent,
     FeedbackUtenteComponent,
     StoricoUtenteComponent,
-    TorneiUtenteComponent,
     ImpostazioniUtenteComponent,
     AdminDashboardComponent,
     PreRegistrazioneComponent,
     RegistrazioneAdminComponent,
-    RecapAdminComponent
+    RecapAdminComponent,
+    ScegliPartitaUserComponent
   ],
   imports: [
     BrowserModule,

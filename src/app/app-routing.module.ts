@@ -11,17 +11,18 @@ import { RecapRegistrazioneComponent } from './recap-registrazione/recap-registr
 import { RegistrazioneAdminComponent } from './registrazione-admin/registrazione-admin.component';
 import { RegistrazioneComponent } from './registrazione/registrazione.component';
 import { Registrazione2Component } from './registrazione2/registrazione2.component';
+import { ScegliPartitaUserComponent } from './scegli-partita-user/scegli-partita-user.component';
 import { StoricoUtenteComponent } from './storico-utente/storico-utente.component';
-import { TorneiUtenteComponent } from './tornei-utente/tornei-utente.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent }, { path: "login", component: LoginComponent }, 
   { path: "registrazione", component: RegistrazioneComponent }, { path: "registrazione2", component: Registrazione2Component },
   { path: "recap", component: RecapRegistrazioneComponent }, { path: "homeUtente", component: HomeUtenteComponent },
-  { path: "feedbackUtente", component: FeedbackUtenteComponent }, { path: "storicoUtente", component: StoricoUtenteComponent },
-  { path: "torneiUtente", component: TorneiUtenteComponent }, { path: "impostazioniUtente", component: ImpostazioniUtenteComponent },
+  { path: "feedbackUtente", component: FeedbackUtenteComponent }, { path: "storicoUtente", component: StoricoUtenteComponent }, 
+  { path: "impostazioniUtente", component: ImpostazioniUtenteComponent },
   { path: "adminDashboard", component: AdminDashboardComponent }, { path: "preRegistrazione", component: PreRegistrazioneComponent }, 
-  { path: "registrazioneAdmin", component: RegistrazioneAdminComponent }, { path: "recapAdmin", component: RecapAdminComponent }
+  { path: "registrazioneAdmin", component: RegistrazioneAdminComponent }, { path: "recapAdmin", component: RecapAdminComponent }, 
+  { path: "scegliPartita", component: ScegliPartitaUserComponent }
 ]
 
 @NgModule({

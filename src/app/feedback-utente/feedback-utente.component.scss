@@ -17,14 +17,15 @@ html, body {
     background-image: url("../../assets/campo4.jpg");
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    height: 100.1vh;
     padding: 0%;
     margin: 0%;
-    width: 100%;
+    width: 100vw;
     @include center();
 }
 
 .rowHome{
+    padding: 0%;
     height: 5%;
 }
 
@@ -32,7 +33,7 @@ html, body {
     margin: 0%;
     padding: 0%;
     height: 50%;
-    width: 100%;
+    width: 100vw;
     border-bottom: 1px dashed rgba(136, 135, 135, 0.363);
     display: flex;
     justify-content: space-evenly;
@@ -40,7 +41,7 @@ html, body {
 }
 
 .rowSuDiTe{
-    height: 30%;
+    height: 29%;
     width: 99.9%;
     border-top: 1px dashed rgba(136, 135, 135, 0.363);
     display: flex;
@@ -54,23 +55,17 @@ html, body {
     @include center();
 }
 .aiuto{
-    border: 2px dashed #137238;
-    color: white;
+    border: 2px dashed black;
+    color: black;
+    background-color: transparent;
     font-family: $font;
     font-weight: 600;
-    height: 5vh;
-    width: 15vw;
+    height: 3.7vh;
+    width: 5vw;
     padding-left: 4%;
     padding-right: 4%;
 }
-/*
-.card{
-    height: 30vh;
-    width: 30vw;
-    margin: 0%;
-    @include center();
-}
-*/
+
 .cardRating{
     background: rgba( 255, 255, 255, 0.35 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -78,8 +73,8 @@ html, body {
     -webkit-backdrop-filter: blur( 10.0px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-    height: 30vh;
-    width: 30vw;
+    height: 24vh;
+    width: 24vw;
     margin: 0%;
     @include center();
 }
@@ -88,6 +83,10 @@ html, body {
     width: 35%;
     background-color: #1372371e;
     border: 1px solid #137238;
+}
+
+.btn{
+    width: 10vw;
 }
 
 .star {
@@ -144,8 +143,9 @@ html, body {
 
 .scrittaVoto{
     font-family: $font;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 650;
+    height: 11%;
 }
 
 .pointer{
@@ -154,7 +154,7 @@ html, body {
 
 .cardRecensione{
     padding: 0%;
-    width: 99.9%;
+    width: 70%;
     height: 100%;
     @include center();
     background: rgba( 255, 255, 255, 0.35 );
@@ -166,7 +166,7 @@ html, body {
 }
 
 ::placeholder{
-    font-size: 18px;
+    font-size: 16px;
     color: white;
 }
 
