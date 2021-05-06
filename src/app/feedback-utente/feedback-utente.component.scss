@@ -187,136 +187,187 @@ html, body {
     justify-content: flex-start;
 }
 
-@media screen and (max-width: 1850px) {
+@media screen and (min-width: 1000px) and (max-width: 1850px) {
    .cardRecensione{
         width: 80%;
         height: 80%;
    }
    .cardRating{
-    height: 26vh;
-    width: 26vw;
+        height: 26vh;
+        width: 26vw;
    }
    ::placeholder{
-    font-size: 16px;
-}
-}
-
-@media screen and (max-width: 1300px) {
-    .testo{
-        font-size: 18px;
-    }
-    .scrittaVoto{
-        font-size: 24px;
-    }
-    ::placeholder{
-        font-size: 14px;
-    }
-}
-
-@media screen and (max-width: 1170px) {
-    .cardRecensione{
-        width: 75%;
-        height: 75%;
-    }
-   .cardRating{
-        height: 24vh;
-        width: 24vw;
-    }
-   .testo{
         font-size: 16px;
     }
-    .scrittaVoto{
-        font-size: 22px;
-    }
-    ::placeholder{
-        font-size: 12px;
-    }
-}
-
-@media screen and (max-width: 1104px) {
     .testo{
-        text-align: center;
-    }
-    ::placeholder{
-        font-size: 10px;
-    }
-    .scrittaVoto{
         font-size: 20px;
     }
-    .cardRating{
-        height: 22vh;
-        width: 24vw;
-    }
-    .alert{
-        width: 90%;
-        height: 90%;
-    }
-}
-
-@media screen and (max-width: 900px){
-    .alert{
-        width: 100%;
-        height: 100%;
-        padding-bottom: 0%;
+    .btn{
         font-size: 18px;
+        padding: 1%;
+    }
+    .bi{
+        width: 8vw;
+        height: 8vh;
     }
 }
 
-.alert{
-    width: 100%;
-    height: 100%;
-    padding-bottom: 0%;
-}
-
-@media screen and (max-width: 740px) {
-    .alert{
-        width: 100%;
-        height: 100%;
-        font-size: 16px;
+@media screen and (min-width: 700px) and (max-width: 1000px) {
+    .cardRecensione{
+         width: 80%;
+         height: 80%;
+    }
+    .cardRating{
+         height: 26vh;
+         width: 26vw;
+    }
+    ::placeholder{
+         font-size: 16px;
+     }
+     .testo{
+         font-size: 17px;
+     }
+     .btn{
+         font-size: 14px;
+         padding: 1%;
+     }
+     .bi{
+        width: 8vw;
+        height: 8vh;
     }
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (min-width: 600px) and (max-width: 700px) {
+    .cardRecensione{
+         width: 80%;
+         height: 80%;
+    }
+    .cardRating{
+         height: 26vh;
+         width: 26vw;
+    }
     .star{
         font-size: 2rem;
     }
-    .scrittaVoto{
-        font-size: 18px;
+    ::placeholder{
+         font-size: 13px;
+     }
+     .testo{
+         font-size: 13px;
+     }
+     .btn{
+         font-size: 12px;
+         padding: 1%;
+     }
+     .scrittaVoto{
+        font-size: 11px;
     }
-    .alert{
-        width: 100%;
-        height: 100%;
-        font-size: 14px;
+    .bi{
+        width: 8vw;
+        height: 8vh;
     }
 }
 
-@media screen and (max-width: 640px) {
-    .star{
+@media screen and (min-width: 500px) and (max-width: 600px) {
+    .cardRecensione{
+         width: 80%;
+         height: 80%;
+    }
+    .cardRating{
+         height: 26vh;
+         width: 26vw;
+    }
+    ::placeholder{
+         font-size: 12px;
+     }
+     .testo{
+         font-size: 12px;
+     }
+     .btn{
+         font-size: 11px;
+         padding: 1%;
+     }
+     .scrittaVoto{
+         font-size: 13px;
+     }
+     .star{
         font-size: 1.8rem;
     }
-    .cardRating{
-        height: 20vh;
-        width: 24vw;
+    .starRecensione .starRecensione2{
+        font-size: 1.7rem;
     }
-    .scrittaVoto{
-        font-size: 17px;
-    }
-    .alert{
-        width: 100%;
-        height: 100%;
-        font-size: 12px;
+    .bi{
+        width: 8vw;
+        height: 8vh;
     }
 }
 
-@media screen and (max-width: 550px) {
-    .star{
-        font-size: 1.6rem;
+@media screen and (min-width: 400px) and (max-width: 500px) {
+    .cardRecensione{
+         width: 80%;
+         height: 80%;
     }
     .cardRating{
-        height: 18vh;
-        width: 24vw;
+         height: 26vh;
+         width: 26vw;
     }
-    .scrittaVoto{
-        font-size: 15px;
+    ::placeholder{
+         font-size: 11px;
+     }
+     .testo{
+         font-size: 13px;
+     }
+     .btn{
+         width: 20vw;
+         font-size: 11px;
+         padding: 5%;
+     }
+     .scrittaVoto{
+         font-size: 11px;
+     }
+     .star{
+        font-size: 1.5rem;
+    }
+    .starRecensione .starRecensione2{
+        font-size: 1.5rem;
+    }
+    .bi{
+        width: 8vw;
+        height: 8vh;
+    }
+}
+
+@media screen and (min-width: 200px) and (max-width: 400px) {
+    .cardRecensione{
+         width: 80%;
+         height: 80%;
+    }
+    .cardRating{
+         height: 26vh;
+         width: 26vw;
+    }
+    ::placeholder{
+         font-size: 8px;
+     }
+     .testo{
+         font-size: 8px;
+     }
+     .btn{
+         width: 20vw;
+         font-size: 11px;
+         padding: 5%;
+     }
+     .scrittaVoto{
+         font-size: 11px;
+     }
+     .star{
+        font-size: 1.1rem;
+    }
+    .starRecensione, .starRecensione2{
+        font-size: 1rem;
+    }
+    .bi{
+        width: 8vw;
+        height: 8vh;
     }
 }

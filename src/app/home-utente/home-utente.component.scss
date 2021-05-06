@@ -108,10 +108,6 @@ ul{
     @include center();
 }
 
-.cardDisabled{
-
-}
-
 .container-fluid-iscriviti{
     border: none;
     background-image: url("../../../metacampo1.jpg");
@@ -186,7 +182,7 @@ ul{
 }
 
 .rowDestra{
-    margin-top: 85px;
+    margin-top: 4px;
     margin-left: 100px;
 }
 
@@ -195,10 +191,34 @@ ul{
     height: 62px;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (min-width: 1000px) and (max-width: 1333px) {
+    .colRighecampoDisabled, .colRighecampo{
+        height: 12vh;
+        width: 12vw ;
+    }
+    .colRighecampoDisabled:hover, .colRighecampo:hover{
+        height: 12vh;
+        width: 12px;
+    }
+    .rowDestra{
+        margin-left: 10px;
+    }
     .col{
-        width: 90%;
-        height: 90%;
+        padding: 1%;
+        height: 120px;
+        width: 120px;
+    }
+    .container-fluid-iscriviti{
+        height: 92.5%;
+        width: 90.5%;
+    }
+    .card, .cardDisabled{ 
+        width: 75%;
+        height: 60vh;
+    }
+    .bi{
+        width: 55px;
+        height: 55px;
     }
     .titololiQuadrati{
         font-size: 15px;
@@ -211,70 +231,220 @@ ul{
     }
 }
 
-@media screen and (max-width: 1334px) {
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+    .colRighecampoDisabled, .colRighecampo{
+        height: 10vh;
+        width: 10vw ;
+    }
+    .colRighecampoDisabled:hover, .colRighecampo:hover{
+        height: 10vh;
+        width: 10vw;
+    }
+    .rowDestra{
+        margin-left: 10px;
+    }
+    .bi{
+        width: 45px;
+        height: 45px;
+    }
     .col{
-        width: 80%;
-        height: 80%;
+        padding: 1%;
+        height: 120px;
+        width: 115px;
+    }
+    .container-fluid-iscriviti{
+        height: 92.5%;
+        width: 90.5%;
+    }
+    .card, .cardDisabled{ 
+        width: 70%;
+        height: 55vh;
+    }
+
+    .titololiQuadrati{
+        font-size: 13px;
+    }
+    .active{
+        font-size: 20px;
+    }
+    .nonActive{
+        font-size: 18px;
     }
 }
 
-@media screen and (max-width: 1333px) {
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+    .colRighecampoDisabled, .colRighecampo{
+        height: 10vh;
+        width: 10vw ;
+    }
+        
+    .colRighecampoDisabled:hover, .colRighecampo:hover{
+        height: 10vh;
+        width: 10vw;
+    }
+    .rowDestra{
+        margin-left: 0px;
+    }
+    .col{
+        height: 110px;
+        width: 110px;
+    }
+    .container-fluid-iscriviti{
+        height: 92.5%;
+        width: 90.5%;
+    }
+    .card, .cardDisabled{ 
+        width: 70%;
+        height: 55vh;
+    }
+    .titololiQuadrati{
+        font-size: 10px;
+    }
+    .active{
+        font-size: 20px;
+    }
+    .nonActive{
+        font-size: 18px;
+    }
+    .bi{
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media screen and (min-width: 300px) and (max-width: 600px) {
+    .colRighecampoDisabled, .colRighecampo{
+        height: 10vh;
+        width: 10vw ;
+    }
+    .colRighecampoDisabled:hover, .colRighecampo:hover{
+        height: 10vh;
+        width: 10vw;
+    }
+    .rowDestra{
+        margin-left: 0px;
+    }
+    .col{
+        height: 110px;
+        width: 110px;
+    }
+    .container-fluid-iscriviti{
+        height: 92.5%;
+        width: 90.5%;
+    }
+    .card, .cardDisabled{ 
+        width: 70%;
+        height: 55vh;
+    }
+
+    #svgFeedback{
+        width: 50px;
+        height: 50px;
+    }
+    .titololiQuadrati{
+        font-size: 6px;
+    }
+    .bi{
+        width: 25px;
+        height: 25px;
+    }
+    .active{
+        font-size: 18px;
+    }
+    .nonActive{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 0px) and (max-width: 300px) {
+    .colRighecampoDisabled, .colRighecampo{
+        height: 6vh;
+        width: 6vw ;
+    }
+        
+    .colRighecampoDisabled:hover, .colRighecampo:hover{
+        height: 6vh;
+        width: 6vw;
+    }
+    .rowDestra{
+        margin-left: 0px;
+    }
+    .col{
+        height: 110px;
+        width: 110px;
+    }
+    .container-fluid-iscriviti{
+        height: 92.5%;
+        width: 90.5%;
+    }
+    .card, .cardDisabled{ 
+        width: 70%;
+        height: 55vh;
+    }
+    #svgFeedback{
+        width: 30px;
+        height: 30px;
+    }
+    .titololiQuadrati{
+        font-size: 10px;
+    }
+    .active{
+        font-size: 16px;
+    }
+    .nonActive{
+        font-size: 14px;
+    }
     .colRighecampo{
-        height: 11vh;
-        width: 13.5vw;
+        height: 6.5vh;
+        width: 11.5vw;
     }
     .colRighecampo:hover{
-        height: 11vh;
-        width: 13.5vw;
+        height: 6.5vh;
+        width: 11.5vw;
     }
+    .bi{
+        width: 20px;
+        height: 20px;
+    }
+}
+/*
+@media screen and (max-width: 750px) {
     .col{
         width: 50%;
         height: 50%;
     }
-}
-
-@media screen and (max-width: 1200px) {
-    .colRighecampo{
-        height: 10vh;
-        width: 13.5vw;
+    #svgFeedback{
+        width: 20px;
+        height: 20px;
     }
-    .colRighecampo:hover{
-        height: 10vh;
-        width: 13.5vw;
+    .titololiQuadrati{
+        font-size: 10px;
     }
-    .bi{
-        width: 58px;
-        height: 58px;
+    .active{
+        font-size: 16px;
+    }
+    .nonActive{
+        font-size: 14px;
     }
 }
-
-@media screen and (max-width: 897px) {
-    .colRighecampo{
-        height: 7.5vh;
-        width: 10.5vw;
+@media screen and (max-width: 670px) {
+    .col{
+        width: 50%;
+        height: 50%;
     }
-    .colRighecampo:hover{
-        height: 7.5vh;
-        width: 10.5vw;
+    #svgFeedback{
+        width: 20px;
+        height: 20px;
     }
-    .bi{
-        width: 56px;
-        height: 56px;
+    .titololiQuadrati{
+        font-size: 9px;
     }
-}
-
-@media screen and (max-width: 800px) {
-    .colRighecampo{
-        height: 6.5vh;
-        width: 11.5vw;
+    .active{
+        font-size: 16px;
     }
-    .colRighecampo:hover{
-        height: 6.5vh;
-        width: 11.5vw;
-    }
-    .bi{
-        width: 54px;
-        height: 54px;
+    .nonActive{
+        font-size: 14px;
     }
 }
 
@@ -341,102 +511,4 @@ ul{
     }
 }
 
-@media screen and (max-width: 1000px) {
-    .col{
-        width: 80%;
-        height: 80%;
-    }
-
-    #svgFeedback{
-        width: 50px;
-        height: 50px;
-    }
-    .titololiQuadrati{
-        font-size: 13px;
-    }
-    .active{
-        font-size: 20px;
-    }
-    .nonActive{
-        font-size: 18px;
-    }
-}
-
-@media screen and (max-width: 850px) {
-    .col{
-        width: 70%;
-        height: 70%;
-    }
-    #svgFeedback{
-        width: 40px;
-        height: 40px;
-    }
-    .titololiQuadrati{
-        font-size: 10px;
-    }
-    .active{
-        font-size: 18px;
-    }
-    .nonActive{
-        font-size: 16px;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .col{
-        width: 60%;
-        height: 60%;
-    }
-    #svgFeedback{
-        width: 30px;
-        height: 30px;
-    }
-    .titololiQuadrati{
-        font-size: 10px;
-    }
-    .active{
-        font-size: 16px;
-    }
-    .nonActive{
-        font-size: 14px;
-    }
-}
-
-@media screen and (max-width: 750px) {
-    .col{
-        width: 50%;
-        height: 50%;
-    }
-    #svgFeedback{
-        width: 20px;
-        height: 20px;
-    }
-    .titololiQuadrati{
-        font-size: 10px;
-    }
-    .active{
-        font-size: 16px;
-    }
-    .nonActive{
-        font-size: 14px;
-    }
-}
-@media screen and (max-width: 670px) {
-    .col{
-        width: 50%;
-        height: 50%;
-    }
-    #svgFeedback{
-        width: 20px;
-        height: 20px;
-    }
-    .titololiQuadrati{
-        font-size: 9px;
-    }
-    .active{
-        font-size: 16px;
-    }
-    .nonActive{
-        font-size: 14px;
-    }
-}
+*/
