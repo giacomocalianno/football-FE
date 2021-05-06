@@ -8,6 +8,17 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class HomeUtenteComponent implements OnInit {
 
+  nome; cognome; email; username; autovalutazione; ruolo
+
+  retrieveLocalStorage(){
+    this.nome = localStorage.getItem("Nome");
+    this.cognome = localStorage.getItem("Cognome");
+    this.email = localStorage.getItem("Email");
+    this.username = localStorage.getItem("Username");
+    this.autovalutazione = localStorage.getItem("Autovalutazione");
+    this.ruolo = localStorage.getItem("Ruolo");
+  }
+
   cambiaAutovalutazione = false;
 
   // TODO aggiornare valore quando utente seleziona la partita
@@ -77,6 +88,7 @@ export class HomeUtenteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.retrieveLocalStorage();
   }
 
 }

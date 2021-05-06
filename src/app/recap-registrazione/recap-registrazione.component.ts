@@ -15,6 +15,16 @@ export class RecapRegistrazioneComponent implements OnInit {
   usernameSporca = this.utils.nome + "." + this.utils.cognome;
   username = this.usernameSporca.trim().toLowerCase();
 
+  salvaLocalStorage(){
+    localStorage.setItem('Nome', this.recapDati.nome);
+    localStorage.setItem('Cognome', this.recapDati.cognome);
+    localStorage.setItem('Username', this.recapDati.username);
+    localStorage.setItem('Email', this.recapDati.email);
+    localStorage.setItem('Password', this.recapDati.password);
+    localStorage.setItem('Autovalutazione', this.recapDati.autovalutazione);
+    localStorage.setItem('Ruolo', this.recapDati.ruolo);
+  }
+
   concatena(){
     this.recapDati = {
       nome : this.utils.nome,

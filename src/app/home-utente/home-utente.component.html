@@ -37,7 +37,7 @@
                         </li>
                         <li class="liNavbar" role="presentation">
                             <p [ngClass]=" impostazioni ? 'active' : 'nonActive' " (click)="setImpostazioniTrue()">
-                                IMPOSTAZIONI </p>
+                                LE TUE INFO </p>
                         </li>
                     </ul>
                 </div>
@@ -75,7 +75,30 @@
 
                     <!--Quando sei sulla tab impostazioni-->
                     <div *ngIf="!iscriviti && impostazioni" class="container-fluid-impostazioni">
-                        <span>Impostazioni</span>
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-5 colInfo mr-1">
+                                <span class="spanDati m-0 p-0"> Il tuo nome è:  <strong>{{nome}}</strong> </span>
+                            </div>
+                            <div class="col-5 colInfo">
+                                <span class="spanDati m-0 p-0"> Il tuo cognome è: <strong>{{cognome}}</strong> </span>
+                            </div>
+                        </div>
+                        <div class="row my-1 justify-content-center align-items-center">
+                            <div class="col-5 colInfo mr-1">
+                                <span class="spanDati m-0 p-0"> La tua email è: <strong>{{email}}</strong> </span>
+                            </div>
+                            <div class="col-5 colInfo">
+                                <span class="spanDati m-0 p-0"> La tua username è: <strong>{{username}}</strong> </span>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-5 colInfo mr-1">
+                                <span class="spanDati m-0 p-0"> La tua autovalutazione è: <strong>{{autovalutazione}}</strong> </span>
+                            </div>
+                            <div class="col-5 colInfo">
+                                <span class="spanDati m-0 p-0"> Il tuo ruolo è: <strong>{{ruolo}}</strong> </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

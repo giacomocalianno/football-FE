@@ -48,7 +48,7 @@
         </div>
         <div class="row mt-5">
             <div class="divBtnAvanti">
-                <button type="submit" [routerLink]="['/homeUtente']" routerLinkActive="router-link-active"  class="btn btn-primary signin">Avanti</button>
+                <button type="submit" [routerLink]="['/homeUtente']" routerLinkActive="router-link-active" (click) = "salvaLocalStorage()" class="btn btn-primary signin">Avanti</button>
             </div>
         </div>
     </div>

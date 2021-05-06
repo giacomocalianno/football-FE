@@ -37,6 +37,19 @@ ul{
     margin-right: 5%;
     margin-top: 0%;
 }
+
+.colInfo{
+    @include center();
+    text-align: center;
+    font-size: 20px;
+    width: 20vw;
+    height: 9vh;
+    padding: 3%;
+    border: 1px solid white;
+    border-radius: 5px;
+
+}
+
 .colSX{
     padding: 0%;
 }
@@ -58,6 +71,11 @@ ul{
     height: 90%;
     padding: 0%;
 }
+
+.spanDati{
+    color: white;
+}
+
 .cardNav{
     width: 100%;
     background-color: transparent;
@@ -119,7 +137,8 @@ ul{
     margin: 0%;
     @include center();
 }
-.container-fluid-tornei, .container-fluid-impostazioni{
+
+.container-fluid-impostazioni{
     background-image: none;
 }
 
