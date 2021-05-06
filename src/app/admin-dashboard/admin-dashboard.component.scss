@@ -13,8 +13,10 @@ h2{
 }
 
 .sliderScritta{
-    font-size: 28px;
-    font-family: $font;
+    padding: 0%;
+    margin: 1%;
+    font-size: 35px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
 }
 
@@ -27,11 +29,16 @@ h2{
     width: 100vw;
 }
 
-.container-fluid{
+.container-fluid, .container-fluid2{
     background: #1c92d2;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to top, #f2fcfe, #1c92d2);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #f2fcfe, #1c92d2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     height: 165vh;
+}
+
+.container-fluid2{
+    background-color: transparent;
+    background: none;
 }
 
 .btn{
@@ -48,17 +55,40 @@ h2{
     margin: 0%;
 }
 
+.risultati{
+    font-family: $font;
+    background-color: transparent;
+    width: 130vw;
+    height: 10vh;
+    margin-left: 13px;
+    padding: 0%;
+}
+
+.col{
+    height: 100%;
+}
+
+.testoColonne{
+    font-size: 22px;
+    color: black;
+    font-weight: 600;
+}
+
 .colonna{
     padding: 0%;
     width: 5%;
     margin-right: 0%;
 }
 
+.risultatiInfo{
+    font-size: 20px;
+}
+
 .testoNav{
     color: black;
     font-family: $font;
     font-size: 25px;
-    font-weight: 550;
+    font-weight: 700;
 }
 
 .pointer{

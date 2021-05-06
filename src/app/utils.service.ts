@@ -18,12 +18,6 @@ export class UtilsService {
   citta;
   via;
   cap;
-  
-
-  contenutoDrawer = [
-    {nome : 'Buoni spesa'}, {nome : 'Buoni speciali'}, {nome : 'Transazioni'},
-    {nome : 'Fatture'}, {nome : 'Donazioni'}, {nome : 'Utenti'}, {nome : 'Attività commerciali'}, {nome : 'Logout'},
-]
 
   constructor() { }
 }

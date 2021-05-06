@@ -12,6 +12,7 @@ export class AdminDashboardComponent implements OnInit {
   vediPrenotazioni = true;
   feedback = false;
   impostazioni = false;
+  tueInfo = false;
   idCorrente: number;
 
   creaSquadra; modificaSquadra; eliminaSquadra;
@@ -91,6 +92,7 @@ export class AdminDashboardComponent implements OnInit {
 
   displayedColumns2: string[] = ['checkbox', 'idgiocatore', 'name', 'surname', "username", "autovalutazione", "ruolo"];
 
+  displayedInfo: string[] = ['nomestruttura', 'citta', 'via', 'cap', 'email']
 
   displayedColumnsFeedback: string[] = ["idgiocatore", "valutazione"];
 
@@ -102,6 +104,17 @@ export class AdminDashboardComponent implements OnInit {
     config.roles = false;
   }
 
+  nomestruttura; email; cap; via; citta;
+
+  retrieveLocalStorage(){
+    this.nomestruttura = localStorage.getItem("nomestruttura");
+    this.email = localStorage.getItem("Email");
+    this.cap = localStorage.getItem("cap");
+    this.via = localStorage.getItem("via");
+    this.citta = localStorage.getItem("citta");
+    console.log(this.nomestruttura + " " + this.email + " " + this.cap + " " +this.via + " " + this.citta);
+  }
+
   modificaSi = false;
   eliminaSi = false;
 
@@ -109,18 +122,29 @@ export class AdminDashboardComponent implements OnInit {
     this.vediPrenotazioni = true;
     this.feedback = false;
     this.impostazioni = false;
+    this.tueInfo = false;
   }
+  
 
   visualizzaFeedback(){
     this.vediPrenotazioni = false;
     this.feedback = true;
     this.impostazioni = false;
+    this.tueInfo = false;
   }
 
   visualizza3(){
     this.vediPrenotazioni = false;
     this.feedback = false;
-    this.impostazioni = true;
+    this.impostazioni = true;    
+    this.tueInfo = false;
+  }
+
+  visualizzaTueInfo(){
+    this.vediPrenotazioni = false;
+    this.feedback = false;
+    this.impostazioni = false;
+    this.tueInfo = true;
   }
 
 
@@ -187,6 +211,7 @@ export class AdminDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getData();
+    this.retrieveLocalStorage();
   }
 
 }

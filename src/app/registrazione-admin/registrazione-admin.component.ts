@@ -43,7 +43,6 @@ export class RegistrazioneAdminComponent implements OnInit {
     
     this.avantiRegistrazione2();
   }
-
   
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
