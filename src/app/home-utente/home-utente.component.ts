@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../auth.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-home-utente',
@@ -8,9 +10,24 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class HomeUtenteComponent implements OnInit {
 
+  tenants;
+  prova;
+  dataSourceBackend;
+  constructor(private modalService: NgbModal, private auth: AuthService) { }
+
+  fetch() {
+    console.log("Fetch")
+    this.auth.get().subscribe((response) => {
+      console.log(response);
+      this.prova = response;
+      this.dataSourceBackend = new MatTableDataSource(this.prova);
+      console.log(this.prova);
+    });
+  }
+
   nome; cognome; email; username; autovalutazione; ruolo
 
-  retrieveLocalStorage(){
+  retrieveLocalStorage() {
     this.nome = localStorage.getItem("Nome");
     this.cognome = localStorage.getItem("Cognome");
     this.email = localStorage.getItem("Email");
@@ -25,21 +42,20 @@ export class HomeUtenteComponent implements OnInit {
   partitaSelezionata = false;
 
   //TODO da togliere, solo prova
-  toggleCampo(){
+  toggleCampo() {
     this.partitaSelezionata = true;
   }
   // --------------------
 
-  cambiaautovalutazione(){
+  cambiaautovalutazione() {
     this.cambiaAutovalutazione = !this.cambiaAutovalutazione;
   }
 
   closeResult = '';
 
-  constructor(private modalService: NgbModal) {}
 
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -60,35 +76,36 @@ export class HomeUtenteComponent implements OnInit {
   impostazioni = false;
   popup = false;
 
-  setImpostazioniTrue(){
+  setImpostazioniTrue() {
     this.impostazioni = true;
     this.iscriviti = false;
   }
 
-  setIscrivitiTrue(){
+  setIscrivitiTrue() {
     this.impostazioni = false;
     this.iscriviti = true;
   }
 
-  sceltoPortiere(){
+  sceltoPortiere() {
     console.log("Portiere");
     this.popup = true;
   }
-  sceltoCentrocampista(){
+  sceltoCentrocampista() {
     console.log("Centrocampista");
     this.popup = true;
   }
-  sceltoAttaccante(){
+  sceltoAttaccante() {
     console.log("Attaccante");
     this.popup = true;
   }
-  sceltoDifensore(){
+  sceltoDifensore() {
     console.log("Difensore");
-    
+
   }
 
   ngOnInit(): void {
     this.retrieveLocalStorage();
+    this.fetch();
   }
 
 }

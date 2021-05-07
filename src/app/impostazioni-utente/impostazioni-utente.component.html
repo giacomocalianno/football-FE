@@ -1,10 +1,48 @@
 <div class="row m-0 p-0">
     <div class="container-fluid">
-        <div class="row rowHome m-0">
+        <div class="row rowHome m-0 mt-4">
             <svg routerLink="/homeUtente" xmlns="http://www.w3.org/2000/svg" width="55px" height="55px" fill="white"
                 class="bi bi-house-door-fill pointer m-0" viewBox="0 0 16 16">
                 <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
             </svg>
+        </div>
+        <div class="row w-100 h-100 justify-content-center">
+                <table mat-table [dataSource]="dataSourceBackend" class="mat-elevation-z8 w-100 mx-5 mt-5 justify-content-center">
+                
+                <ng-container matColumnDef="tenantId" class="ml-4">
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Tenant ID</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna pointer"> {{element.tenantId}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="address">
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Address</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna pointer"> {{element.address}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="cap">
+                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">CAP</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna pointer"> {{element.cap}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="city">
+                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">City</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna pointer"> {{element.city}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">E-mail</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna pointer"> {{element.email}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Name</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna pointer"> {{element.name}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table> 
+            <mat-spinner *ngIf="caricamento"></mat-spinner>
         </div>
     </div>
 </div>

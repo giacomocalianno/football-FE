@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-storico-utente',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoricoUtenteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalService: NgModule, private auth: AuthService) { }
 
   ngOnInit(): void {
+    
   }
 
 }

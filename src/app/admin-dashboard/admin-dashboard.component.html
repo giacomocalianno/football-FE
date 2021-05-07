@@ -25,7 +25,10 @@
         </div>
     </div>
 
+    <!-- PRENOTAZIONI -->
     <div *ngIf="vediPrenotazioni" class="row justify-content-center w-100 p-0 m-0">
+
+        <!--TODO aggiornare datasource backend-->
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100 justify-content-center tabella">
 
             <ng-container matColumnDef="idpartita" class="ml-4">
@@ -54,6 +57,7 @@
                 <button *ngIf="checkedCheckbox" type="button" class="btn btn-warning" (click) = "rimuoviGiocatori()">Rimuovi selezionato/i</button>
             </div>
 
+            <!--TODO aggiornare datasource backend-->
             <table mat-table [dataSource]="arrayPartitaScelta" class="mat-elevation-z8 w-100 justify-content-center tabella">
 
                 <ng-container matColumnDef="checkbox" class="ml-4">
@@ -98,7 +102,9 @@
         
     </div>
 
+    <!-- FEEDBACK -->
     <div *ngIf="feedback">
+        <!--TODO aggiornare datasource backend-->
         <table mat-table [dataSource]="dataSourceFeedback" class="mat-elevation-z8 justify-content-center tabella">
 
             <ng-container matColumnDef="idgiocatore" class="ml-4">
@@ -116,7 +122,9 @@
         </table>
     </div>
 
+    <!-- IMPOSTAZIONI -->
     <div *ngIf="impostazioni">
+        <!--TODO aggiornare datasource backend-->
         <table mat-table [dataSource]="dataSourceFeedback" class="mat-elevation-z8 justify-content-center tabella">
             <ng-container matColumnDef="Crea squadra" class="ml-4">
                 <th class="colonna pointer" (click) = "visualizzaCreaSquadra(element)" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Crea squadra</b> </th>
@@ -138,10 +146,10 @@
         </div>
         <div class="row innertabella" *ngIf="modificaSquadra">
 
-            <!-- TODO questo sotto è hardcode, modificare con partite dal DB-->
             <h2>Seleziona la squadra da <b>modificare</b> </h2>
 
-            <!--TODO controllare e cambiare datasource qui sotto dopo connessione db-->
+            <!--TODO aggiornare datasource backend questo sotto è hardcode, modificare con partite dal DB-->
+
             <table mat-table [dataSource]="arrayPartitaScelta" class="mat-elevation-z8 w-100 justify-content-center tabella">
 
                 <ng-container matColumnDef="checkbox" class="ml-4">
@@ -238,6 +246,7 @@
         
     </div>
 
+    <!-- LE TUE INFO -->
     <div *ngIf="tueInfo">
         <table mat-table class="mat-elevation-z8 w-100 justify-content-center tabella">
             
@@ -272,7 +281,8 @@
         <div class="row w-100 h-100 mt-4">
             <div class="container-fluid2 risultati">
                 <div class="row">
-                    <div class="col ml-4">
+                    <!--TODO qui sotto è hardcode-->
+                    <div class="col ml-3">
                         <span class="risultatiInfo">{{nomestruttura}}</span>
                     </div>
                     <div class="col ml-0 pl-0">

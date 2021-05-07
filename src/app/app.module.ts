@@ -24,6 +24,8 @@ import { PreRegistrazioneComponent } from './pre-registrazione/pre-registrazione
 import { RegistrazioneAdminComponent } from './registrazione-admin/registrazione-admin.component';
 import { RecapAdminComponent } from './recap-admin/recap-admin.component';
 import { ScegliPartitaUserComponent } from './scegli-partita-user/scegli-partita-user.component';
+import { HttpClientModule } from '@angular/common/http';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { ScegliPartitaUserComponent } from './scegli-partita-user/scegli-partita
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule, ReactiveFormsModule, FormsModule, NgbModule, MatTableModule,
-    MatFormFieldModule, ReactiveFormsModule, FormsModule, MatCardModule, MatInputModule, MatButtonModule, MatSidenavModule
+    MatFormFieldModule, ReactiveFormsModule, FormsModule, MatCardModule, MatInputModule, MatButtonModule, MatSidenavModule, MatProgressSpinnerModule,
+    HttpClientModule, MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -248,6 +248,9 @@ ul{
     .nonActive{
         font-size: 20px;
     }
+    .spanDati{
+        font-size: 16px;
+    }
 }
 
 @media screen and (min-width: 800px) and (max-width: 1000px) {
@@ -289,6 +292,9 @@ ul{
     .nonActive{
         font-size: 18px;
     }
+    .spanDati{
+        font-size: 14px;
+    }
 }
 
 
@@ -329,6 +335,9 @@ ul{
     .bi{
         width: 35px;
         height: 35px;
+    }
+    .spanDati{
+        font-size: 12px;
     }
 }
 
@@ -373,6 +382,9 @@ ul{
     }
     .nonActive{
         font-size: 16px;
+    }
+    .spanDati{
+        font-size: 11px;
     }
 }
 
