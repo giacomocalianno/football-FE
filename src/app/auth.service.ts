@@ -10,8 +10,16 @@ export class AuthService {
 
   url = "http://172.16.223.244:8080/getTenants"
 
+  // TODO da togliere è prova
+  url2 = "http://172.16.223.244:8080/1/getPlayers"
+
   get(){
     return this.http.get(this.url)
+  }
+
+  // TODO da togliere è prova
+  get2(){
+    return this.http.get(this.url2)
   }
 
 }
