@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 import { UtilsService } from '../utils.service';
 
 @Component({
@@ -8,7 +11,7 @@ import { UtilsService } from '../utils.service';
 })
 export class RecapRegistrazioneComponent implements OnInit {
 
-  constructor(private utils: UtilsService) { }
+  constructor(private utils: UtilsService, private auth: AuthService, private route: Router) { }
 
   recapDati;
 
@@ -23,7 +26,15 @@ export class RecapRegistrazioneComponent implements OnInit {
     localStorage.setItem('Password', this.recapDati.password);
     localStorage.setItem('Autovalutazione', this.recapDati.autovalutazione);
     localStorage.setItem('Ruolo', this.recapDati.ruolo);
+
+    console.log(this.body);
+    console.log("Post fatta");
+    this.auth.postRequest(this.body);
+
+    this.route.navigateByUrl("/homeUtente");
   }
+
+  body;
 
   concatena(){
     this.recapDati = {
@@ -35,6 +46,7 @@ export class RecapRegistrazioneComponent implements OnInit {
       autovalutazione : this.utils.autovalutazione,
       ruolo : this.utils.ruolo,
     }
+    this.body = this.recapDati;
   }
 
   visualizza(){

@@ -15,11 +15,12 @@ export class RegistrazioneAdminComponent implements OnInit {
   formRegistrazioneAdmin;
 
   setForm(){
+    //TODO togliere i valori preimpostati
     this.formRegistrazioneAdmin = new FormGroup({
       nomestruttura : new FormControl('Campo ELIS', [Validators.required]),
       citta : new FormControl('Roma', [Validators.required]),
       via : new FormControl('Via Sandro', [Validators.required]),
-      cap : new FormControl('00159', [Validators.required]), 
+      cap : new FormControl([Validators.required, Validators.minLength(4), Validators.maxLength(5)]), 
       email : new FormControl('email@gmail.com', [Validators.required, Validators.email]), 
       password : new FormControl('password', [Validators.required]), 
     })
@@ -27,10 +28,12 @@ export class RegistrazioneAdminComponent implements OnInit {
 
   sendData(){
 
-    console.log("Nome: " + this.formRegistrazioneAdmin.value.nome);
-    console.log("Cognome: " + this.formRegistrazioneAdmin.value.cognome);
+    console.log("Nome: " + this.formRegistrazioneAdmin.value.nomestruttura);
+    console.log("Città: " + this.formRegistrazioneAdmin.value.citta);
     console.log("Email: " + this.formRegistrazioneAdmin.value.email);
     console.log("Password: " + this.formRegistrazioneAdmin.value.password);
+    console.log("type of CAP: " + typeof(this.formRegistrazioneAdmin.value.cap));
+    console.log("via: " + this.formRegistrazioneAdmin.value.via);
 
     this.utils.emailAdmin = this.formRegistrazioneAdmin.value.email;
     this.utils.passwordAdmin = this.formRegistrazioneAdmin.value.password;
@@ -41,17 +44,15 @@ export class RegistrazioneAdminComponent implements OnInit {
     
     console.log(this.formRegistrazioneAdmin.value);
     
-    this.avantiRegistrazione2();
+    this.router.navigateByUrl("/recapAdmin");
   }
   
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
-  avantiRegistrazione2(){
-    this.router.navigate(["/recapAdmin"]);
-  }
 
   ngOnInit(): void {
+
     this.setForm();
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]

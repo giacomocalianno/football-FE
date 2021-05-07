@@ -10,16 +10,26 @@ export class AuthService {
 
   url = "http://172.16.223.244:8080/getTenants"
 
-  // TODO da togliere è prova
-  url2 = "http://172.16.223.244:8080/1/getPlayers"
-
+  urlCreate = "http://172.16.223.244:8080/createTenant"
+  
   get(){
     return this.http.get(this.url)
   }
 
-  // TODO da togliere è prova
+  postRequest(body){
+    //const bodyJson = JSON.stringify(body)
+    // console.log("bodyjson " + body["cap"]);
+    console.log(body);
+    
+    return this.http.post(this.urlCreate, body);
+  }
+
+  /* TODO da togliere è prova
+  url2 = "http://172.16.223.244:8080/1/getPlayers"
+
   get2(){
     return this.http.get(this.url2)
   }
+  */
 
 }

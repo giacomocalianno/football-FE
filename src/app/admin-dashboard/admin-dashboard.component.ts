@@ -107,7 +107,7 @@ export class AdminDashboardComponent implements OnInit {
   nomestruttura; email; cap; via; citta;
 
   retrieveLocalStorage(){
-    this.nomestruttura = localStorage.getItem("nomestruttura");
+    this.nomestruttura = localStorage.getItem("name");
     this.email = localStorage.getItem("Email");
     this.cap = localStorage.getItem("cap");
     this.via = localStorage.getItem("via");
