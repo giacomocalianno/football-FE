@@ -40,8 +40,9 @@ export class RecapAdminComponent implements OnInit {
 
     console.log(this.recapDati);
     console.log(this.recapDati["email"]);
-    console.log("Post admin fatta");
-    this.auth.postRequest(this.recapDati);
+    this.auth.postRequest(this.recapDati).subscribe( () => {
+      console.log("Post admin fatta");
+    });
 
     this.route.navigateByUrl("/adminDashboard");
   }

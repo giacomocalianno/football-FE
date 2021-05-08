@@ -11,6 +11,7 @@ export class UtilsService {
   password;
   autovalutazione;
   ruolo;
+  idTenant;
 
   emailAdmin;
   passwordAdmin;

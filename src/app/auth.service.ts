@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,9 @@ export class AuthService {
 
   url = "http://172.16.223.244:8080/getTenants"
 
-  urlCreate = "http://172.16.223.244:8080/createTenant"
+  urlCreateTenant = "http://172.16.223.244:8080/createTenant"
+
+  urlCreatePlayer = "http://172.16.223.244:8080/"
   
   get(){
     return this.http.get(this.url)
@@ -21,7 +23,15 @@ export class AuthService {
     // console.log("bodyjson " + body["cap"]);
     console.log(body);
     
-    return this.http.post(this.urlCreate, body);
+    return this.http.post(this.urlCreateTenant, body)
+  }
+
+  postRequestPlayer(body, idTenant){
+    //const bodyJson = JSON.stringify(body)
+    // console.log("bodyjson " + body["cap"]);
+    console.log(body);
+    
+    return this.http.post(this.urlCreatePlayer + idTenant + "/createPlayer", body)
   }
 
   /* TODO da togliere è prova

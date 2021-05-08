@@ -27,10 +27,9 @@ export class RecapRegistrazioneComponent implements OnInit {
     localStorage.setItem('Autovalutazione', this.recapDati.autovalutazione);
     localStorage.setItem('Ruolo', this.recapDati.ruolo);
 
-    console.log(this.body);
-    console.log("Post fatta");
-    this.auth.postRequest(this.body);
-
+    console.log(this.recapDati);
+    console.log(this.recapDati["email"]);
+    
     this.route.navigateByUrl("/homeUtente");
   }
 
@@ -38,24 +37,22 @@ export class RecapRegistrazioneComponent implements OnInit {
 
   concatena(){
     this.recapDati = {
-      nome : this.utils.nome,
-      cognome : this.utils.cognome,
-      username : this.username,
+      name : this.utils.nome,
+      surname : this.utils.cognome,
       email : this.utils.email,
       password : this.utils.password,
-      autovalutazione : this.utils.autovalutazione,
-      ruolo : this.utils.ruolo,
+      rating : this.utils.autovalutazione,
+      role : this.utils.ruolo 
     }
-    this.body = this.recapDati;
-  }
+    console.log("recapDati utente è: " + this.recapDati);
 
-  visualizza(){
-    console.log(this.recapDati)
+    this.auth.postRequestPlayer(this.recapDati, this.utils.idTenant).subscribe( () => {
+      console.log("Post utente fatta");
+    });
+    
   }
-
   ngOnInit(): void {
     this.concatena();
-    this.visualizza();
   }
 
 }
