@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../auth.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { UtilsService } from '../utils.service';
 
 @Component({
   selector: 'app-home-utente',
@@ -13,7 +14,7 @@ export class HomeUtenteComponent implements OnInit {
   tenants;
   prova;
   dataSourceBackend;
-  constructor(private modalService: NgbModal, private auth: AuthService) { }
+  constructor(private modalService: NgbModal, private auth: AuthService, private utils: UtilsService) { }
 
   fetch() {
     console.log("Fetch")
@@ -25,15 +26,17 @@ export class HomeUtenteComponent implements OnInit {
     });
   }
 
-  nome; cognome; email; username; autovalutazione; ruolo
+  recapDati;
 
   retrieveLocalStorage() {
-    this.nome = localStorage.getItem("Nome");
-    this.cognome = localStorage.getItem("Cognome");
-    this.email = localStorage.getItem("Email");
-    this.username = localStorage.getItem("Username");
-    this.autovalutazione = localStorage.getItem("Autovalutazione");
-    this.ruolo = localStorage.getItem("Ruolo");
+    this.recapDati = {
+      name : this.utils.nome,
+      surname : this.utils.cognome,
+      email : this.utils.email,
+      password : this.utils.password,
+      rating : this.utils.autovalutazione,
+      role : this.utils.ruolo 
+    }
   }
 
   cambiaAutovalutazione = false;

@@ -19,18 +19,12 @@ export class AuthService {
   }
 
   postRequest(body){
-    //const bodyJson = JSON.stringify(body)
-    // console.log("bodyjson " + body["cap"]);
-    console.log(body);
-    
+    console.log("body del admin che sto mandando" + body);
     return this.http.post(this.urlCreateTenant, body)
   }
 
   postRequestPlayer(body, idTenant){
-    //const bodyJson = JSON.stringify(body)
-    // console.log("bodyjson " + body["cap"]);
-    console.log(body);
-    
+    console.log("body del giocatore che sto mandando" + body);
     return this.http.post(this.urlCreatePlayer + idTenant + "/createPlayer", body)
   }
 

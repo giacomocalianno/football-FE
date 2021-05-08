@@ -17,10 +17,10 @@ export class RegistrazioneComponent implements OnInit {
   setForm(){
     //TODO togliere i valori preimpostati
     this.formRegistrazione = new FormGroup({
-      nome : new FormControl('Giacomo', [Validators.required]),
-      cognome : new FormControl('Calianno', [Validators.required]),
-      email : new FormControl('ciao@gmail.com', [Validators.required, Validators.email]),
-      password : new FormControl('ciao', [Validators.required])
+      nome : new FormControl('', [Validators.required]),
+      cognome : new FormControl('', [Validators.required]),
+      email : new FormControl('', [Validators.required, Validators.email]),
+      password : new FormControl('', [Validators.required])
     })
   }
 

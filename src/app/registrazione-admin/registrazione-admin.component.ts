@@ -17,12 +17,12 @@ export class RegistrazioneAdminComponent implements OnInit {
   setForm(){
     //TODO togliere i valori preimpostati
     this.formRegistrazioneAdmin = new FormGroup({
-      nomestruttura : new FormControl('Campo ELIS', [Validators.required]),
-      citta : new FormControl('Roma', [Validators.required]),
-      via : new FormControl('Via Sandro', [Validators.required]),
+      nomestruttura : new FormControl('', [Validators.required]),
+      citta : new FormControl('', [Validators.required]),
+      via : new FormControl('', [Validators.required]),
       cap : new FormControl([Validators.required, Validators.minLength(4), Validators.maxLength(5)]), 
-      email : new FormControl('email@gmail.com', [Validators.required, Validators.email]), 
-      password : new FormControl('password', [Validators.required]), 
+      email : new FormControl('', [Validators.required, Validators.email]), 
+      password : new FormControl('', [Validators.required]), 
     })
   }
 
