@@ -33,11 +33,15 @@ export class AuthService {
   }
 
   getMatches(idTenant){
-    return this.http.get(this.urlGetMatches + idTenant + "/getMatches")
+    console.log(this.urlGetMatches + idTenant + "/getMatches");
+    
+    return this.http.get(this.urlGetMatches + idTenant + "/getMatches");
   }
 
   createMatches(idTenant, body){
-    return this.http.post(this.urlGetMatches + idTenant, body)
+    console.log(body);
+    
+    return this.http.post(this.urlGetMatches + idTenant + "/createMatch", body);
   }
 
   login(email, password){

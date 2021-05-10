@@ -6,31 +6,29 @@ import { UtilsService } from '../utils.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login-utente.component.html',
+  styleUrls: ['./login-utente.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginUtenteComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router, private utils: UtilsService) { }
 
-  formLogin;
+  formLoginUtente;
 
   setForm(){
-    this.formLogin = new FormGroup({
+    this.formLoginUtente = new FormGroup({
       email : new FormControl('', [Validators.required]),
       password : new FormControl('', [Validators.required])
     })
   }
 
   sendData(){
-    console.log("La mail inserita è: " + this.formLogin.value.email);
-    console.log("La password inserita è: " + this.formLogin.value.password);
+    console.log("La mail inserita è: " + this.formLoginUtente.value.email);
+    console.log("La password inserita è: " + this.formLoginUtente.value.password);
 
-    this.auth.login(this.formLogin.value.email, this.formLogin.value.password).subscribe( (response) => {
+    this.auth.login(this.formLoginUtente.value.email, this.formLoginUtente.value.password).subscribe( (response) => {
       console.log(response);
-      this.utils.idTenant = response["id"];
-      console.log("idtenant salvato nell'utils: " + this.utils.idTenant);
-      this.router.navigateByUrl("/adminDashboard");
+      this.router.navigateByUrl("/homeUtente");
     })
   }
 

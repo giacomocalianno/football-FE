@@ -16,7 +16,7 @@
                 <ng-container matColumnDef="checkbox" class="ml-4">
                     <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Scegli</b> </th>
                     <td mat-cell *matCellDef="let element" class="colonna pointer">
-                        <input type="checkbox" (click)="stampaId(this.element.id)"> </td>
+                        <input type="radio" (click)="stampaId(this.element.id)"> </td>
                 </ng-container>
 
                 <ng-container matColumnDef="id">
@@ -40,7 +40,9 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
-
+            <div class="w-100" style="display: flex; justify-content: center; height: fit-content;">
+                <button type="button" style="height: 50px;" (click)="iscriviUtente()" class="btn btn-success">Conferma</button>
+            </div>
         </div>
     </div>
 </div>

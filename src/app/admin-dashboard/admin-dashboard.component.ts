@@ -94,7 +94,7 @@ export class AdminDashboardComponent implements OnInit {
 
   displayedColumns2: string[] = ['checkbox', 'idgiocatore', 'name', 'surname', "username", "autovalutazione", "ruolo"];
 
-  displayedInfo: string[] = ['nomestruttura', 'citta', 'via', 'cap', 'email']
+  displayedInfo: string[] = ['idtenant', 'nomestruttura', 'citta', 'via', 'cap', 'email']
 
   displayedColumnsFeedback: string[] = ["idgiocatore", "valutazione"];
 
@@ -106,9 +106,10 @@ export class AdminDashboardComponent implements OnInit {
     config.roles = false;
   }
 
-  nomestruttura; email; cap; via; citta;
+  nomestruttura; email; cap; via; citta; idtenant;
 
   retrieveLocalStorage(){
+    this.idtenant = this.utils.idTenant;
     this.nomestruttura = localStorage.getItem("name");
     this.email = localStorage.getItem("Email");
     this.cap = localStorage.getItem("cap");
@@ -126,18 +127,20 @@ export class AdminDashboardComponent implements OnInit {
     })
   }
 
+  creata = false;
+
   submit(){
     const bodyCreateMatch = {
-      data : this.formDataeOra.value.data,
-      ora : this.formDataeOra.value.ora
+      date : this.formDataeOra.value.data,
+      time : this.formDataeOra.value.ora
     }
 
-    // TODO aggiungere id tenant e completare la POST
-    console.log("id tenant corrente" /* + idtenan*/);
-    /*
-    this.auth.createMatches(this.utils.idTenant, bodyCreateMatch).subscribe( () => {
+    console.log("id tenant corrente: " + this.utils.idTenant);
+    
+    this.auth.createMatches(this.utils.idTenant, bodyCreateMatch ).subscribe( () => {
       console.log("Ho creato la partita");
-    })*/
+      this.creata = true;
+    })
   }
 
   modificaSi = false;
