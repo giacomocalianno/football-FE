@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { UtilsService } from '../utils.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-scegli-partita-user',
@@ -7,13 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScegliPartitaUserComponent implements OnInit {
 
-  displayedColumns: string[] = ['checkbox', 'nomecampo', 'ora', 'data'];
-  dataSource = [
-    { nomecampo : "ELIS", ora: "14:30", data: "12/3/2021"}, { nomecampo : "SAFI", ora: "19:30", data: "12/3/2021"}, 
-    { nomecampo : "Armando", ora: "14:00", data: "12/3/2021"}, { nomecampo : "Strazza", ora: "16:30", data: "12/3/2021"}
-  ];
+  constructor(private auth: AuthService, private utils: UtilsService) { }
 
-  constructor() { }
+  displayedColumns: string[] = ['checkbox', 'id', 'ora', 'data'];
+
+  dataSource; prova;
+  
+  retrieveMatches(){
+    this.auth.getMatches(this.utils.idTenant).subscribe( (response) => {
+        console.log(response);
+        this.prova = response;
+        this.dataSource = new MatTableDataSource(this.prova);
+    } )
+  }
+
+  stampaId(id){
+    console.log("id: " + id);
+    this.utils.idPartitaSceltaUtente = id;
+    console.log("utils.tentant ora è: " + this.utils.idPartitaSceltaUtente);
+  }
 
   ngOnInit(): void {
   }

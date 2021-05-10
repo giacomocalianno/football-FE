@@ -8,14 +8,18 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  url = "http://172.16.223.244:8080/getTenants"
+  urlgetTenants = "http://172.16.223.244:8080/getTenants"
 
   urlCreateTenant = "http://172.16.223.244:8080/createTenant"
 
   urlCreatePlayer = "http://172.16.223.244:8080/"
-  
+
+  urlGetMatches = "http://172.16.223.244:8080/"
+
+  urlLogin = "http://172.16.223.244:8080/loginTenant/"
+
   get(){
-    return this.http.get(this.url)
+    return this.http.get(this.urlgetTenants)
   }
 
   postRequest(body){
@@ -28,12 +32,22 @@ export class AuthService {
     return this.http.post(this.urlCreatePlayer + idTenant + "/createPlayer", body)
   }
 
-  /* TODO da togliere è prova
-  url2 = "http://172.16.223.244:8080/1/getPlayers"
-
-  get2(){
-    return this.http.get(this.url2)
+  getMatches(idTenant){
+    return this.http.get(this.urlGetMatches + idTenant + "/getMatches")
   }
-  */
+
+  createMatches(idTenant, body){
+    return this.http.post(this.urlGetMatches + idTenant, body)
+  }
+
+  login(email, password){
+    const invia = {
+      email : email,
+      password : password
+    }
+    console.log("link: "+this.urlLogin+email + "/" +  password);
+    
+    return this.http.post(this.urlLogin+ email + "/" +  password, invia)
+  }
 
 }

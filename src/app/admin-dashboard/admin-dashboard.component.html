@@ -142,6 +142,23 @@
         </table>
 
         <div class="row innertabella" *ngIf="creaSquadra">
+            <form [formGroup]="formDataeOra">
+                <div class="row w-100">
+                    <div class="col-4">
+                        <label>Inserisci data</label>
+                        <input type="text" formControlName="data"> <br>
+                        <label class="text-danger">Inserire data in questo formato 12/12/2021</label>
+                    </div>
+                    <div class="col-4">
+                        <label>Inserisci ora</label>
+                        <input type="text" class="mr-1" formControlName="ora"> <br>
+                        <label class="text-danger">Inserire ora in questo formato 12:30</label><br>
+                    </div>
+                    <div class="col-4 ">
+                        <button type="submit" [disabled]="formDataeOra.invalid" (click)="submit()" class="btn btn-success">Conferma</button>
+                    </div>
+                </div>      
+            </form>
             
         </div>
         <div class="row innertabella" *ngIf="modificaSquadra">

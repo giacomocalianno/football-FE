@@ -13,6 +13,8 @@ export class UtilsService {
   ruolo;
   idTenant;
 
+  idPartitaSceltaUtente;
+
   emailAdmin;
   passwordAdmin;
   nomestruttura;

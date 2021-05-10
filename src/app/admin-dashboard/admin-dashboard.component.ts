@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilsService } from '../utils.service';
 import {NgbNavConfig} from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -99,7 +101,7 @@ export class AdminDashboardComponent implements OnInit {
   // TODO da cambiare nome colonne
   displayedColumnsImpostazioni: string[] = ["Crea squadra", "Modifica squadra", "Elimina squadra"];
 
-  constructor(private utils: UtilsService, config: NgbNavConfig /*, private auth: AuthService */) {
+  constructor(private utils: UtilsService, config: NgbNavConfig, private auth: AuthService ) {
     config.destroyOnHide = false;
     config.roles = false;
   }
@@ -113,6 +115,29 @@ export class AdminDashboardComponent implements OnInit {
     this.via = localStorage.getItem("via");
     this.citta = localStorage.getItem("citta");
     console.log(this.nomestruttura + " " + this.email + " " + this.cap + " " +this.via + " " + this.citta);
+  }
+
+  formDataeOra;
+
+  setFormDataeOra(){
+    this.formDataeOra = new FormGroup({
+      data : new FormControl("", [Validators.required, Validators.pattern("^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$")]), 
+      ora : new FormControl("", [Validators.required, Validators.pattern("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")])
+    })
+  }
+
+  submit(){
+    const bodyCreateMatch = {
+      data : this.formDataeOra.value.data,
+      ora : this.formDataeOra.value.ora
+    }
+
+    // TODO aggiungere id tenant e completare la POST
+    console.log("id tenant corrente" /* + idtenan*/);
+    /*
+    this.auth.createMatches(this.utils.idTenant, bodyCreateMatch).subscribe( () => {
+      console.log("Ho creato la partita");
+    })*/
   }
 
   modificaSi = false;
@@ -212,6 +237,7 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit(): void {
     // this.getData();
     this.retrieveLocalStorage();
+    this.setFormDataeOra();
   }
 
 }
