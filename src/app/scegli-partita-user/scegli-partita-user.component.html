@@ -10,13 +10,13 @@
         <div class="row w-100 h-100">
             <!--TODO questo sotto è hardcode, cambiare con partite vere (credo servrirà il data source per prendere dati)-->
             <!--TODO non toccare, basta modificare i valori nel datasource-->
-            <table mat-table [dataSource]="dataSource"
+            <table mat-table [dataSource]="dataSourcePartite"
                 class="mat-elevation-z8 w-100 mx-5 justify-content-center tabella">
 
                 <ng-container matColumnDef="checkbox" class="ml-4">
                     <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Scegli</b> </th>
                     <td mat-cell *matCellDef="let element" class="colonna pointer">
-                        <input type="checkbox"> <input type="radio" (click)="stampaId(this.element.id)"> </td>
+                        <input type="checkbox" (click)="stampaId(this.element.id)"> </td>
                 </ng-container>
 
                 <ng-container matColumnDef="id">

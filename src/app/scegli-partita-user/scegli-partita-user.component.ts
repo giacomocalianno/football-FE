@@ -14,23 +14,27 @@ export class ScegliPartitaUserComponent implements OnInit {
 
   displayedColumns: string[] = ['checkbox', 'id', 'ora', 'data'];
 
-  dataSource; prova;
+  dataSourcePartite; prova;
   
   retrieveMatches(){
     this.auth.getMatches(this.utils.idTenant).subscribe( (response) => {
-        console.log(response);
-        this.prova = response;
-        this.dataSource = new MatTableDataSource(this.prova);
+      console.log("Questa è la risposta intera");
+      console.log(response);
+      console.log("Questa è la risposta coi dati che ci interessano");
+      console.log(response["tenants"]);
+      this.prova = response["matches"];
+      this.dataSourcePartite = new MatTableDataSource(this.prova);
     } )
   }
 
   stampaId(id){
     console.log("id: " + id);
     this.utils.idPartitaSceltaUtente = id;
-    console.log("utils.tentant ora è: " + this.utils.idPartitaSceltaUtente);
+    console.log("id partita scelta dall'utente ora è: " + this.utils.idPartitaSceltaUtente);
   }
 
   ngOnInit(): void {
+    this.retrieveMatches();
   }
 
 }
