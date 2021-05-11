@@ -12,9 +12,7 @@ export class AuthService {
 
   urlCreateTenant = "http://172.16.223.244:8080/createTenant"
 
-  urlCreatePlayer = "http://172.16.223.244:8080/"
-
-  urlGetMatches = "http://172.16.223.244:8080/"
+  urlbase = "http://172.16.223.244:8080/"
 
   urlLogin = "http://172.16.223.244:8080/loginTenant/"
   urlLoginPlayer = "http://172.16.223.244:8080/loginPlayer/"
@@ -28,22 +26,29 @@ export class AuthService {
     return this.http.post(this.urlCreateTenant, body)
   }
 
+  updateTenant(idTenant, idPartita, body){
+    return this.http.patch(this.urlbase + idTenant + "/updateMatch/" + idPartita, body);
+  }
+
+  deleteTenant(idTenant, body){
+    return this.http.delete(this.urlbase + "deleteTenant/" + idTenant, body);
+  }
 
   postRequestPlayer(body, idTenant){
-    console.log("link create player" + this.urlCreatePlayer + idTenant + "/createPlayer", body);
-    return this.http.post(this.urlCreatePlayer + idTenant + "/createPlayer", body)
+    console.log("link create player" + this.urlbase + idTenant + "/createPlayer", body);
+    return this.http.post(this.urlbase + idTenant + "/createPlayer", body)
   }
 
   getMatches(idTenant){
-    console.log(this.urlGetMatches + idTenant + "/getMatches");
+    console.log(this.urlbase + idTenant + "/getMatches");
     
-    return this.http.get(this.urlGetMatches + idTenant + "/getMatches");
+    return this.http.get(this.urlbase + idTenant + "/getMatches");
   }
 
   createMatches(idTenant, body){
     console.log(body);
     
-    return this.http.post(this.urlGetMatches + idTenant + "/createMatch", body);
+    return this.http.post(this.urlbase + idTenant + "/createMatch", body);
   }
 
   login(email, password){

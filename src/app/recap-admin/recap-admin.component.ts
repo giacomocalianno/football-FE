@@ -39,17 +39,7 @@ export class RecapAdminComponent implements OnInit {
     localStorage.setItem("via", this.recapDati.address);
     localStorage.setItem("cap", this.recapDati.cap);
 
-    console.log(this.recapDati);
-    console.log(this.recapDati["email"]);
-    
-    this.auth.postRequest(this.recapDati).subscribe( () => {
-      console.log("Post admin fatta");
-      this.route.navigateByUrl("/adminDashboard");
-    }, (error) => {
-      console.log("esiste admin con stessa mail");
-      this.errore = true;
-    });
-
+    this.route.navigateByUrl("/adminDashboard");
   }
 
   visualizza(){

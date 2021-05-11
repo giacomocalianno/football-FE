@@ -126,16 +126,15 @@
     <div *ngIf="impostazioni">
         <!--TODO aggiornare datasource backend-->
         <table mat-table [dataSource]="dataSourceFeedback" class="mat-elevation-z8 justify-content-center tabella">
-            <ng-container matColumnDef="Crea squadra" class="ml-4">
-                <th class="colonna pointer" (click) = "visualizzaCreaSquadra(element)" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Crea squadra</b> </th>
+            <ng-container matColumnDef="Crea partita" class="ml-4">
+                <th class="colonna pointer" (click) = "visualizzaCreaPartita(element)" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Crea partita</b> </th>
             </ng-container>
 
-            <ng-container matColumnDef="Modifica squadra">
-                <th class="colonna pointer" (click) = "visualizzaModificaSquadra(element)" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Modifica squadra</b> </th>
+            <ng-container matColumnDef="Modifica partita">
+                <th class="colonna pointer" (click) = "visualizzaModificaPartita(element)" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Modifica partita</b> </th>
             </ng-container>
-
-            <ng-container matColumnDef="Elimina squadra">
-                <th class="colonna pointer" (click) = "visualizzaEliminaSquadra(element)" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Elimina squadra</b> </th>
+            <ng-container matColumnDef="Elimina partita">
+                <th class="colonna pointer" (click) = "visualizzaEliminaPartita(element)" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Elimina partita</b> </th>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumnsImpostazioni"></tr>
@@ -163,98 +162,91 @@
         </div>
         <div class="row innertabella" *ngIf="modificaSquadra">
 
-            <h2>Seleziona la squadra da <b>modificare</b> </h2>
+            <h2>Seleziona la partita da <b>modificare</b> </h2>
 
             <!--TODO aggiornare datasource backend questo sotto è hardcode, modificare con partite dal DB-->
 
-            <table mat-table [dataSource]="arrayPartitaScelta" class="mat-elevation-z8 w-100 justify-content-center tabella">
+            <table mat-table [dataSource]="dataSourceUpdate" class="mat-elevation-z8 w-100 justify-content-center tabella">
 
                 <ng-container matColumnDef="checkbox" class="ml-4">
-                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Seleziona 1 o più</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> <input type="checkbox"> </td>
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne"></b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna"> <input type="checkbox" (click)="setIdPartitaDaModificare(this.element.id, this.element.time, this.element.date)"> </td>
                 </ng-container>
 
-                <ng-container matColumnDef="idgiocatore" class="ml-4">
-                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">ID giocatore</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.idgiocatore}} </td>
+                <ng-container matColumnDef="idpartita" class="ml-4">
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">ID partita</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.id}} </td>
                 </ng-container>
     
-                <ng-container matColumnDef="name">
-                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Name</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.name}} </td>
+                <ng-container matColumnDef="ora">
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Ora</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.time}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="data">
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Data</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.date}} </td>
                 </ng-container>
     
-                <ng-container matColumnDef="surname">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Surname</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.surname}} </td>
-                </ng-container>
-    
-                <ng-container matColumnDef="username">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Username</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.username}} </td>
-                </ng-container>
-    
-                <ng-container matColumnDef="autovalutazione">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Autovalutazione</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.autovalutazione}} </td>
-                </ng-container>
-    
-                <ng-container matColumnDef="ruolo">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Ruolo</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.ruolo}} </td>
-                </ng-container>
-    
-                <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
             </table>
 
-            <button type="button" class="btn btn-warning mt-4">Modifica</button>
+            <button type="button" (click)="modificaPartita(this.time, this.date)" class="btn btn-warning mt-4">Modifica</button>
+            
+            <div *ngIf="divModifica" class="mt-3">
+                <form [formGroup]="formModifica">
+                <div class="row w-100">
+                    <div class="col-4">
+                        <label>Inserisci data</label>
+                        <input type="text" formControlName="date"> <br>
+                        <label class="text-danger">Inserire data in questo formato 12/12/2021</label>
+                    </div>
+                    <div class="col-4">
+                        <label>Inserisci ora</label>
+                        <input type="text" class="mr-1" formControlName="time"> <br>
+                        <label class="text-danger">Inserire ora in questo formato 12:30</label><br>
+                    </div>
+                    <div class="col-4 ">
+                        <button type="submit" [disabled]="formModifica.invalid" (click)="updatePartita()" class="btn btn-success">Conferma</button>
+                    </div>
+                    <label class="text-warning mt-3" style="font-size: 28px;" *ngIf="creata">La partita è stata modificata con successo!</label>
+
+                </div>      
+            </form>
+            </div>
+            
             
         </div>
         <div class="row innertabella" *ngIf="eliminaSquadra">
 
             <!-- TODO questo sotto è hardcode, modificare con partite dal DB-->
-            <h2>Seleziona la/le squadra da <b>eliminare</b> </h2>
+            <h2>Seleziona la partita da <b>eliminare</b> </h2>
 
-            <table mat-table [dataSource]="arrayPartitaScelta" class="mat-elevation-z8 w-100 justify-content-center tabella">
+            <table mat-table [dataSource]="dataSourceUpdate" class="mat-elevation-z8 w-100 justify-content-center tabella">
 
                 <ng-container matColumnDef="checkbox" class="ml-4">
-                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Seleziona 1 o più</b> </th>
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne"></b> </th>
                     <td mat-cell *matCellDef="let element" class="colonna"> <input type="checkbox"> </td>
                 </ng-container>
 
-                <ng-container matColumnDef="idgiocatore" class="ml-4">
-                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">ID giocatore</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.idgiocatore}} </td>
+                <ng-container matColumnDef="idpartita" class="ml-4">
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">ID partita</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.id}} </td>
                 </ng-container>
     
-                <ng-container matColumnDef="name">
-                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Name</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.name}} </td>
+                <ng-container matColumnDef="ora">
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Ora</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.time}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="data">
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Data</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.date}} </td>
                 </ng-container>
     
-                <ng-container matColumnDef="surname">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Surname</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.surname}} </td>
-                </ng-container>
-    
-                <ng-container matColumnDef="username">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Username</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.username}} </td>
-                </ng-container>
-    
-                <ng-container matColumnDef="autovalutazione">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Autovalutazione</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.autovalutazione}} </td>
-                </ng-container>
-    
-                <ng-container matColumnDef="ruolo">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Ruolo</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.ruolo}} </td>
-                </ng-container>
-    
-                <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
             </table>
 
             <button type="button" class="btn btn-danger mt-4">Elimina</button>
@@ -267,12 +259,12 @@
     <div *ngIf="tueInfo">
         <table mat-table class="mat-elevation-z8 w-100 justify-content-center tabella">
 
-            <ng-container matColumnDef="idtenant" class="ml-4">
+            <ng-container matColumnDef="idtenant">
                 <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">ID tenant</b> </th>
                 <td mat-cell *matCellDef="let element" class="colonna pointer">  </td>
             </ng-container>
 
-            <ng-container matColumnDef="nomestruttura" class="ml-4">
+            <ng-container matColumnDef="nomestruttura">
                 <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Nome struttura</b> </th>
                 <td mat-cell *matCellDef="let element" class="colonna pointer">  </td>
             </ng-container>

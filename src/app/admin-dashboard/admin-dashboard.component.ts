@@ -246,12 +246,37 @@ export class AdminDashboardComponent implements OnInit {
 
   }
 
-  partitaModifySelezionata(id){
+  divModifica = false;
+  formModifica;
+
+  setIdPartitaDaModificare(id, time, date){
     console.log("La partita da modificare ha id: " + id);
     this.utils.idPartitaUpdate = id;
 
-    this.auth.
+    this.divModifica = true;
+
+    this.formModifica = new FormGroup({
+      date : new FormControl("", [Validators.required, Validators.pattern("^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$")]), 
+      time : new FormControl("", [Validators.required, Validators.pattern("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")])
+    })  
+  }
+
+  bodyPartitaModificata; putOk;
+  updatePartita(){
+    console.log(this.formModifica.value.date + " " + this.formModifica.value.time);
     
+    this.bodyPartitaModificata = {
+      date : this.formModifica.value.date,
+      time : this.formModifica.value.time 
+    }
+
+    console.log("body partita aggiornata: "+ JSON.stringify(this.bodyPartitaModificata));
+  
+    this.auth.updateTenant(this.utils.idTenant, this.utils.idPartitaUpdate, this.bodyPartitaModificata).subscribe( (response) => {
+      console.log(response);
+      console.log("ho fatto la put");
+      this.putOk = true;
+    } );
   }
 
   ngOnInit(): void {
