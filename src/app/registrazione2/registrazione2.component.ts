@@ -41,10 +41,13 @@ export class Registrazione2Component implements OnInit {
   stampaId(id){
     console.log("id: " + id);
     this.utils.idTenant = id;
+    localStorage.setItem("IdTenantScelto", id);
     console.log("utils.tentant ora è: " + this.utils.idTenant);
   }
 
   prova; dataSourceBackend;
+  
+  recapDati;
 
   displayedColumns2: string[] = ['checkbox', 'tenantId', 'name', 'city', 'address', 'cap', 'email'];
 
@@ -57,6 +60,18 @@ export class Registrazione2Component implements OnInit {
       this.prova = response["tenants"];
       this.dataSourceBackend = new MatTableDataSource(this.prova);
     })
+  }
+
+  errore = false;
+  avanti(){
+    this.auth.postRequest(this.recapDati).subscribe( () => {
+      console.log("Post admin fatta");
+      this.route.navigateByUrl("/adminDashboard");
+    }, (error) => {
+      console.log("esiste admin con stessa mail");
+      this.errore = true;
+    });
+
   }
 
   ngOnInit(): void {

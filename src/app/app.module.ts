@@ -27,6 +27,7 @@ import { ScegliPartitaUserComponent } from './scegli-partita-user/scegli-partita
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoginUtenteComponent } from './login-utente/login-utente.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { LoginUtenteComponent } from './login-utente/login-utente.component';
     AppRoutingModule,
     BrowserAnimationsModule, ReactiveFormsModule, FormsModule, NgbModule, MatTableModule,
     MatFormFieldModule, ReactiveFormsModule, FormsModule, MatCardModule, MatInputModule, MatButtonModule, MatSidenavModule, MatProgressSpinnerModule,
-    HttpClientModule, MatTableModule
+    HttpClientModule, MatTableModule, MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

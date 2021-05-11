@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 import { UtilsService } from '../utils.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UtilsService } from '../utils.service';
 })
 export class RegistrazioneAdminComponent implements OnInit {
 
-  constructor(private router: Router, private utils: UtilsService, private _formBuilder: FormBuilder) { }
+  constructor(private router: Router, private utils: UtilsService, private _formBuilder: FormBuilder, private auth: AuthService) { }
 
   formRegistrazioneAdmin;
 
@@ -43,8 +44,26 @@ export class RegistrazioneAdminComponent implements OnInit {
     this.utils.nomestruttura = this.formRegistrazioneAdmin.value.nomestruttura;
     
     console.log(this.formRegistrazioneAdmin.value);
-    
-    this.router.navigateByUrl("/recapAdmin");
+
+    const recapDati = {
+      email: this.formRegistrazioneAdmin.value.email,
+      password: this.formRegistrazioneAdmin.value.password,
+      name: this.formRegistrazioneAdmin.value.nomestruttura,
+      cap: this.formRegistrazioneAdmin.value.cap,
+      address: this.formRegistrazioneAdmin.value.via,
+      city: this.formRegistrazioneAdmin.value.citta
+    }
+
+    console.log(recapDati);
+
+    this.auth.postRequest(recapDati).subscribe( () => {
+      console.log("Post admin fatta");
+      this.router.navigateByUrl("/recapAdmin");
+    }, (error) => {
+      console.log(error);
+      console.log("esiste admin con stessa mail");
+      alert("Esiste admin con stessa mail")
+    });
   }
   
   firstFormGroup: FormGroup;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { UtilsService } from '../utils.service';
@@ -15,22 +16,30 @@ export class LoginComponent implements OnInit {
 
   formLogin;
 
-  setForm(){
+  setForm() {
     this.formLogin = new FormGroup({
-      email : new FormControl('', [Validators.required]),
-      password : new FormControl('', [Validators.required])
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
     })
   }
 
-  sendData(){
+  spinner = false; errore = false;
+
+  sendData() {
     console.log("La mail inserita è: " + this.formLogin.value.email);
     console.log("La password inserita è: " + this.formLogin.value.password);
-
-    this.auth.login(this.formLogin.value.email, this.formLogin.value.password).subscribe( (response) => {
+    this.spinner = true;
+    this.auth.login(this.formLogin.value.email, this.formLogin.value.password).subscribe((response) => {
+      this.spinner = false;
       console.log(response);
       this.utils.idTenant = response["id"];
       console.log("idtenant salvato nell'utils: " + this.utils.idTenant);
       this.router.navigateByUrl("/adminDashboard");
+    }, (error) => {
+      console.log("non esiste nessun admin");
+      this.spinner = false;
+      console.log(error);
+      this.errore = true;
     })
   }
 

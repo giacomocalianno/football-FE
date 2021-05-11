@@ -30,6 +30,7 @@ export class RecapAdminComponent implements OnInit {
     }    
   }
 
+  errore = false;
   salvaLocalStorage(){
     localStorage.setItem("Email", this.utils.emailAdmin);
     localStorage.setItem("password", this.utils.passwordAdmin);
@@ -40,11 +41,15 @@ export class RecapAdminComponent implements OnInit {
 
     console.log(this.recapDati);
     console.log(this.recapDati["email"]);
+    
     this.auth.postRequest(this.recapDati).subscribe( () => {
       console.log("Post admin fatta");
+      this.route.navigateByUrl("/adminDashboard");
+    }, (error) => {
+      console.log("esiste admin con stessa mail");
+      this.errore = true;
     });
 
-    this.route.navigateByUrl("/adminDashboard");
   }
 
   visualizza(){

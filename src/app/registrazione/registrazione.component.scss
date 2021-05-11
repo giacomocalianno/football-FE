@@ -63,6 +63,36 @@ html, body {
     font-size: 16px;
 }
 
+.optionRuolo{
+    background-color: black;
+    color: white;
+}
+
+.aiuto{
+    border: 2px solid white;
+    color: white;
+    font-family: $font;
+}
+
+.input{
+    width: 90%;
+    border-radius: 5px;
+    border: 2px solid white;
+    margin: 0px;
+    padding: 2%;
+    background-color: transparent;
+    color: white;
+}
+
+.inputRuolo{
+    height: 35px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    width: 90%;
+}
+
 .containerInput{
     @include center();
     margin: 0px;

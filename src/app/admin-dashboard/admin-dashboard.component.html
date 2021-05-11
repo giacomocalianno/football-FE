@@ -33,17 +33,17 @@
 
             <ng-container matColumnDef="idpartita" class="ml-4">
                 <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">ID partita</b> </th>
-                <td (click) = "visualizzaQuesta(element)" mat-cell *matCellDef="let element" class="colonna pointer"> {{element.idpartita}} </td>
+                <td (click) = "visualizzaQuesta(element)" mat-cell *matCellDef="let element" class="colonna pointer"> {{element.id}} </td>
             </ng-container>
 
             <ng-container matColumnDef="ora">
                 <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Ora</b> </th>
-                <td (click) = "visualizzaQuesta(element)" mat-cell *matCellDef="let element" class="colonna pointer"> {{element.ora}} </td>
+                <td (click) = "visualizzaQuesta(element)" mat-cell *matCellDef="let element" class="colonna pointer"> {{element.time}} </td>
             </ng-container>
 
             <ng-container matColumnDef="data">
                 <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Data</b> </th>
-                <td (click) = "visualizzaQuesta(element)" mat-cell *matCellDef="let element" class="colonna pointer"> {{element.data}} </td>
+                <td (click) = "visualizzaQuesta(element)" mat-cell *matCellDef="let element" class="colonna pointer"> {{element.date}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>

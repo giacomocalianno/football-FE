@@ -1,7 +1,11 @@
-<div class="container-fluid login">
-    <form class="form" [formGroup]="formLoginUtente" (ngSubmit)="sendData()">
-        <div class="form-group row">
-            <label class="col-sm-2 pb-4 inputLabel">Login per i giocatori</label>
+<div class="container-fluid login justify-content-center">
+    <form class="form justify-content-center" [formGroup]="formLoginUtente" (ngSubmit)="sendData()">
+        <div class="form-group row mt-3">
+            <div class="col-sm-10 containerInput">
+                <div>
+                    <label class="col-12 inputLabel">Login per l'utente</label>
+                </div>
+            </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-10 containerInput">
@@ -26,6 +30,16 @@
         </div>
         <div class="form-group row">
             <span class="textRegistrati" routerLink="/preRegistrazione">Oppure registrati</span>
+        </div>
+        <div class="form-group row">
+            <mat-spinner *ngIf="spinner" color="accent"></mat-spinner>
+        </div>
+        <div *ngIf="errore" class="form-group row">
+            <label class="text-danger" style="font-size: 30px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                Non esiste un utente con queste credenziali</label>
+        </div>
+        <div class="row mt-5">
+            <button type="button" class="btn btn-info"  routerLink="/login">Passa alla login per le strutture</button>
         </div>
     </form>
 </div>

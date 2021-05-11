@@ -3,6 +3,7 @@ import { UtilsService } from '../utils.service';
 import {NgbNavConfig} from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -42,11 +43,7 @@ export class AdminDashboardComponent implements OnInit {
     { idpartita : 3, ora : "16:30", data : "28/05/2021"}
   ];
 
-  dataSource = [
-    { idpartita : 1, ora : "14:30", data : "27/05/2021"},
-    { idpartita : 2, ora : "15:30", data : "27/05/2021"},
-    { idpartita : 3, ora : "16:30", data : "28/05/2021"}
-  ];
+  dataSource;
 
   dataSource2 = [
     { idpartita : 1, idgiocatore : 2, name : "Luca", surname : "Calianno", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
@@ -175,19 +172,14 @@ export class AdminDashboardComponent implements OnInit {
     this.tueInfo = true;
   }
 
-
-
-  /* TODO controllare se questo sotto serve
-
   getData(){
-      this.auth.get(this.suffix).subscribe((response) => {
-      this.users = response;
+      console.log("id tenant: " + this.utils.idTenant);
+      this.auth.getMatches(this.utils.idTenant).subscribe((response) => {
+      console.log("Elenco di partite del tenant: " + response["matches"]);
+      this.users = response["matches"];
       this.dataSource = new MatTableDataSource(this.users);
-      console.log(this.users);
     });
   }
-
-  */
 
   checkedCheckbox = false;
 
@@ -238,7 +230,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getData();
+    this.getData();
     this.retrieveLocalStorage();
     this.setFormDataeOra();
   }

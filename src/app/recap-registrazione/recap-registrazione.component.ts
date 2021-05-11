@@ -37,6 +37,7 @@ export class RecapRegistrazioneComponent implements OnInit {
 
   body;
 
+  errore = false;
   concatena(){
     this.recapDati = {
       name : this.utils.nome,
@@ -47,11 +48,6 @@ export class RecapRegistrazioneComponent implements OnInit {
       role : this.utils.ruolo 
     }
     console.log("recapDati utente è: " + this.recapDati);
-
-    this.auth.postRequestPlayer(this.recapDati, this.utils.idTenant).subscribe( () => {
-      console.log("Post utente fatta");
-    });
-    
   }
   ngOnInit(): void {
     this.concatena();

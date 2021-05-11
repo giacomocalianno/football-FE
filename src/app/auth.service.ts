@@ -17,6 +17,7 @@ export class AuthService {
   urlGetMatches = "http://172.16.223.244:8080/"
 
   urlLogin = "http://172.16.223.244:8080/loginTenant/"
+  urlLoginPlayer = "http://172.16.223.244:8080/loginPlayer/"
 
   get(){
     return this.http.get(this.urlgetTenants)
@@ -27,8 +28,9 @@ export class AuthService {
     return this.http.post(this.urlCreateTenant, body)
   }
 
+
   postRequestPlayer(body, idTenant){
-    console.log("body del giocatore che sto mandando" + body);
+    console.log("link create player" + this.urlCreatePlayer + idTenant + "/createPlayer", body);
     return this.http.post(this.urlCreatePlayer + idTenant + "/createPlayer", body)
   }
 
@@ -54,4 +56,13 @@ export class AuthService {
     return this.http.post(this.urlLogin+ email + "/" +  password, invia)
   }
 
+  loginPlayer(email, password){
+    const invia = {
+      email : email,
+      password : password
+    }
+    console.log("link: "+this.urlLoginPlayer+email + "/" +  password);
+    
+    return this.http.post(this.urlLoginPlayer+ email + "/" +  password, invia)
+  }
 }
