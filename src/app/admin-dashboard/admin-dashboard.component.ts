@@ -215,11 +215,14 @@ export class AdminDashboardComponent implements OnInit {
     this.eliminaSquadra = false;
   }
 
+  caricoModifica = false;
   visualizzaModificaPartita(){
+    this.caricoModifica = true;
     this.creaSquadra = false;
     this.modificaSquadra = true;
     this.eliminaSquadra = false;
     this.getDataUpdate();
+    this.caricoModifica = false;
   }
 
   getDataUpdate(){
@@ -229,12 +232,6 @@ export class AdminDashboardComponent implements OnInit {
       this.users = response["matches"];
       this.dataSourceUpdate = new MatTableDataSource(this.users);
     });
-  }
-
-  visualizzaEliminaPartita(){
-    this.creaSquadra = false;
-    this.modificaSquadra = false;
-    this.eliminaSquadra = true;
   }
 
   checked(){
@@ -261,7 +258,7 @@ export class AdminDashboardComponent implements OnInit {
     })  
   }
 
-  bodyPartitaModificata; putOk;
+  bodyPartitaModificata; putOk; spinner = false;
   updatePartita(){
     console.log(this.formModifica.value.date + " " + this.formModifica.value.time);
     
@@ -271,12 +268,41 @@ export class AdminDashboardComponent implements OnInit {
     }
 
     console.log("body partita aggiornata: "+ JSON.stringify(this.bodyPartitaModificata));
+
+    this.spinner = true;
   
-    this.auth.updateTenant(this.utils.idTenant, this.utils.idPartitaUpdate, this.bodyPartitaModificata).subscribe( (response) => {
+    this.auth.updateMatch(this.utils.idTenant, this.utils.idPartitaUpdate, this.bodyPartitaModificata).subscribe( (response) => {
       console.log(response);
       console.log("ho fatto la put");
       this.putOk = true;
+      this.getMatches();
+      this.spinner = false;
     } );
+  }
+
+  impostaIdPartitaEliminare(idEliminare){
+    console.log("ID partita selezionata da eliminare: " + idEliminare);
+    this.utils.idPartitaElimina = idEliminare;
+  }
+
+  spinnerElimina = false; eliminaOk;
+  eliminaPartita(){
+    this.spinnerElimina = true;
+    this.auth.deleteMatch(this.utils.idTenant, this.utils.idPartitaElimina).subscribe( () => {
+      console.log("Eliminato");
+      this.eliminaOk = true;
+      this.getMatches();
+      this.spinnerElimina = false;
+    } );
+  }
+
+  
+
+  visualizzaEliminaPartita(){
+    this.creaSquadra = false;
+    this.modificaSquadra = false;
+    this.eliminaSquadra = true;
+    this.getDataUpdate();
   }
 
   ngOnInit(): void {

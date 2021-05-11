@@ -24,5 +24,7 @@ export class UtilsService {
 
   idPartitaUpdate; // l'id partita che l'admin ha scelto di modificare
 
+  idPartitaElimina; // l'id partita che l'admin ha scelto di eliminare
+
   constructor() { }
 }

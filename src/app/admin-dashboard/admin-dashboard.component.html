@@ -191,6 +191,7 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
             </table>
+            <mat-spinner *ngIf="caricoModifica"></mat-spinner>
 
             <button type="button" (click)="modificaPartita(this.time, this.date)" class="btn btn-warning mt-4">Modifica</button>
             
@@ -210,10 +211,11 @@
                     <div class="col-4 ">
                         <button type="submit" [disabled]="formModifica.invalid" (click)="updatePartita()" class="btn btn-success">Conferma</button>
                     </div>
-                    <label class="text-warning mt-3" style="font-size: 28px;" *ngIf="creata">La partita è stata modificata con successo!</label>
 
-                </div>      
-            </form>
+                    <mat-spinner *ngIf="spinner" class="spinner"></mat-spinner> 
+                    <label class="text-warning mt-5" style="font-size: 28px;" *ngIf="putOk">La partita è stata modificata con successo!</label>
+                </div>
+                </form>
             </div>
             
             
@@ -227,7 +229,7 @@
 
                 <ng-container matColumnDef="checkbox" class="ml-4">
                     <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne"></b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> <input type="checkbox"> </td>
+                    <td mat-cell *matCellDef="let element" class="colonna"> <input type="checkbox" (click)="impostaIdPartitaEliminare(this.element.id)"> </td>
                 </ng-container>
 
                 <ng-container matColumnDef="idpartita" class="ml-4">
@@ -249,7 +251,10 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
             </table>
 
-            <button type="button" class="btn btn-danger mt-4">Elimina</button>
+            <button type="button" class="btn btn-danger mt-4" (click)="eliminaPartita()">Elimina</button>
+
+            <mat-spinner *ngIf="spinnerElimina" class="spinner"></mat-spinner> 
+            <label class="text-danger mt-3" style="font-size: 28px;" *ngIf="eliminaOk">La partita è stata eliminata con successo!</label>
 
         </div>
         

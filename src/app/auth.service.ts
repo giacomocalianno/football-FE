@@ -26,12 +26,12 @@ export class AuthService {
     return this.http.post(this.urlCreateTenant, body)
   }
 
-  updateTenant(idTenant, idPartita, body){
+  updateMatch(idTenant, idPartita, body){
     return this.http.patch(this.urlbase + idTenant + "/updateMatch/" + idPartita, body);
   }
 
-  deleteTenant(idTenant, body){
-    return this.http.delete(this.urlbase + "deleteTenant/" + idTenant, body);
+  deleteMatch(idTenant, idPartita){
+    return this.http.delete(this.urlbase + idTenant + "/deleteMatch/" + idPartita);
   }
 
   postRequestPlayer(body, idTenant){
