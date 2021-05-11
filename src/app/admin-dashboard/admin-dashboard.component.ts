@@ -87,6 +87,8 @@ export class AdminDashboardComponent implements OnInit {
 
   displayedColumns1: string[] = ['idpartita', 'ora', 'data'];
 
+  displayedColumns3: string[] = ['checkbox', 'idpartita', 'ora', 'data'];
+
   displayedColumnsModificaSquadra: string[] = ['checkbox', 'idgiocatore', 'name', 'surname', "username", "autovalutazione", "ruolo"];
 
   displayedColumns2: string[] = ['checkbox', 'idgiocatore', 'name', 'surname', "username", "autovalutazione", "ruolo"];
@@ -96,7 +98,7 @@ export class AdminDashboardComponent implements OnInit {
   displayedColumnsFeedback: string[] = ["idgiocatore", "valutazione"];
 
   // TODO da cambiare nome colonne
-  displayedColumnsImpostazioni: string[] = ["Crea squadra", "Modifica squadra", "Elimina squadra"];
+  displayedColumnsImpostazioni: string[] = ["Crea partita", "Modifica partita", "Elimina partita"];
 
   constructor(private utils: UtilsService, config: NgbNavConfig, private auth: AuthService ) {
     config.destroyOnHide = false;
@@ -115,7 +117,16 @@ export class AdminDashboardComponent implements OnInit {
     console.log(this.nomestruttura + " " + this.email + " " + this.cap + " " +this.via + " " + this.citta);
   }
 
-  formDataeOra;
+  formDataeOra; dataSourceUpdate;
+
+  getMatches(){
+    console.log("id tenant: " + this.utils.idTenant);
+      this.auth.getMatches(this.utils.idTenant).subscribe((response) => {
+      console.log("Elenco di partite del tenant: " + response["matches"]);
+      this.users = response["matches"];
+      this.dataSourceUpdate = new MatTableDataSource(this.users);
+    } )
+  }
 
   setFormDataeOra(){
     this.formDataeOra = new FormGroup({
@@ -148,6 +159,7 @@ export class AdminDashboardComponent implements OnInit {
     this.feedback = false;
     this.impostazioni = false;
     this.tueInfo = false;
+    this.getPrenotazioni();
   }
   
 
@@ -172,7 +184,7 @@ export class AdminDashboardComponent implements OnInit {
     this.tueInfo = true;
   }
 
-  getData(){
+  getPrenotazioni(){
       console.log("id tenant: " + this.utils.idTenant);
       this.auth.getMatches(this.utils.idTenant).subscribe((response) => {
       console.log("Elenco di partite del tenant: " + response["matches"]);
@@ -197,19 +209,29 @@ export class AdminDashboardComponent implements OnInit {
     this.vediInnerTabellaImpostazioni = true;
   }
 
-  visualizzaCreaSquadra(){
+  visualizzaCreaPartita(){
     this.creaSquadra = true;
     this.modificaSquadra = false;
     this.eliminaSquadra = false;
   }
 
-  visualizzaModificaSquadra(){
+  visualizzaModificaPartita(){
     this.creaSquadra = false;
     this.modificaSquadra = true;
     this.eliminaSquadra = false;
+    this.getDataUpdate();
   }
 
-  visualizzaEliminaSquadra(){
+  getDataUpdate(){
+    console.log("id tenant: " + this.utils.idTenant);
+      this.auth.getMatches(this.utils.idTenant).subscribe((response) => {
+      console.log("Elenco di partite del tenant: " + response["matches"]);
+      this.users = response["matches"];
+      this.dataSourceUpdate = new MatTableDataSource(this.users);
+    });
+  }
+
+  visualizzaEliminaPartita(){
     this.creaSquadra = false;
     this.modificaSquadra = false;
     this.eliminaSquadra = true;
@@ -219,18 +241,21 @@ export class AdminDashboardComponent implements OnInit {
     this.checkedCheckbox = true;
   }
 
-  formaSquadre(){
-    // TODO funzione CREA SQUADRA
-
-  }
-
   rimuoviGiocatori(){
     //TODO funzione che rimuove giocatore/i selezionato/i
 
   }
 
+  partitaModifySelezionata(id){
+    console.log("La partita da modificare ha id: " + id);
+    this.utils.idPartitaUpdate = id;
+
+    this.auth.
+    
+  }
+
   ngOnInit(): void {
-    this.getData();
+    this.getPrenotazioni();
     this.retrieveLocalStorage();
     this.setFormDataeOra();
   }

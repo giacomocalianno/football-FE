@@ -22,5 +22,7 @@ export class UtilsService {
   via;
   cap;
 
+  idPartitaUpdate; // l'id partita che l'admin ha scelto di modificare
+
   constructor() { }
 }
