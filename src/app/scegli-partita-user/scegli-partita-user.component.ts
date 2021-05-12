@@ -29,8 +29,8 @@ export class ScegliPartitaUserComponent implements OnInit {
     } )
   }
 
-  idPartitaConfermata;
-
+  idPartitaConfermata; caricamento = false;
+ 
   stampaId(id){
     console.log("id: " + id);
     this.utils.idPartitaSceltaUtente = id;
@@ -41,12 +41,14 @@ export class ScegliPartitaUserComponent implements OnInit {
   partitaselezionata; 
   iscriviUtente(){
     console.log("ID partita scelta dall'utente: " + this.idPartitaConfermata);
-
+    this.caricamento = true;
     let idTenant = localStorage.getItem("idTenantScelto");
     let idPlayer = localStorage.getItem("idUtente");
     
     this.auth.iscriviPlayer(idTenant, idPlayer, this.idPartitaConfermata, this.idPartitaConfermata).subscribe( (response) => {
-      console.log("Risposta iscrizione: "+ JSON.stringify(response))
+      console.log("Risposta iscrizione: "+ JSON.stringify(response));
+      this.caricamento = false;
+      alert("Ti sei iscritto con successo alla partita");
       this.route.navigateByUrl("/homeUtente");
     });
     

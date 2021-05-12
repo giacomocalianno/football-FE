@@ -43,6 +43,7 @@
             <div class="w-100" style="display: flex; justify-content: center; height: fit-content;">
                 <button type="button" style="height: 50px;" (click)="iscriviUtente()" class="btn btn-success">Conferma</button>
             </div>
+            <mat-spinner *ngIf="caricamento" class="spinner"></mat-spinner>
         </div>
     </div>
 </div>

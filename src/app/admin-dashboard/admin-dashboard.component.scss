@@ -125,3 +125,10 @@ h2{
 .btnSelect:focus{
     background-color: rgb(0, 0, 0);
 }
+
+.spinner{
+    position: absolute;
+    top: 50%;
+    left: 48%;
+    transform: translate(-50deg, -50deg);
+}

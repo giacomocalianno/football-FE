@@ -98,6 +98,8 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
             </table>
+
+            <mat-spinner *ngIf="caricamento" class="spinner"></mat-spinner>
         </div>
         
     </div>
@@ -158,6 +160,8 @@
                     </div>
                 </div>      
             </form>
+            <mat-spinner *ngIf="caricamento2" class="spinner"></mat-spinner>
+
             <label class="text-success mt-3" style="font-size: 28px;" *ngIf="creata">La partita è stata creata con successo!</label>
         </div>
         <div class="row innertabella" *ngIf="modificaSquadra">

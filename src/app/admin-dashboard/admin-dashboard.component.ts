@@ -105,7 +105,7 @@ export class AdminDashboardComponent implements OnInit {
     config.roles = false;
   }
 
-  nomestruttura; email; cap; via; citta; idtenant;
+  nomestruttura; email; cap; via; citta; idtenant; caricamento = false;
 
   retrieveLocalStorage(){
     this.idtenant = this.utils.idTenant;
@@ -120,10 +120,12 @@ export class AdminDashboardComponent implements OnInit {
   formDataeOra; dataSourceUpdate;
 
   getMatches(){
+    this.caricamento = true;
     console.log("id tenant: " + this.utils.idTenant);
       this.auth.getMatches(this.utils.idTenant).subscribe((response) => {
       console.log("Elenco di partite del tenant: " + response["matches"]);
       this.users = response["matches"];
+      this.caricamento = false;
       this.dataSourceUpdate = new MatTableDataSource(this.users);
     } )
   }
@@ -135,9 +137,9 @@ export class AdminDashboardComponent implements OnInit {
     })
   }
 
-  creata = false;
-
+  creata = false; caricamento2 = false;
   submit(){
+    this.caricamento2 = true;
     const bodyCreateMatch = {
       date : this.formDataeOra.value.data,
       time : this.formDataeOra.value.ora
@@ -147,6 +149,7 @@ export class AdminDashboardComponent implements OnInit {
     
     this.auth.createMatches(this.utils.idTenant, bodyCreateMatch ).subscribe( () => {
       console.log("Ho creato la partita");
+      this.caricamento2 = false;
       this.creata = true;
     })
   }
