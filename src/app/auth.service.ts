@@ -37,7 +37,7 @@ export class AuthService {
   updatePlayer(idTenant, idPlayer, body){
     console.log("link dell'update utente: "+ this.urlbase + idTenant + "/updatePlayer/" + idPlayer);
     
-    return this.http.patch(this.urlbase + idTenant + "/updatePlayer" + idPlayer, body)
+    return this.http.patch(this.urlbase + idTenant + "/updatePlayer/" + idPlayer, body)
   }
 
   postRequestPlayer(body, idTenant){

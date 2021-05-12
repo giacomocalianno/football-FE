@@ -32,6 +32,7 @@ export class LoginUtenteComponent implements OnInit {
     this.auth.loginPlayer(this.formLoginUtente.value.email, this.formLoginUtente.value.password).subscribe( (response) => {
       this.spinner = false;
       console.log(response);
+      localStorage.setItem("idUtente", response["id"]);
       this.router.navigateByUrl("/homeUtente");
     }, (error) => {
       this.spinner = false;

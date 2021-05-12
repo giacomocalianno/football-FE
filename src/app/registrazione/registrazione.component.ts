@@ -81,6 +81,7 @@ export class RegistrazioneComponent implements OnInit {
     this.utils.password = this.formRegistrazione.value.password;
     this.utils.autovalutazione = this.formRegistrazione.value.autovalutazione;
     this.utils.ruolo = this.formRegistrazione.value.ruolo;
+    localStorage.setItem('idTenantScelto', this.utils.idTenant);
 
     this.auth.postRequestPlayer(recapDati, this.utils.idTenant).subscribe( () => {
       console.log("Post utente fatta");

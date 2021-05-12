@@ -7,100 +7,141 @@
                     d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
             </svg>
         </div>
-        <div class="row w-100 h-100 justify-content-center">
 
-            <div class="row w-100">
-                <div class="col justify-content-center">
-                    <div class="row">
-                        <div class="col-12">
-                            <label>Il tuo nome è</label>
-                        </div>
-                        <div class="col-12">
-                            <span> <b> {{name}} </b> </span>
-                        </div>
+
+        <div class="row rowImpostazioni w-100 mt-5 align-items-center">
+            <div class="col">
+                <div class="row">
+                    <div class="col-12 justify-content-center">
+                        <label class="label">Il tuo nome è</label>
                     </div>
-                </div>
-                <div class="col justify-content-center">
-                    <div class="row">
-                        <div class="col-12">
-                            <label>Il tuo cognome è</label>
-                        </div>
-                        <div class="col-12">
-                            <span> <b> {{surname}} </b> </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col justify-content-center">
-                    <div class="row">
-                        <div class="col-12">
-                            <label>La tua email è</label>
-                        </div>
-                        <div class="col-12">
-                            <span> <b> {{email}} </b> </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col justify-content-center">
-                    <div class="row">
-                        <div class="col-12">
-                            <label>La tua autovalutazione è</label>
-                        </div>
-                        <div class="col-12">
-                            <span> <b> {{rating}} </b> </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col justify-content-center">
-                    <div class="row">
-                        <div class="col-12">
-                            <label>Il tuo ruolo è</label>
-                        </div>
-                        <div class="col-12">
-                            <span> <b> {{role}} </b> </span>
-                        </div>
+                    <div class="col-12 justify-content-center">
+                        <span class="label"> <b> {{name}} </b> </span>
                     </div>
                 </div>
             </div>
-            
-            <table mat-table [dataSource]="dataSourceBackend"
-                class="mat-elevation-z8 w-100 mx-5 mt-5 justify-content-center">
-
-                <ng-container matColumnDef="seleziona" class="ml-4">
-                    <th class="colonna" mat-header-cell *matHeaderCellDef> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna pointer">  <button class="btnSelect" (click)="impostaIdPartitaEliminare(this.element.id)"></button> </td>
-                </ng-container>
-
-                <ng-container matColumnDef="name" class="ml-4">
-                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Nome</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna pointer"> {{element.name}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="surname">
-                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Cognome</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna pointer"> {{element.surname}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="email">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">E-mail</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna pointer"> {{element.email}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="rating">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Autovalutazione</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna pointer"> {{element.rating}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="role">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Ruolo</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna pointer"> {{element.role}} </td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
-            </table>
-            <mat-spinner *ngIf="caricamento"></mat-spinner>
-            
+            <div class="col">
+                <div class="row">
+                    <div class="col-12 justify-content-center">
+                        <label class="label">Il tuo cognome è</label>
+                    </div>
+                    <div class="col-12 justify-content-center">
+                        <span class="label"> <b> {{surname}} </b> </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-12 justify-content-center">
+                        <label class="label">La tua email è</label>
+                    </div>
+                    <div class="col-12 justify-content-center">
+                        <span class="label"> <b> {{email}} </b> </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-12 justify-content-center">
+                        <label class="label">La tua autovalutazione è</label>
+                    </div>
+                    <div class="col-12 justify-content-center">
+                        <span class="label"> <b> {{rating}} </b> </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-12 align-items-center">
+                        <label class="label">Il tuo ruolo è</label>
+                    </div>
+                    <div class="col-12 align-items-center">
+                        <span class="label"> <b> {{role}} </b> </span>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="row row2 w-100 justify-content-center mt-2">
+            <button type="button" (click)="abilitaModifica()" class="btn btn-warning label">Modifica</button>
+        </div>
+
+        <div *ngIf="abilitamodifica">
+            <form class="w-100 justify-content-center" [formGroup]="formModifica">
+                <div class="row w-100 mt-5">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-12 justify-content-center">
+                                <label class="label">Nome</label>
+                            </div>
+                            <div class="col-12 justify-content-center">
+                                <input type="text" formControlName="name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-12 justify-content-center">
+                                <label class="label">Cognome</label>
+                            </div>
+                            <div class="col-12 justify-content-center">
+                                <input type="text" formControlName="surname">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-12 justify-content-center">
+                                <label class="label">E-mail</label>
+                            </div>
+                            <div class="col-12 justify-content-center">
+                                <input type="email" disabled formControlName="email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-12 justify-content-center">
+                                <label class="label">Password</label>
+                            </div>
+                            <div class="col-12 justify-content-center">
+                                <input type="email" formControlName="password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-12 justify-content-center">
+                                <label class="label">Autovalutazione</label>
+                            </div>
+                            <div class="col-12 justify-content-center">
+                                <input type="number" min="1" max="5" formControlName="rating">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-4 offset-4 align-items-center">
+                                <label class="label">Ruolo</label>
+                            </div>
+                            <div class="col-4 offset-4 align-items-center">
+                                <select class="inputRuolo" aria-label="Ruolo" formControlName="role">
+                                    <option class="optionRuolo input" selected disabled>--</option>
+                                    <option class="optionRuolo input" value="portiere">Portiere</option>
+                                    <option class="optionRuolo input" value="difensore">Difensore</option>
+                                    <option class="optionRuolo input" value="centrocampista">Centrocampista</option>
+                                    <option class="optionRuolo input" value="attaccante">Attaccante</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="row row2 w-100 justify-content-center mt-1">
+                <button type="submit" (click)="submitFormModifica()" class="btn btn-success label">Conferma</button>
+            </div>
+        </div>
+
+
 
         <!--TODO ESEMPIO_HTML_Tabella_Visualizzazione da togliere è prova
         <div class="row w-100 h-100 justify-content-center">

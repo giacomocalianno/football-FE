@@ -21,7 +21,7 @@ export class ScegliPartitaUserComponent implements OnInit {
   formIscrizione;
 
   retrieveMatches(){
-    this.auth.getMatches(this.utils.idTenant).subscribe( (response) => {
+    this.auth.getMatches(localStorage.getItem("idTenantScelto")).subscribe( (response) => {
       console.log("Questa è la risposta intera");
       console.log(response);
       console.log("Questa è la risposta coi dati che ci interessano");

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from '../auth.service';
 import { UtilsService } from '../utils.service';
@@ -22,27 +23,46 @@ export class ImpostazioniUtenteComponent implements OnInit {
   displayedColumns2: string[] = ["seleziona", "name","surname","email","rating","role"];
   dataSourceBackend2;
 
-  name; surname; email; rating; role;
+  name; surname; email; rating; role; password;
   getImpostazioni(){
-    this.name = localStorage.getItem("Nome");
-    this.surname = localStorage.getItem("Cognome");
+    this.name = localStorage.getItem("Name");
+    this.surname = localStorage.getItem("Surname");
     this.email = localStorage.getItem("EmailUtente");
     this.rating = localStorage.getItem("Rating");
     this.role = localStorage.getItem("Role");
+    this.password = localStorage.getItem("PasswordUtente");
   }
 
-  /*
-  fetch() {
-    this.auth.().subscribe((response) => {
-      console.log("Questa è la risposta intera");
-      console.log(response);
-      console.log("Questa è la risposta coi dati che ci interessano");
-      console.log(response["tenants"]);
-      this.prova = response["tenants"];
-      this.dataSourceBackend2 = new MatTableDataSource(this.prova);
-      this.caricamento = false;
+
+  abilitamodifica;
+
+  abilitaModifica(){
+    this.abilitamodifica = true;
+    this.setForm();
+  }
+  formModifica;
+  setForm(){
+    this.formModifica = new FormGroup({
+      name : new FormControl(this.name, [Validators.required]),
+      surname : new FormControl(this.surname, [Validators.required]),
+      email : new FormControl(this.email),
+      password : new FormControl(this.password, [Validators.required]),
+      rating : new FormControl(this.rating, [Validators.required]),
+      role : new FormControl(this.role, [Validators.required] )
     })
-    */
+  }
+
+  submitFormModifica(){
+    console.log("Valori modificati: "+JSON.stringify(this.formModifica.value));
+
+    console.log("Sto mandando: " + localStorage.getItem("idTenantScelto") + " " + localStorage.getItem("idUtente") + " " + this.formModifica.value);
+    
+    this.auth.updatePlayer(localStorage.getItem("idTenantScelto"), localStorage.getItem("idUtente"), this.formModifica.value).subscribe( (response) => {
+      console.log("Risposta update player" + response);
+      
+    } )
+  }
+
 
     /* TODO ESEMPIO_Auth.get_risposta da togliere è prova
     this.auth.get2().subscribe((response) => {
@@ -54,7 +74,7 @@ export class ImpostazioniUtenteComponent implements OnInit {
     });
     */
    ngOnInit(): void {
-
+    this.getImpostazioni();
   }
 
 }

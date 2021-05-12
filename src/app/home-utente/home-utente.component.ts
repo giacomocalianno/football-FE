@@ -27,17 +27,15 @@ export class HomeUtenteComponent implements OnInit {
     });
   }
 
-  recapDati;
+  
+  name; surname; email; rating; role; recapDati
 
   retrieveLocalStorage() {
-    this.recapDati = {
-      name : this.utils.nome,
-      surname : this.utils.cognome,
-      email : this.utils.email,
-      password : this.utils.password,
-      rating : this.utils.autovalutazione,
-      role : this.utils.ruolo 
-    }
+    this.name = localStorage.getItem("Name");
+    this.surname = localStorage.getItem("Surname");
+    this.email = localStorage.getItem("EmailUtente");
+    this.rating = localStorage.getItem("Rating");
+    this.role = localStorage.getItem("Role");
   }
 
   cambiaAutovalutazione = false;
