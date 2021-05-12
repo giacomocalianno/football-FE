@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from '../auth.service';
+import { UtilsService } from '../utils.service';
 
 @Component({
   selector: 'app-impostazioni-utente',
@@ -10,30 +11,39 @@ import { AuthService } from '../auth.service';
 })
 export class ImpostazioniUtenteComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private utils: UtilsService) { }
 
   prova; prova2; dataSourceBackend; 
 
   caricamento = true;
 
-  displayedColumns: string[] = ['tenantId', 'address', 'cap', 'city', 'email', 'name'];
   
   // TODO ESEMPIO_Dichiarazione_colonne da togliere è prova
-  //displayedColumns2: string[] = ["userId","name","surname","email","rating","role","tenant"];
-  //dataSourceBackend2; prova2;
+  displayedColumns2: string[] = ["seleziona", "name","surname","email","rating","role"];
+  dataSourceBackend2;
 
+  name; surname; email; rating; role;
+  getImpostazioni(){
+    this.name = localStorage.getItem("Nome");
+    this.surname = localStorage.getItem("Cognome");
+    this.email = localStorage.getItem("EmailUtente");
+    this.rating = localStorage.getItem("Rating");
+    this.role = localStorage.getItem("Role");
+  }
+
+  /*
   fetch() {
-    console.log("Fetch")
-    this.auth.get().subscribe((response) => {
+    this.auth.().subscribe((response) => {
       console.log("Questa è la risposta intera");
       console.log(response);
       console.log("Questa è la risposta coi dati che ci interessano");
       console.log(response["tenants"]);
       this.prova = response["tenants"];
-      this.dataSourceBackend = new MatTableDataSource(this.prova);
+      this.dataSourceBackend2 = new MatTableDataSource(this.prova);
       this.caricamento = false;
     })
-    
+    */
+
     /* TODO ESEMPIO_Auth.get_risposta da togliere è prova
     this.auth.get2().subscribe((response) => {
       console.log(response["players"]);
@@ -43,10 +53,10 @@ export class ImpostazioniUtenteComponent implements OnInit {
       console.log(this.prova);
     });
     */
-  }
+   ngOnInit(): void {
 
-  ngOnInit(): void {
-    this.fetch();
   }
 
 }
+
+  

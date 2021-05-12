@@ -68,6 +68,13 @@ export class RegistrazioneComponent implements OnInit {
       role : this.formRegistrazione.value.ruolo
     }
 
+    localStorage.setItem('Name', recapDati.name);
+    localStorage.setItem('Surname', recapDati.surname);
+    localStorage.setItem('EmailUtente', recapDati.email);
+    localStorage.setItem('PasswordUtente', recapDati.password);
+    localStorage.setItem('Rating', recapDati.rating);
+    localStorage.setItem('Role', recapDati.role);
+
     this.utils.nome = this.formRegistrazione.value.nome;
     this.utils.cognome = this.formRegistrazione.value.cognome;
     this.utils.email = this.formRegistrazione.value.email;
@@ -77,7 +84,7 @@ export class RegistrazioneComponent implements OnInit {
 
     this.auth.postRequestPlayer(recapDati, this.utils.idTenant).subscribe( () => {
       console.log("Post utente fatta");
-      this.route.navigateByUrl("/homeUtente")
+      this.route.navigateByUrl("/recap")
     }, (error) => {
       alert("Esiste utente con la stessa mail")
       console.log(error);

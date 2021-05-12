@@ -164,13 +164,11 @@
 
             <h2>Seleziona la partita da <b>modificare</b> </h2>
 
-            <!--TODO aggiornare datasource backend questo sotto è hardcode, modificare con partite dal DB-->
-
             <table mat-table [dataSource]="dataSourceUpdate" class="mat-elevation-z8 w-100 justify-content-center tabella">
 
                 <ng-container matColumnDef="checkbox" class="ml-4">
                     <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne"></b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> <input type="checkbox" (click)="setIdPartitaDaModificare(this.element.id, this.element.time, this.element.date)"> </td>
+                    <td mat-cell *matCellDef="let element" class="colonna p-0 pl-3"> <button class="btnSelect" (click)="setIdPartitaDaModificare(this.element.id, this.element.time, this.element.date)"></button> </td>
                 </ng-container>
 
                 <ng-container matColumnDef="idpartita" class="ml-4">
@@ -222,14 +220,13 @@
         </div>
         <div class="row innertabella" *ngIf="eliminaSquadra">
 
-            <!-- TODO questo sotto è hardcode, modificare con partite dal DB-->
             <h2>Seleziona la partita da <b>eliminare</b> </h2>
 
             <table mat-table [dataSource]="dataSourceUpdate" class="mat-elevation-z8 w-100 justify-content-center tabella">
 
                 <ng-container matColumnDef="checkbox" class="ml-4">
                     <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne"></b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> <input type="checkbox" (click)="impostaIdPartitaEliminare(this.element.id)"> </td>
+                    <td mat-cell *matCellDef="let element" class="colonna"> <button class="btnSelect" (click)="impostaIdPartitaEliminare(this.element.id)"></button> </td>
                 </ng-container>
 
                 <ng-container matColumnDef="idpartita" class="ml-4">

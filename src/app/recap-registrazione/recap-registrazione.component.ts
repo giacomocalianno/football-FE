@@ -19,20 +19,11 @@ export class RecapRegistrazioneComponent implements OnInit {
   username = this.usernameSporca.trim().toLowerCase();
 
   salvaLocalStorage(){
-    
-    localStorage.setItem('Name', this.recapDati.name);
-    localStorage.setItem('Surname', this.recapDati.surname);
-    localStorage.setItem('Username', this.recapDati.username);
-    localStorage.setItem('EmailUtente', this.recapDati.email);
-    localStorage.setItem('PasswordUtente', this.recapDati.password);
-    localStorage.setItem('Rating', this.recapDati.rating);
-    localStorage.setItem('Role', this.recapDati.role);
-  
-
+   
     localStorage.setItem("recappdatiutente", this.recapDati)
     console.log("Recap dati registrazione utente: " + this.recapDati);
     
-    this.route.navigateByUrl("/homeUtente");
+    this.route.navigateByUrl("/loginUtente");
   }
 
   body;

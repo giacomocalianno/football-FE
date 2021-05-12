@@ -34,6 +34,12 @@ export class AuthService {
     return this.http.delete(this.urlbase + idTenant + "/deleteMatch/" + idPartita);
   }
 
+  updatePlayer(idTenant, idPlayer, body){
+    console.log("link dell'update utente: "+ this.urlbase + idTenant + "/updatePlayer/" + idPlayer);
+    
+    return this.http.patch(this.urlbase + idTenant + "/updatePlayer" + idPlayer, body)
+  }
+
   postRequestPlayer(body, idTenant){
     console.log("link create player" + this.urlbase + idTenant + "/createPlayer", body);
     return this.http.post(this.urlbase + idTenant + "/createPlayer", body)

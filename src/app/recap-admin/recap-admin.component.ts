@@ -39,7 +39,7 @@ export class RecapAdminComponent implements OnInit {
     localStorage.setItem("via", this.recapDati.address);
     localStorage.setItem("cap", this.recapDati.cap);
 
-    this.route.navigateByUrl("/adminDashboard");
+    this.route.navigateByUrl("/login");
   }
 
   visualizza(){

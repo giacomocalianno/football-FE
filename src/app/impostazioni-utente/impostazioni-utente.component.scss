@@ -21,6 +21,10 @@ html, body {
     @include center();
 }
 
+.col{
+    border: 1px solid red;
+}
+
 .pointer{
     cursor: pointer;
 }

@@ -56,8 +56,8 @@ export class RegistrazioneAdminComponent implements OnInit {
 
     console.log(recapDati);
 
-    this.auth.postRequest(recapDati).subscribe( () => {
-      console.log("Post admin fatta");
+    this.auth.postRequest(recapDati).subscribe( (response) => {
+      console.log("Post admin fatta: " + JSON.stringify(response));
       this.router.navigateByUrl("/recapAdmin");
     }, (error) => {
       console.log(error);
