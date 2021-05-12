@@ -40,6 +40,12 @@ export class AuthService {
     return this.http.patch(this.urlbase + idTenant + "/updatePlayer/" + idPlayer, body)
   }
 
+  iscriviPlayer(idTenant, idPlayer, idMatch, body){
+    console.log("Link dell'iscrizione: " + this.urlbase + idTenant + "/" + idPlayer + "/signToMatch/" + idMatch);
+    
+    return this.http.patch(this.urlbase + idTenant + "/" + idPlayer + "/signToMatch/" + idMatch, body)
+  }
+
   postRequestPlayer(body, idTenant){
     console.log("link create player" + this.urlbase + idTenant + "/createPlayer", body);
     return this.http.post(this.urlbase + idTenant + "/createPlayer", body)

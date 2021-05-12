@@ -31,11 +31,11 @@ export class HomeUtenteComponent implements OnInit {
   name; surname; email; rating; role; recapDati
 
   retrieveLocalStorage() {
-    this.name = localStorage.getItem("Name");
-    this.surname = localStorage.getItem("Surname");
+    this.name = localStorage.getItem("NomeUtente");
+    this.surname = localStorage.getItem("CognomeUtente");
     this.email = localStorage.getItem("EmailUtente");
-    this.rating = localStorage.getItem("Rating");
-    this.role = localStorage.getItem("Role");
+    this.rating = localStorage.getItem("Autovalutazione");
+    this.role = localStorage.getItem("Ruolo");
   }
 
   cambiaAutovalutazione = false;

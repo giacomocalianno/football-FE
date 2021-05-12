@@ -197,7 +197,7 @@ export class AdminDashboardComponent implements OnInit {
 
   visualizzaQuesta(element){
     console.log(element)
-    this.idCorrente = element.idpartita;
+    this.idCorrente = element.id;
     let temp = this.dataSource2.filter( (player) => {
       return player.idpartita == element.idpartita;
     })    

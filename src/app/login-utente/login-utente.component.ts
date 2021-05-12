@@ -33,6 +33,12 @@ export class LoginUtenteComponent implements OnInit {
       this.spinner = false;
       console.log(response);
       localStorage.setItem("idUtente", response["id"]);
+      localStorage.setItem("NomeUtente", response["name"]);
+      localStorage.setItem("CognomeUtente", response["surname"]);
+      localStorage.setItem("EmailUtente", response["email"]);
+      localStorage.setItem("Autovalutazione", response["rating"]);
+      localStorage.setItem("Ruolo", response["role"]);
+      localStorage.setItem("idTenantScelto", response["tenant"]);
       this.router.navigateByUrl("/homeUtente");
     }, (error) => {
       this.spinner = false;

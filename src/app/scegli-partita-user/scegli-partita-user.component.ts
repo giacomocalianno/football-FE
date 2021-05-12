@@ -24,8 +24,6 @@ export class ScegliPartitaUserComponent implements OnInit {
     this.auth.getMatches(localStorage.getItem("idTenantScelto")).subscribe( (response) => {
       console.log("Questa è la risposta intera");
       console.log(response);
-      console.log("Questa è la risposta coi dati che ci interessano");
-      console.log(response["tenants"]);
       this.prova = response["matches"];
       this.dataSourcePartite = new MatTableDataSource(this.prova);
     } )
@@ -43,10 +41,15 @@ export class ScegliPartitaUserComponent implements OnInit {
   partitaselezionata; 
   iscriviUtente(){
     console.log("ID partita scelta dall'utente: " + this.idPartitaConfermata);
-    
-    // TODO fare post iscrizione
-    this.route.navigateByUrl("/homeUtente");
 
+    let idTenant = localStorage.getItem("idTenantScelto");
+    let idPlayer = localStorage.getItem("idUtente");
+    
+    this.auth.iscriviPlayer(idTenant, idPlayer, this.idPartitaConfermata, this.idPartitaConfermata).subscribe( (response) => {
+      console.log("Risposta iscrizione: "+ JSON.stringify(response))
+      this.route.navigateByUrl("/homeUtente");
+    });
+    
     // TODO salvare in variabile che l'utente ha scelto la partita e sbloccare la posizione
     //@Output this.partitaselezionata = true;
 

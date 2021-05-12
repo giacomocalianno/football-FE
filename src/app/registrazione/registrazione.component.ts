@@ -68,12 +68,12 @@ export class RegistrazioneComponent implements OnInit {
       role : this.formRegistrazione.value.ruolo
     }
 
-    localStorage.setItem('Name', recapDati.name);
-    localStorage.setItem('Surname', recapDati.surname);
+    localStorage.setItem('NomeUtente', recapDati.name);
+    localStorage.setItem('CognomeUtente', recapDati.surname);
     localStorage.setItem('EmailUtente', recapDati.email);
     localStorage.setItem('PasswordUtente', recapDati.password);
-    localStorage.setItem('Rating', recapDati.rating);
-    localStorage.setItem('Role', recapDati.role);
+    localStorage.setItem('Autovalutazione', recapDati.rating);
+    localStorage.setItem('Ruolo', recapDati.role);
 
     this.utils.nome = this.formRegistrazione.value.nome;
     this.utils.cognome = this.formRegistrazione.value.cognome;
@@ -83,7 +83,9 @@ export class RegistrazioneComponent implements OnInit {
     this.utils.ruolo = this.formRegistrazione.value.ruolo;
     localStorage.setItem('idTenantScelto', this.utils.idTenant);
 
-    this.auth.postRequestPlayer(recapDati, this.utils.idTenant).subscribe( () => {
+    this.auth.postRequestPlayer(recapDati, this.utils.idTenant).subscribe( (response) => {
+      console.log(JSON.stringify(response));
+      
       console.log("Post utente fatta");
       this.route.navigateByUrl("/recap")
     }, (error) => {
