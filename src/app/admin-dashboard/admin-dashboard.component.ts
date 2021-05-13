@@ -22,7 +22,7 @@ export class AdminDashboardComponent implements OnInit {
 
   vediInnerTabella = false;
   vediInnerTabellaImpostazioni = false;
-  arrayPartitaScelta = [{}];
+  arrayPartitaScelta;
 
   suffix = "users.json";
 
@@ -91,7 +91,7 @@ export class AdminDashboardComponent implements OnInit {
 
   displayedColumnsModificaSquadra: string[] = ['checkbox', 'idgiocatore', 'name', 'surname', "username", "autovalutazione", "ruolo"];
 
-  displayedColumns2: string[] = ['checkbox', 'idgiocatore', 'name', 'surname', "username", "autovalutazione", "ruolo"];
+  displayedColumnsGiocatoriPerPartita: string[] = ['checkbox', 'name', 'surname', "autovalutazione", "ruolo"];
 
   displayedInfo: string[] = ['idtenant', 'nomestruttura', 'citta', 'via', 'cap', 'email']
 
@@ -196,16 +196,32 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  checkedCheckbox = false;
+  checkedCheckbox = false; giocatoriPartita; numeroGiocatori;
 
   visualizzaQuesta(element){
     console.log(element)
     this.idCorrente = element.id;
-    let temp = this.dataSource2.filter( (player) => {
-      return player.idpartita == element.idpartita;
-    })    
-    this.arrayPartitaScelta = temp;
     this.vediInnerTabella = true;
+
+    console.log("idTenant: " + this.utils.idTenant + ", id partita scelta: " + this.idCorrente);
+
+    this.auth.getPlayersMatches(this.utils.idTenant, this.idCorrente).subscribe( (response) => {
+      console.log(JSON.stringify(response));
+      
+      this.giocatoriPartita = response["players"];
+      let temp = this.giocatoriPartita.filter( (player) => {
+        return player.idpartita == element.idpartita;
+      })
+      
+      this.numeroGiocatori = temp.length;
+      
+      this.arrayPartitaScelta = new MatTableDataSource(temp);
+    }, (error) => { 
+      console.log(JSON.stringify(error));
+    } );
+
+    
+    
   }
 
   visualizzaQuesta2(){

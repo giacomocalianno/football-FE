@@ -52,8 +52,8 @@
 
         <div class="row innertabella" *ngIf="vediInnerTabella">
             <div class="d-flex w-100 align-items-center">
-                <h3 class="h3PartitaScelta align-items-center">ID partita scelta: <b class="testoColonne">{{idCorrente}}</b>, numero partecipanti: <b class="testoColonne">{{arrayPartitaScelta.length}}</b></h3>
-                <button type="button" class="btn btn-success" (click) = "formaSquadre()" [disabled]="arrayPartitaScelta.length < 14">Forma squadre</button>
+                <h3 class="h3PartitaScelta align-items-center">ID partita scelta: <b class="testoColonne">{{idCorrente}}</b>, numero partecipanti: <b class="testoColonne">{{numeroGiocatori}}</b></h3>
+                <button type="button" class="btn btn-success" (click) = "formaSquadre()" [disabled]="numeroGiocatori < 14">Forma squadre</button>
                 <button *ngIf="checkedCheckbox" type="button" class="btn btn-warning" (click) = "rimuoviGiocatori()">Rimuovi selezionato/i</button>
             </div>
 
@@ -62,12 +62,7 @@
 
                 <ng-container matColumnDef="checkbox" class="ml-4">
                     <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Seleziona 1 o più</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> <input type="checkbox" (click)="checked()"> </td>
-                </ng-container>
-
-                <ng-container matColumnDef="idgiocatore" class="ml-4">
-                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">ID giocatore</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.idgiocatore}} </td>
+                    <td mat-cell *matCellDef="let element" class="colonna"> <button class="btnSelect" (click)="checked()"></button> </td>
                 </ng-container>
     
                 <ng-container matColumnDef="name">
@@ -80,23 +75,18 @@
                     <td mat-cell *matCellDef="let element" class="colonna"> {{element.surname}} </td>
                 </ng-container>
     
-                <ng-container matColumnDef="username">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Username</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.username}} </td>
-                </ng-container>
-    
                 <ng-container matColumnDef="autovalutazione">
                     <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Autovalutazione</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.autovalutazione}} </td>
+                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.rating}} </td>
                 </ng-container>
     
                 <ng-container matColumnDef="ruolo">
                     <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Ruolo</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.ruolo}} </td>
+                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.role}} </td>
                 </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsGiocatoriPerPartita"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsGiocatoriPerPartita;"></tr>
             </table>
 
             <mat-spinner *ngIf="caricamento" class="spinner"></mat-spinner>

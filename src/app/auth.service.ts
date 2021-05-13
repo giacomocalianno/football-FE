@@ -46,6 +46,10 @@ export class AuthService {
     return this.http.patch(this.urlbase + idTenant + "/" + idPlayer + "/signToMatch/" + idMatch, body)
   }
 
+  getPlayersMatches(idTenant, idMatch){
+    return this.http.get(this.urlbase + idTenant + "/getMatchPlayers/" + idMatch);
+  }
+
   postRequestPlayer(body, idTenant){
     console.log("link create player" + this.urlbase + idTenant + "/createPlayer", body);
     return this.http.post(this.urlbase + idTenant + "/createPlayer", body)
