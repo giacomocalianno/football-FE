@@ -4,6 +4,7 @@ import {NgbNavConfig} from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -100,7 +101,7 @@ export class AdminDashboardComponent implements OnInit {
   // TODO da cambiare nome colonne
   displayedColumnsImpostazioni: string[] = ["Crea partita", "Modifica partita", "Elimina partita"];
 
-  constructor(private utils: UtilsService, config: NgbNavConfig, private auth: AuthService ) {
+  constructor(private utils: UtilsService, config: NgbNavConfig, private auth: AuthService, private router:Router) {
     config.destroyOnHide = false;
     config.roles = false;
   }
@@ -341,6 +342,11 @@ export class AdminDashboardComponent implements OnInit {
     this.modificaSquadra = false;
     this.eliminaSquadra = true;
     this.getDataUpdate();
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigateByUrl("login")
   }
 
   ngOnInit(): void {

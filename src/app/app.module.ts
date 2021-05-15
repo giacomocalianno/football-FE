@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoginUtenteComponent } from './login-utente/login-utente.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     AppRoutingModule,
     BrowserAnimationsModule, ReactiveFormsModule, FormsModule, NgbModule, MatTableModule,
     MatFormFieldModule, ReactiveFormsModule, FormsModule, MatCardModule, MatInputModule, MatButtonModule, MatSidenavModule, MatProgressSpinnerModule,
-    HttpClientModule, MatTableModule, MatSnackBarModule
+    HttpClientModule, MatTableModule, MatSnackBarModule,MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -20,6 +20,17 @@ h2{
     font-weight: bold;
 }
 
+.logout{
+    font-size: 150%;
+    border-radius: 10px;    
+    background-color: rgb(240, 4, 4);   
+
+}
+.logout:hover{
+    transform: scale(1.03);
+    background-color: red;   
+}
+
 .sidenav{
     background-color: aqua;
 }
@@ -68,13 +79,13 @@ h2{
     height: 100%;
 }
 
-.testoColonne{
+.testoColonne, .testoColonne2{
     font-size: 22px;
     color: black;
     font-weight: 600;
 }
 
-.colonna{
+.colonna, .colonna2{
     padding: 0%;
     width: 5%;
     margin-right: 0%;
@@ -95,12 +106,19 @@ h2{
     cursor: pointer;
 }
 
-.innertabella{
+.tabellaModifica{
+    width: 90%;
+}
+
+.innertabella, .innertabella2{
     padding: 1%;
     width: 100%;
     height: 100%;
     margin-top: 70px;
     margin: 0%;
+}
+.innertabella2{
+    width: 130%;
 }
 
 .spinner{
@@ -126,9 +144,120 @@ h2{
     background-color: rgb(0, 0, 0);
 }
 
+.collogin2{
+    height: 100px;
+}
+
 .spinner{
     position: absolute;
     top: 50%;
     left: 48%;
     transform: translate(-50deg, -50deg);
+}
+
+@media screen and (max-width: 480px) {
+    .logout{
+        font-size: 100%;
+    }
+    .btn-logout{
+        font-size: 18px;
+    }
+    .sliderScritta{
+        font-size: 21px;
+    }
+    .testoNav{
+        font-size: 18px;
+    }
+    .testoColonne{
+        font-size: 18px;
+    }
+    .h3PartitaScelta{
+        font-size: 17px;
+    }
+    .collogin{
+        display: none;
+    }
+    .testoColonne2{
+        font-size: 13px;
+    }
+    .colonna2{
+        font-size: 15px;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .logout{
+        font-size: 100%;
+    }
+    .sliderScritta{
+        font-size: 24px;
+    }
+    .testoNav{
+        font-size: 21px;
+    }
+    .testoColonne{
+        font-size: 21px;
+    }
+    .h3PartitaScelta{
+        font-size: 20px;
+    }
+    .collogin2{
+        display: none;
+    }
+    .testoColonne2{
+        font-size: 16px;
+    }
+    .colonna2{
+        font-size: 18px;
+    }
+}
+@media screen and (min-width: 769px) and (max-width: 1279px) {
+    .logout{
+        font-size: 120%;
+    }
+    .sliderScritta{
+        font-size: 27px;
+    }
+    .testoNav{
+        font-size: 24px;
+    }
+    .testoColonne{
+        font-size: 24px;
+    }
+    .h3PartitaScelta{
+        font-size: 23px;
+    }
+    
+    .collogin2{
+        display: none;
+    }
+    .testoColonne2{
+        font-size: 19px;
+    }
+    .colonna2{
+        font-size: 20px;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .logout{
+        font-size: 150%;
+    }
+    .sliderScritta{
+        font-size: 30px;
+    }
+    .testoNav{
+        font-size: 27px;
+    }
+    .testoColonne{
+        font-size: 27px;
+    }
+    .h3PartitaScelta{
+        font-size: 27px;
+    }
+    
+    .collogin2{
+        display: none;
+    }
+    .testoColonne2{
+        font-size: 23px;
+    }
 }
