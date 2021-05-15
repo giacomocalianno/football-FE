@@ -24,8 +24,18 @@ html, body {
 .pointer{
     cursor: pointer;
 }
+.pointerDisabled{
+    cursor: not-allowed;
+}
 
 .colonna{
+    padding: 0%;
+    width: 5%;
+    margin-right: 0%;
+}
+
+.colonnaDisabled{
+    opacity: 0.5;
     padding: 0%;
     width: 5%;
     margin-right: 0%;

@@ -14,18 +14,24 @@ export class ScegliPartitaUserComponent implements OnInit {
 
   constructor(private auth: AuthService, private utils: UtilsService, private route: Router) { }
 
-  displayedColumns: string[] = ['checkbox', 'id', 'ora', 'data'];
+  displayedColumns: string[] = ['checkbox', 'id', 'ora', 'data', 'numeroGiocatori'];
 
   dataSourcePartite; prova;
 
-  formIscrizione;
+  formIscrizione; partiteFiltrateOk = [];
 
   retrieveMatches(){
     this.auth.getMatches(localStorage.getItem("idTenantScelto")).subscribe( (response) => {
       console.log("Questa è la risposta intera");
       console.log(response);
       this.prova = response["matches"];
-      this.dataSourcePartite = new MatTableDataSource(this.prova);
+
+      this.prova.forEach(element => {
+        if(element["numberPlayers"] < 14){
+          this.partiteFiltrateOk.push(element); 
+        }
+      });
+      this.dataSourcePartite = new MatTableDataSource(this.partiteFiltrateOk);
     } )
   }
 

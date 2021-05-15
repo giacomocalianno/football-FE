@@ -70,7 +70,12 @@ html, body {
     border: none;
     background-color: #137238;
     border: none;
-    box-shadow: 1px 1px #fff;
+    box-shadow: 1px 1px 0px rgba(255, 255, 255, 0.233);
+} 
+.signin:hover{
+    background-color: #198844;
+    transform: scale(1.04);
+    
 }
 
 .rowcaricamento{

@@ -105,12 +105,13 @@ export class AdminDashboardComponent implements OnInit {
     config.roles = false;
   }
 
-  nomestruttura; email; cap; via; citta; idtenant; caricamento = false;
+  nomestruttura; email; cap; via; password; citta; idtenant; caricamento = false;
 
   retrieveLocalStorage(){
-    this.idtenant = this.utils.idTenant;
+    this.idtenant = localStorage.getItem("IdTenant");
     this.nomestruttura = localStorage.getItem("name");
-    this.email = localStorage.getItem("Email");
+    this.email = localStorage.getItem("EmailAdmin");
+    this.password = localStorage.getItem("PasswordAdmin");
     this.cap = localStorage.getItem("cap");
     this.via = localStorage.getItem("via");
     this.citta = localStorage.getItem("citta");
@@ -121,8 +122,8 @@ export class AdminDashboardComponent implements OnInit {
 
   getMatches(){
     this.caricamento = true;
-    console.log("id tenant: " + this.utils.idTenant);
-      this.auth.getMatches(this.utils.idTenant).subscribe((response) => {
+    console.log("id tenant: " + localStorage.getItem("IdTenant"));
+      this.auth.getMatches(localStorage.getItem("IdTenant")).subscribe((response) => {
       console.log("Elenco di partite del tenant: " + response["matches"]);
       this.users = response["matches"];
       this.caricamento = false;
@@ -145,9 +146,9 @@ export class AdminDashboardComponent implements OnInit {
       time : this.formDataeOra.value.ora
     }
 
-    console.log("id tenant corrente: " + this.utils.idTenant);
+    console.log("id tenant corrente: " + localStorage.getItem("IdTenant"));
     
-    this.auth.createMatches(this.utils.idTenant, bodyCreateMatch ).subscribe( () => {
+    this.auth.createMatches(localStorage.getItem("IdTenant"), bodyCreateMatch ).subscribe( () => {
       console.log("Ho creato la partita");
       this.caricamento2 = false;
       this.creata = true;
@@ -189,7 +190,7 @@ export class AdminDashboardComponent implements OnInit {
 
   getPrenotazioni(){
       console.log("id tenant: " + this.utils.idTenant);
-      this.auth.getMatches(this.utils.idTenant).subscribe((response) => {
+      this.auth.getMatches(localStorage.getItem("IdTenant")).subscribe((response) => {
       console.log("Elenco di partite del tenant: " + response["matches"]);
       this.users = response["matches"];
       this.dataSource = new MatTableDataSource(this.users);
@@ -208,7 +209,7 @@ export class AdminDashboardComponent implements OnInit {
 
     console.log("idTenant: " + this.utils.idTenant + ", id partita scelta: " + this.idCorrente);
 
-    this.auth.getPlayersMatches(this.utils.idTenant, this.idCorrente).subscribe( (response) => {
+    this.auth.getPlayersMatches(localStorage.getItem("IdTenant"), this.idCorrente).subscribe( (response) => {
       console.log(JSON.stringify(response));
       
       this.giocatoriPartita = response["players"];
@@ -264,7 +265,7 @@ export class AdminDashboardComponent implements OnInit {
 
   getDataUpdate(){
     console.log("id tenant: " + this.utils.idTenant);
-      this.auth.getMatches(this.utils.idTenant).subscribe((response) => {
+      this.auth.getMatches(localStorage.getItem("IdTenant")).subscribe((response) => {
       console.log("Elenco di partite del tenant: " + response["matches"]);
       this.users = response["matches"];
       this.dataSourceUpdate = new MatTableDataSource(this.users);
@@ -308,7 +309,7 @@ export class AdminDashboardComponent implements OnInit {
 
     this.spinner = true;
   
-    this.auth.updateMatch(this.utils.idTenant, this.utils.idPartitaUpdate, this.bodyPartitaModificata).subscribe( (response) => {
+    this.auth.updateMatch(localStorage.getItem("IdTenant"), this.utils.idPartitaUpdate, this.bodyPartitaModificata).subscribe( (response) => {
       console.log(response);
       console.log("ho fatto la put");
       this.putOk = true;
@@ -343,8 +344,8 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPrenotazioni();
     this.retrieveLocalStorage();
+    this.getPrenotazioni();
     this.setFormDataeOra();
   }
 
