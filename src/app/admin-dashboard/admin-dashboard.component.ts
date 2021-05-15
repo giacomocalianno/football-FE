@@ -196,9 +196,12 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  checkedCheckbox = false; giocatoriPartita; numeroGiocatori;
+  checkedCheckbox = false; giocatoriPartita; numeroGiocatori; 
+
+  numPortieri; numDifensori; numCentrocampisti; numAttaccanti;
 
   visualizzaQuesta(element){
+    let countPortieri = 0; let countDifensori = 0; let countCentrocampisti = 0; let countAttaccanti = 0;
     console.log(element)
     this.idCorrente = element.id;
     this.vediInnerTabella = true;
@@ -214,13 +217,28 @@ export class AdminDashboardComponent implements OnInit {
       })
       
       this.numeroGiocatori = temp.length;
-      
+
       this.arrayPartitaScelta = new MatTableDataSource(temp);
+
+      response["players"].forEach(element => {
+        if(element["role"] == "portiere"){
+          countPortieri++;
+        } else if (element["role"] == "difensore"){
+          countDifensori++;
+        } else if (element["role"] == "centrocampista"){
+          countCentrocampisti++;
+        } else if (element["role"] == "attaccante"){
+          countAttaccanti++;
+        }
+      });
+      console.log("Portieri: " + countPortieri + "; Difensori: " + countDifensori + "; Centrocamp: " + countCentrocampisti + "; Attacco: " + countAttaccanti);
+      this.numPortieri = countPortieri;
+      this.numDifensori = countDifensori;
+      this.numCentrocampisti = countCentrocampisti;
+      this.numAttaccanti = countAttaccanti;
     }, (error) => { 
       console.log(JSON.stringify(error));
     } );
-
-    
     
   }
 

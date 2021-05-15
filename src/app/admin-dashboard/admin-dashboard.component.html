@@ -52,7 +52,13 @@
 
         <div class="row innertabella" *ngIf="vediInnerTabella">
             <div class="d-flex w-100 align-items-center">
-                <h3 class="h3PartitaScelta align-items-center">ID partita scelta: <b class="testoColonne">{{idCorrente}}</b>, numero partecipanti: <b class="testoColonne">{{numeroGiocatori}}</b></h3>
+                <h3 class="h3PartitaScelta align-items-center">ID partita scelta: <b class="testoColonne">{{idCorrente}}</b>, 
+                    numero partecipanti: <b class="testoColonne">{{numeroGiocatori}}</b>,
+                    numero portieri: <b class="testoColonne">{{numPortieri}}</b>,
+                    numero difensori: <b class="testoColonne">{{numDifensori}}</b>,
+                    numero centrocampisti: <b class="testoColonne">{{numCentrocampisti}}</b>,
+                    numero attaccanti: <b class="testoColonne">{{numAttaccanti}}</b>
+                </h3>
                 <button type="button" class="btn btn-success" (click) = "formaSquadre()" [disabled]="numeroGiocatori < 14">Forma squadre</button>
                 <button *ngIf="checkedCheckbox" type="button" class="btn btn-warning" (click) = "rimuoviGiocatori()">Rimuovi selezionato/i</button>
             </div>
