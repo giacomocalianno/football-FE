@@ -30,61 +30,7 @@ export class AdminDashboardComponent implements OnInit {
   showFiller = false;
   users:any;
 
-  // TODO da cambiare i valori HARDCODE con query al DATABASE 
-
-  dataSourceimpostazioni = [
-    { idpartita : 1, ora : "14:30", data : "27/05/2021"},
-    { idpartita : 2, ora : "15:30", data : "27/05/2021"},
-    { idpartita : 3, ora : "16:30", data : "28/05/2021"}
-  ];
-
-  dataSourceFeedback = [
-    { idpartita : 1, ora : "14:30", data : "27/05/2021"},
-    { idpartita : 2, ora : "15:30", data : "27/05/2021"},
-    { idpartita : 3, ora : "16:30", data : "28/05/2021"}
-  ];
-
   dataSource;
-
-  dataSource2 = [
-    { idpartita : 1, idgiocatore : 2, name : "Luca", surname : "Calianno", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
-    { idpartita : 3, idgiocatore : 6, name : "Massimo", surname : "Vtere", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"},
-    { idpartita : 3, idgiocatore : 7, name : "Antonio", surname : "Eder", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
-    { idpartita : 1, idgiocatore : 8, name : "Nicola", surname : "Wasteryuio", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
-    { idpartita : 3, idgiocatore : 9, name : "Alessandro", surname : "Xeder", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"}
-    ,{ idpartita : 3, idgiocatore : 9, name : "Alessandro", surname : "Xeder", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"}
-    ,{ idpartita : 3, idgiocatore : 9, name : "Alessandro", surname : "Xeder", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"}
-    ,{ idpartita : 3, idgiocatore : 9, name : "Alessandro", surname : "Xeder", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"}
-    ,{ idpartita : 1, idgiocatore : 1, name : "Giacomo", surname : "Calianno", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
-    { idpartita : 1, idgiocatore : 2, name : "Luca", surname : "Calianno", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
-    { idpartita : 2, idgiocatore : 3, name : "Francesco", surname : "Rossini", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"},
-    { idpartita : 2, idgiocatore : 4, name : "Sasy", surname : "Kek", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
-    { idpartita : 2, idgiocatore : 5, name : "Heh", surname : "Pop", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
-    { idpartita : 3, idgiocatore : 6, name : "Massimo", surname : "Vtere", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"},
-    { idpartita : 3, idgiocatore : 7, name : "Antonio", surname : "Eder", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
-    { idpartita : 1, idgiocatore : 8, name : "Nicola", surname : "Wasteryuio", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
-    { idpartita : 3, idgiocatore : 9, name : "Alessandro", surname : "Xeder", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"}
-    ,{ idpartita : 1, idgiocatore : 1, name : "Giacomo", surname : "Calianno", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
-    { idpartita : 1, idgiocatore : 2, name : "Luca", surname : "Calianno", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
-    { idpartita : 2, idgiocatore : 3, name : "Francesco", surname : "Rossini", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"},
-    { idpartita : 2, idgiocatore : 4, name : "Sasy", surname : "Kek", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
-    { idpartita : 2, idgiocatore : 5, name : "Heh", surname : "Pop", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
-    { idpartita : 3, idgiocatore : 6, name : "Massimo", surname : "Vtere", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"},
-    { idpartita : 1, idgiocatore : 8, name : "Nicola", surname : "Wasteryuio", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
-    { idpartita : 3, idgiocatore : 9, name : "Alessandro", surname : "Xeder", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"}
-    ,{ idpartita : 1, idgiocatore : 1, name : "Giacomo", surname : "Calianno", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
-    { idpartita : 1, idgiocatore : 2, name : "Luca", surname : "Calianno", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
-    { idpartita : 2, idgiocatore : 3, name : "Francesco", surname : "Rossini", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"},
-    { idpartita : 2, idgiocatore : 4, name : "Sasy", surname : "Kek", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
-    { idpartita : 2, idgiocatore : 5, name : "Heh", surname : "Pop", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
-    { idpartita : 3, idgiocatore : 6, name : "Massimo", surname : "Vtere", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"},
-    { idpartita : 3, idgiocatore : 7, name : "Antonio", surname : "Eder", username : "giacomo.calianno", autovalutazione : "4", ruolo : "Difensore"},
-    { idpartita : 1, idgiocatore : 8, name : "Nicola", surname : "Wasteryuio", username : "luca.calianno", autovalutazione : "5", ruolo : "Centrocampista"},
-    { idpartita : 3, idgiocatore : 9, name : "Alessandro", surname : "Xeder", username : "francesco.rossini", autovalutazione : "1", ruolo : "Attaccante"}
-  
-  ];
-
-  // -------------- 
 
   displayedColumns1: string[] = ['idpartita', 'ora', 'data'];
 
@@ -98,7 +44,6 @@ export class AdminDashboardComponent implements OnInit {
 
   displayedColumnsFeedback: string[] = ["idgiocatore", "valutazione"];
 
-  // TODO da cambiare nome colonne
   displayedColumnsImpostazioni: string[] = ["Crea partita", "Modifica partita", "Elimina partita"];
 
   constructor(private utils: UtilsService, config: NgbNavConfig, private auth: AuthService, private router:Router) {

@@ -50,7 +50,7 @@ export class ScegliPartitaUserComponent implements OnInit {
     this.caricamento = true;
     let idTenant = localStorage.getItem("idTenantScelto");
     let idPlayer = localStorage.getItem("idUtente");
-    
+    localStorage.setItem("IdPartitaIscritto", this.idPartitaConfermata)
     this.auth.iscriviPlayer(idTenant, idPlayer, this.idPartitaConfermata, this.idPartitaConfermata).subscribe( (response) => {
       console.log("Risposta iscrizione: "+ JSON.stringify(response));
       this.caricamento = false;

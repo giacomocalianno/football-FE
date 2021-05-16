@@ -47,7 +47,6 @@ export class ImpostazioniUtenteComponent implements OnInit {
       surname : new FormControl(this.surname, [Validators.required]),
       email : new FormControl(this.email),
       password : new FormControl(this.password, [Validators.required]),
-      rating : new FormControl(this.rating, [Validators.required]),
       role : new FormControl(this.role, [Validators.required] )
     })
   }

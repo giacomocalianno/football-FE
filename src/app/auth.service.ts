@@ -50,6 +50,10 @@ export class AuthService {
     return this.http.get(this.urlbase + idTenant + "/getMatchPlayers/" + idMatch);
   }
 
+  addFeedbackUtente(idTenant, idPlayer, idMatch, body){
+    return this.http.patch(this.urlbase + idTenant + "/" + idMatch + "/updatePlayerRating/" + idPlayer, body)
+  }
+
   postRequestPlayer(body, idTenant){
     console.log("link create player" + this.urlbase + idTenant + "/createPlayer", body);
     return this.http.post(this.urlbase + idTenant + "/createPlayer", body)

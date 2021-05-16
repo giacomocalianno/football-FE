@@ -45,7 +45,6 @@
     <!-- PRENOTAZIONI -->
     <div *ngIf="vediPrenotazioni" class="row justify-content-center w-100 p-0 m-0">
 
-        <!--TODO aggiornare datasource backend-->
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100 justify-content-center tabella">
 
             <ng-container matColumnDef="idpartita" class="ml-4">
@@ -139,7 +138,6 @@
 
     <!-- IMPOSTAZIONI -->
     <div *ngIf="impostazioni">
-        <!--TODO aggiornare datasource backend-->
         <table mat-table [dataSource]="dataSourceFeedback" class="mat-elevation-z8 justify-content-center tabella">
             <ng-container matColumnDef="Crea partita" class="ml-4">
                 <th class="colonna pointer" (click) = "visualizzaCreaPartita(element)" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Crea partita</b> </th>
