@@ -55,12 +55,12 @@ export class AdminDashboardComponent implements OnInit {
 
   retrieveLocalStorage(){
     this.idtenant = localStorage.getItem("IdTenant");
-    this.nomestruttura = localStorage.getItem("name");
+    this.nomestruttura = localStorage.getItem("NomeStruttura");
     this.email = localStorage.getItem("EmailAdmin");
     this.password = localStorage.getItem("PasswordAdmin");
-    this.cap = localStorage.getItem("cap");
-    this.via = localStorage.getItem("via");
-    this.citta = localStorage.getItem("citta");
+    this.cap = localStorage.getItem("Cap");
+    this.via = localStorage.getItem("Via");
+    this.citta = localStorage.getItem("Citta");
     console.log(this.nomestruttura + " " + this.email + " " + this.cap + " " +this.via + " " + this.citta);
   }
 

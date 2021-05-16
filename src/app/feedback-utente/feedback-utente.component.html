@@ -70,6 +70,11 @@
                         <td mat-cell *matCellDef="let element" class="colonna2"> {{element.rating}} </td>
                     </ng-container>
         
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne2">E-mail</b> </th>
+                        <td mat-cell *matCellDef="let element" class="colonna2"> {{element.email}} </td>
+                    </ng-container>
+
                     <ng-container matColumnDef="ruolo">
                         <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne2">Ruolo</b> </th>
                         <td mat-cell *matCellDef="let element" class="colonna2"> {{element.role}} </td>
@@ -79,120 +84,33 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumnsGiocatoriPerPartita;"></tr>
                 </table>
     
-                <mat-spinner *ngIf="caricamento" class="spinner"></mat-spinner>
-            </div>
-            <!--
-           
-            <div class="col-6" style="display: flex; justify-content: center;">
-                <div class="cardRecensione">
-                    <form class="form pb-3">
-                        <div class="form-group">
-                            <label for="inputUsername" class="font bold testo pt-0 pb-2">Nome
-                                <strong><i>utente</i></strong>
-                                di cui vuoi inserire il feedback</label>
-                            <input type="text" class="form-control" id="inputUsername" aria-describedby="emailHelp"
-                                placeholder="nome.cognome">
+                <div *ngIf="feedback" class="mt-5">
+                    <form [formGroup]="formFeedback">
+                    <div class="row w-100 align-items-center justify-content-center text-center">
+                        <div class="col-12">
+                            <label style="font-weight: 600; font-size: 27px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                                Inserisci valutazione per questo giocatore</label>
                         </div>
-                        <label for="inputUsername" class="font bold testo pb-0 mb-3">Inserisci valutazione</label>
-                        <ngb-rating max=5 [(rate)]="currentRateRecensione">
-                            <ng-template let-fill="fill" let-index="index">
-                                <span class="starRecensione" [class.filledRecensione]="fill === 100"
-                                    [class.bad]="index < 3">&#9733;</span>
-                            </ng-template>
-                        </ngb-rating>
-                        <p class="mb-0 py-2">
-                        </p>
-                        <div class="row justify-content-center">
-                            <div class="col-8"
-                                style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
-                                <button type="submit" class="btn btn-primary font my-3">Invia feedback</button>
-                                <button type="button" class="aiuto" placement="right"
-                                    ngbPopover="Inserisci un numero da 1 a 5 su un utente a tua scelta. Questo ci aiuterà a gestire meglio l'algoritmo che crea le squadre e sarà utile agli altri utenti">
-                                    ?
-                                </button>
-                            </div>
-
+                        <div class="col-12 mt-3">
+                            <input type="number" min="1" max="5" formControlName="valutazione" style="width: 25%;" class="text-center"> <br>
+                            <label class="text-danger">Inserire un numero da 1 a 5</label>
                         </div>
+                        <div class="row w-100 justify-content-center">
+                            <button type="submit" [disabled]="formFeedback.invalid" (click)="sendFeedback()" class="btn btn-success">Conferma</button>
+                        </div>
+    
+                        <mat-spinner *ngIf="spinner" class="spinner"></mat-spinner> 
+                        <label class="text-warning mt-5" style="font-size: 28px;" *ngIf="feedbackInviato">Il feedback è stato inviato con successo!</label>
+                    </div>
                     </form>
                 </div>
             </div>
-
             
-            <div class="col-6" style="display: flex; justify-content: center;">
-                <div class="cardRecensione">
-                    <form class="form pb-3">
-                        <div class="form-group">
-                            <label for="inputUsername" class="font bold testo pt-0 pb-2">Nome della
-                                <strong><i>struttura</i></strong> di cui vuoi inserire il feedback</label>
-                            <input type="text" class="form-control" id="inputUsername" aria-describedby="emailHelp"
-                                placeholder="ES. Campo ELIS">
-                        </div>
-                        <label for="inputUsername" class="font bold testo pb-0 mb-3">Inserisci valutazione</label>
-                        <ngb-rating max=5 [(rate)]="currentRateRecensione2">
-                            <ng-template let-fill="fill" let-index="index">
-                                <span class="starRecensione2" [class.filledRecensione2]="fill === 100"
-                                    [class.bad]="index < 3">&#9733;</span>
-                            </ng-template>
-                        </ngb-rating>
-                        <p class="mb-0 py-2">
-                        </p>
-                        <div class="row justify-content-center">
-                            <div class="col-8"
-                                style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
-                                <button type="submit" class="btn btn-primary font my-3">Invia feedback</button>
-                                <button type="button" class="aiuto" placement="right"
-                                    ngbPopover="Inserisci un numero da 1 a 5 su una struttra in base ai servizi che ha offerto. Questo ci aiuterà a gestire meglio le strutture e i loro benefit e sarà utile agli altri utenti">
-                                    ? </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            -->
         </div>
 
         
         <div class="row rowSuDiTe">
 
-
-
-            <!--
-            <div class="col-4 col">
-                <div class="cardRating">
-                    <ngb-rating max=5 readonly=true [(rate)]="currentRate">
-                        <ng-template let-fill="fill" let-index="index">
-                            <span class="star mt-5" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
-                        </ng-template>
-                    </ngb-rating>
-                    <hr>
-                    <pre class="scrittaVoto">Voto su di te: <i><b>{{currentRate}}</b></i> </pre>
-                </div>
-            </div>
-            <div class="col-4 col">
-                <div class="cardRating">
-                    <ngb-rating max=5 readonly=true [(rate)]="currentRate2">
-                        <ng-template let-fill="fill" let-index="index">
-                            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
-                        </ng-template>
-                    </ngb-rating>
-                    <hr>
-                    <pre class="scrittaVoto">Voto su di te: <i><b>{{currentRate2}}</b></i> </pre>
-                </div>
-            </div>
-            <div class="col-4 col">
-
-                <div class="cardRating">
-                    <ngb-rating max=5 readonly=true [(rate)]="currentRate3">
-                        <ng-template let-fill="fill" let-index="index">
-                            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
-                        </ng-template>
-                    </ngb-rating>
-                    <hr>
-                    <pre class="scrittaVoto">Voto su di te: <i><b>{{currentRate3}}</b></i> </pre>
-                </div>
-
-            </div>
-            -->
         </div>
 
     </div>

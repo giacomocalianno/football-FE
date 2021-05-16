@@ -51,6 +51,8 @@ export class AuthService {
   }
 
   addFeedbackUtente(idTenant, idPlayer, idMatch, body){
+    console.log(this.urlbase + idTenant + "/" + idMatch + "/updatePlayerRating/" + idPlayer);
+    
     return this.http.patch(this.urlbase + idTenant + "/" + idMatch + "/updatePlayerRating/" + idPlayer, body)
   }
 

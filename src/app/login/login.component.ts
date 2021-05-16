@@ -39,6 +39,11 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("EmailAdmin", this.formLogin.value.email);
       localStorage.setItem("PasswordAdmin", this.formLogin.value.password);
       localStorage.setItem("IdTenant", response["id"]);
+      localStorage.setItem("NomeStruttura", response["name"]);
+      localStorage.setItem("Citta", response["city"]);
+      localStorage.setItem("Via", response["address"]);
+      localStorage.setItem("Cap", response["cap"]);
+      
       this.router.navigateByUrl("/adminDashboard");
     }, (error) => {
       console.log("non esiste nessun admin");

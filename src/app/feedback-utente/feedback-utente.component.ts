@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -9,10 +11,10 @@ import { AuthService } from '../auth.service';
 })
 export class FeedbackUtenteComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private route: Router) { }
 
   displayedColumns = ['checkbox', 'id', 'date', 'time'];
-  displayedColumnsGiocatoriPerPartita: string[] = ['checkbox', 'name', 'surname', "autovalutazione", "ruolo"];
+  displayedColumnsGiocatoriPerPartita: string[] = ['checkbox', 'name', 'surname', "autovalutazione", "ruolo", "email"];
 
   vediInnerTabella;
 
@@ -31,27 +33,63 @@ export class FeedbackUtenteComponent implements OnInit {
     } )
   }
 
-  idCorrente; giocatoriPartita; arrayPartitaScelta;
+  idCorrente; giocatoriPartita; arrayPartitaScelta; emailCorrente;
   
   stampaId(element){
-    this.idCorrente = element.id;    
+    this.idCorrente = element.id;   
     this.vediInnerTabella = true;
 
     //console.log("idTenant: " + this.utils.idTenant + ", id partita scelta: " + this.idCorrente);
     
     this.auth.getPlayersMatches(localStorage.getItem("idTenantScelto"), this.idCorrente).subscribe( (response) => {
       console.log(JSON.stringify(response));
-      
       this.giocatoriPartita = response["players"];
+      console.log("emailcorrente è:" + this.emailCorrente);
       let temp = this.giocatoriPartita.filter( (player) => {
-        return player.idpartita == element.idpartita;
+        // ritorna la partita a cui l'utente è iscritto facendo vedere i giocatori tranne se stesso
+        return (player.idpartita == element.idpartita) && (player.email != localStorage.getItem("EmailUtente"));
       })
       
       this.arrayPartitaScelta = new MatTableDataSource(temp);
     })
   }
+
+  formFeedback;
+  setFormFeedback(){
+    this.formFeedback = new FormGroup({
+      valutazione : new FormControl("", [Validators.required, Validators.pattern("[1-5]")])
+    })
+  }
+
+  bodyFeedback; feedbackInviato;
+  sendFeedback(){
+    console.log(this.formFeedback.value);
+    this.bodyFeedback = {
+      rating : this.formFeedback.value.valutazione,
+      id : this.idGiocatoreFeedback
+    }
+
+    console.log("il body che gli sto mandando è " + JSON.stringify(this.bodyFeedback));
+    this.auth.addFeedbackUtente(localStorage.getItem("idTenantScelto"), this.idGiocatoreFeedback, this.idCorrente, this.bodyFeedback).subscribe( () => {
+      console.log("Fatto ? ");
+      this.feedbackInviato = true;
+      location.reload();
+    } )
+
+  }
+ 
+  
+  feedback = false; idGiocatoreFeedback;
+  checked(element){
+    console.log(JSON.stringify(element));
+    this.feedback = true;
+    this.idGiocatoreFeedback = element.id;
+    console.log("idgiocatorefeedback selezionato: " + this.idGiocatoreFeedback);
+  }
   
   ngOnInit(): void {
     this.retrieveMatches();
+    this.setFormFeedback();
   }
 }
+
