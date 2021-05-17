@@ -54,11 +54,26 @@ export class FeedbackUtenteComponent implements OnInit {
     })
   }
 
-  formFeedback;
+  formFeedback; formFeedbackStruttura;
   setFormFeedback(){
     this.formFeedback = new FormGroup({
       valutazione : new FormControl("", [Validators.required, Validators.pattern("[1-5]")])
     })
+    this.formFeedbackStruttura = new FormGroup({
+      rating : new FormControl("", [Validators.required]),
+      comment : new FormControl("", [Validators.required])
+    })
+  }
+
+  sendFeedbackStruttura(){
+    console.log(this.formFeedbackStruttura.value);
+
+    this.auth.addFeedbackStruttura(localStorage.getItem("idUtente"), localStorage.getItem("idTenantScelto"), 
+    this.formFeedbackStruttura.value).subscribe( (response) => {
+      console.log(JSON.stringify(response));
+      
+    } )
+     
   }
 
   bodyFeedback; feedbackInviato;

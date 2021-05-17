@@ -127,6 +127,7 @@ export class AdminDashboardComponent implements OnInit {
     this.feedback = true;
     this.impostazioni = false;
     this.tueInfo = false;
+    this.getFeedback();
   }
 
   visualizza3(){
@@ -284,6 +285,13 @@ export class AdminDashboardComponent implements OnInit {
       this.getMatches();
       this.spinner = false;
     } );
+  }
+
+  getFeedback(){
+    this.auth.getTenantReviews(localStorage.getItem("IdTenant")).subscribe( (response) => {
+      console.log(JSON.stringify(response));
+      
+    })
   }
 
   impostaIdPartitaEliminare(idEliminare){

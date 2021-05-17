@@ -56,6 +56,18 @@ export class AuthService {
     return this.http.patch(this.urlbase + idTenant + "/" + idMatch + "/updatePlayerRating/" + idPlayer, body)
   }
 
+  addFeedbackStruttura(idPlayer, idTenant, body){
+    return this.http.post(this.urlbase + idPlayer + "/createReview/" + idTenant, body)
+  }
+
+  getTenantReviews(idTenant){
+    return this.http.get(this.urlbase + "getTenantReviews/" + idTenant);
+  }
+
+  getPlayerReviews(idPlayer){
+    return this.http.get(this.urlbase + "getPlayerReviews/" + idPlayer);
+  }
+
   postRequestPlayer(body, idTenant){
     console.log("link create player" + this.urlbase + idTenant + "/createPlayer", body);
     return this.http.post(this.urlbase + idTenant + "/createPlayer", body)
