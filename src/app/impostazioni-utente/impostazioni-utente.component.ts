@@ -58,7 +58,10 @@ export class ImpostazioniUtenteComponent implements OnInit {
     
     this.auth.updatePlayer(localStorage.getItem("idTenantScelto"), localStorage.getItem("idUtente"), this.formModifica.value).subscribe( (response) => {
       console.log("Risposta update player" + response);
-      
+      localStorage.setItem("NomeUtente", this.formModifica.value.name);
+      localStorage.setItem("CognomeUtente", this.formModifica.value.surname);
+      localStorage.setItem("Ruolo", this.formModifica.value.role);
+      location.reload();
     } )
   }
 
