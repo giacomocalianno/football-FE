@@ -32,6 +32,10 @@ export class AdminDashboardComponent implements OnInit {
 
   dataSource;
 
+  /* 
+  dichiarazione delle colonne delle tabelle di visualizzazione
+  */
+
   displayedColumns1: string[] = ['idpartita', 'ora', 'data'];
 
   displayedColumns3: string[] = ['checkbox', 'idpartita', 'ora', 'data'];
@@ -67,6 +71,9 @@ export class AdminDashboardComponent implements OnInit {
   formDataeOra; dataSourceUpdate;
 
   getMatches(){
+    /*
+    visualizzo tutte le partite che ho creato
+    */
     this.caricamento = true;
     console.log("id tenant: " + localStorage.getItem("IdTenant"));
       this.auth.getMatches(localStorage.getItem("IdTenant")).subscribe((response) => {
@@ -93,7 +100,9 @@ export class AdminDashboardComponent implements OnInit {
     }
 
     console.log("id tenant corrente: " + localStorage.getItem("IdTenant"));
-    
+    /*
+    funzione che crea il match passandogli i dati inseriti nel form formDataeOra
+    */
     this.auth.createMatches(localStorage.getItem("IdTenant"), bodyCreateMatch ).subscribe( () => {
       console.log("Ho creato la partita");
       this.caricamento2 = false;
@@ -148,6 +157,10 @@ export class AdminDashboardComponent implements OnInit {
   numPortieri; numDifensori; numCentrocampisti; numAttaccanti;
 
   visualizzaQuesta(element){
+    /*
+    cliccando su una partita, visualizzo una tabella innestata che mi fa vedere tutti i giocatori e i loro dati
+    compreso il numero di giocatori per ruolo. Al raggiungimento di 14 giocatori posso formare le squadre
+    */
     let countPortieri = 0; let countDifensori = 0; let countCentrocampisti = 0; let countAttaccanti = 0;
     console.log(element)
     this.idCorrente = element.id;
@@ -159,6 +172,9 @@ export class AdminDashboardComponent implements OnInit {
       console.log(JSON.stringify(response));
       
       this.giocatoriPartita = response["players"];
+      
+      // filtro i giocatori cosicchè vedo i giocatori che si sono iscritti a quella partita e non tutti
+      
       let temp = this.giocatoriPartita.filter( (player) => {
         return player.idpartita == element.idpartita;
       })
@@ -224,19 +240,24 @@ export class AdminDashboardComponent implements OnInit {
 
   rimuoviGiocatori(){
     //TODO funzione che rimuove giocatore/i selezionato/i
-
   }
 
   divModifica = false;
   formModifica;
 
   setIdPartitaDaModificare(id, time, date){
+    
+    // funzione che modifica o data o orario o entrambi di una partita
+    
     console.log("La partita da modificare ha id: " + id);
     this.utils.idPartitaUpdate = id;
 
     this.divModifica = true;
 
     this.formModifica = new FormGroup({
+      
+      // con queste regex posso inserire solo una data formato gg/mm/aaaa e ora hh:mm
+      
       date : new FormControl(date, [Validators.required, Validators.pattern("^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$")]), 
       time : new FormControl(time, [Validators.required, Validators.pattern("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")])
     })  
@@ -254,7 +275,8 @@ export class AdminDashboardComponent implements OnInit {
     console.log("body partita aggiornata: "+ JSON.stringify(this.bodyPartitaModificata));
 
     this.spinner = true;
-  
+    
+    // faccio l'update con i dati del form inseriti
     this.auth.updateMatch(localStorage.getItem("IdTenant"), this.utils.idPartitaUpdate, this.bodyPartitaModificata).subscribe( (response) => {
       console.log(response);
       console.log("ho fatto la put");
@@ -265,12 +287,14 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   impostaIdPartitaEliminare(idEliminare){
+    // salvo id della partita da eliminare
     console.log("ID partita selezionata da eliminare: " + idEliminare);
     this.utils.idPartitaElimina = idEliminare;
   }
 
   spinnerElimina = false; eliminaOk;
   eliminaPartita(){
+    // chiamo la funzione che elimina la partita selezionata
     this.spinnerElimina = true;
     this.auth.deleteMatch(this.utils.idTenant, this.utils.idPartitaElimina).subscribe( () => {
       console.log("Eliminato");
@@ -279,8 +303,6 @@ export class AdminDashboardComponent implements OnInit {
       this.spinnerElimina = false;
     } );
   }
-
-  
 
   visualizzaEliminaPartita(){
     this.creaSquadra = false;

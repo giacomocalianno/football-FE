@@ -210,6 +210,17 @@ ul{
     height: 62px;
 }
 
+.logout{
+    font-size: 150%;
+    border-radius: 10px;    
+    background-color: rgb(240, 4, 4);   
+
+}
+.logout:hover{
+    transform: scale(1.03);
+    background-color: red;   
+}
+
 @media screen and (min-width: 1000px) and (max-width: 1333px) {
     .colRighecampoDisabled, .colRighecampo{
         height: 12vh;

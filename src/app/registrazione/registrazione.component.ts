@@ -59,6 +59,7 @@ export class RegistrazioneComponent implements OnInit {
     console.log("Email: " + this.formRegistrazione.value.email);
     console.log("Password: " + this.formRegistrazione.value.password);
 
+    // salvo in questo oggetto i dati da mandare
     const recapDati = {
       name : this.formRegistrazione.value.nome,
       surname: this.formRegistrazione.value.cognome,
@@ -67,7 +68,7 @@ export class RegistrazioneComponent implements OnInit {
       rating: this.formRegistrazione.value.autovalutazione,
       role : this.formRegistrazione.value.ruolo
     }
-
+    // salvo nel local storage i dati
     localStorage.setItem('NomeUtente', recapDati.name);
     localStorage.setItem('CognomeUtente', recapDati.surname);
     localStorage.setItem('EmailUtente', recapDati.email);
@@ -83,6 +84,7 @@ export class RegistrazioneComponent implements OnInit {
     this.utils.ruolo = this.formRegistrazione.value.ruolo;
     localStorage.setItem('idTenantScelto', this.utils.idTenant);
 
+    // faccio la post
     this.auth.postRequestPlayer(recapDati, this.utils.idTenant).subscribe( (response) => {
       console.log(JSON.stringify(response));
       

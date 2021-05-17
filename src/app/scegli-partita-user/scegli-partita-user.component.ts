@@ -20,9 +20,13 @@ export class ScegliPartitaUserComponent implements OnInit {
 
   formIscrizione; partiteFiltrateOk = [];
 
-
-
   retrieveMatches() {
+    /*
+    Facendo la get delle partite di quel tenant l'utente visualizza l'elenco delle partite a cui si può iscrivere
+    Nota: non può iscriversi se il numero di giocatori è 14.
+    Le partite con 14 giocatori non vengono visualizzate, controllo fatto dall'if a riga 35 che filtra l'array
+    e restituisce l'array dove il numero di giocatori è minore di 14
+    */
     this.auth.getMatches(localStorage.getItem("idTenantScelto")).subscribe((response) => {
       console.log("Questa è la risposta intera");
       console.log(response);
@@ -40,12 +44,21 @@ export class ScegliPartitaUserComponent implements OnInit {
   idPartitaConfermata; caricamento = false; puoiIscriverti; toccato = false;
 
   selezionaPartita(element) {
+    /*
+    L'utente seleziona la partita a cui vuole iscriversi e mi salvo nelle variabili delle informazioni che mi servono per la get
+    */
     console.log(JSON.stringify(element));
     this.toccato = true;
     console.log("id: " + element.id);
     this.utils.idPartitaSceltaUtente = element.id;
     this.idPartitaConfermata = element.id;
     console.log("id partita scelta dall'utente ora è: " + this.utils.idPartitaSceltaUtente);
+
+    /* 
+    controllo il ruolo dell'utente salvato nel localstorage e lo confronto con il numero di persone col suo stesso
+    ruolo nella partita selezionata. Per i portieri il num massimo è 2, difensori centrocampisti e attaccanti 4
+    Se il ruolo è esaurito l'utente non può cliccare il bottone relativo all'iscrizione
+    */ 
 
     if (localStorage.getItem("Ruolo") == "Portiere" || localStorage.getItem("Ruolo") == "portiere") {
       if (element["numberOfKeepers"] < 2) {
@@ -84,6 +97,10 @@ export class ScegliPartitaUserComponent implements OnInit {
 
   partitaselezionata;
   iscriviUtente() {
+    /* 
+    Funzione che iscrive l'utente alla partita
+    Faccio la post passandogli l'ID del tenant, l'ID dell'utente e l'ID del match e iscrivo l'utente
+    */
     console.log("ID partita scelta dall'utente: " + this.idPartitaConfermata);
     this.caricamento = true;
     let idTenant = localStorage.getItem("idTenantScelto");
@@ -95,9 +112,6 @@ export class ScegliPartitaUserComponent implements OnInit {
       alert("Ti sei iscritto con successo alla partita");
       this.route.navigateByUrl("/homeUtente");
     });
-
-    // TODO salvare in variabile che l'utente ha scelto la partita e sbloccare la posizione
-    //@Output this.partitaselezionata = true;
 
   }
 

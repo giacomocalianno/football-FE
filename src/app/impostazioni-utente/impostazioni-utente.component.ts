@@ -52,6 +52,8 @@ export class ImpostazioniUtenteComponent implements OnInit {
   }
 
   submitFormModifica(){
+
+    // funzione che modifica i dati dell'utente
     console.log("Valori modificati: "+JSON.stringify(this.formModifica.value));
 
     console.log("Sto mandando: " + localStorage.getItem("idTenantScelto") + " " + localStorage.getItem("idUtente") + " " + this.formModifica.value);
@@ -65,16 +67,6 @@ export class ImpostazioniUtenteComponent implements OnInit {
     } )
   }
 
-
-    /* TODO ESEMPIO_Auth.get_risposta da togliere è prova
-    this.auth.get2().subscribe((response) => {
-      console.log(response["players"]);
-      this.prova2 = response["players"];
-      this.dataSourceBackend2 = new MatTableDataSource(this.prova2);
-      //this.caricamento = false;
-      console.log(this.prova);
-    });
-    */
    ngOnInit(): void {
     this.getImpostazioni();
   }

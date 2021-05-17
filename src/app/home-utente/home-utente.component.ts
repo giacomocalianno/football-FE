@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { UtilsService } from '../utils.service';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-utente',
@@ -15,18 +16,12 @@ export class HomeUtenteComponent implements OnInit {
   tenants;
   prova;
   dataSourceBackend;
-  constructor(private modalService: NgbModal, private auth: AuthService, private utils: UtilsService) { }
+  constructor(private modalService: NgbModal, private auth: AuthService, private utils: UtilsService, private route: Router) { }
 
-  fetch() {
-    console.log("Fetch")
-    this.auth.get().subscribe((response) => {
-      console.log(response);
-      this.prova = response;
-      this.dataSourceBackend = new MatTableDataSource(this.prova);
-      console.log(this.prova);
-    });
+  logout(){
+    localStorage.clear();
+    this.route.navigateByUrl("/login")
   }
-
   
   name; surname; email; rating; role; recapDati
 
@@ -107,7 +102,6 @@ export class HomeUtenteComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveLocalStorage();
-    this.fetch();
   }
 
 }

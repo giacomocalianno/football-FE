@@ -139,7 +139,7 @@
         <div class="col-5 rowDestra">
             <div class="row"></div>
 
-            <div class="row abbassamento">
+            <div class="row abbassamento justify-content-center">
                 <div class="col-5 col pointer" routerLink="/feedbackUtente">
                     <div class="row">
                         <div class="col-12 pt-2 text-center pointer">
@@ -168,7 +168,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
+            <div class="row mt-5 justify-content-center">
                 <!--TODO cambiare routerlink-->
                 <div class="col-5 col pointer" (click)="toggleCampo()" routerLink="/scegliPartita">
                     <div class="row">
@@ -197,6 +197,16 @@
                         <span class="titololiQuadrati pointer">IMPOSTAZIONI</span>
                     </div>
                 </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <button type="submit" (click)="logout()" class="btn logout text-white m-0 p-0">
+                    <div class="row align-items-center px-5">
+                        <div class="col-auto m-0 p-1 mt-2">
+                            <mat-icon class="btn-logout">exit_to_app</mat-icon>
+                        </div>
+                        <div class="col-auto m-0 p-1">Log out</div>
+                    </div>
+                </button>
             </div>
         </div>
     </div>
