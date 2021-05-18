@@ -8,33 +8,40 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  urlgetTenants = "http://172.16.223.244:8080/getTenants"
+  //urlgetTenants = "http://172.16.223.244:8080/getTenants"
+  //urlCreateTenant = "http://172.16.223.244:8080/createTenant"
+  // urlLogin = "http://172.16.223.244:8080/loginTenant/"
+  // urlLoginPlayer = "http://172.16.223.244:8080/loginPlayer/" 
 
-  urlCreateTenant = "http://172.16.223.244:8080/createTenant"
-
-  urlbase = "http://172.16.223.244:8080/"
-
-  urlLogin = "http://172.16.223.244:8080/loginTenant/"
-  urlLoginPlayer = "http://172.16.223.244:8080/loginPlayer/"
+  urlbase = "https://prenotazionecalcio.russi.ovh/api/"
 
   get(){
-    return this.http.get(this.urlgetTenants)
+    console.log("link: " + this.urlbase + "getTenants");
+    
+    return this.http.get(this.urlbase + "getTenants")
   }
 
   postRequest(body){
     console.log("body del admin che sto mandando" + body);
-    return this.http.post(this.urlCreateTenant, body)
+    console.log("link: " + this.urlbase + "createTenant");
+    
+    return this.http.post(this.urlbase + "createTenant", body)
   }
 
   updateMatch(idTenant, idPartita, body){
+    console.log("link: " + this.urlbase + idTenant + "/updateMatch/" + idPartita);
+
     return this.http.patch(this.urlbase + idTenant + "/updateMatch/" + idPartita, body);
   }
 
   deleteMatch(idTenant, idPartita){
+    console.log("link: " + this.urlbase + idTenant + "/deleteMatch/" + idPartita);
+
     return this.http.delete(this.urlbase + idTenant + "/deleteMatch/" + idPartita);
   }
 
   updatePlayer(idTenant, idPlayer, body){
+
     console.log("link dell'update utente: "+ this.urlbase + idTenant + "/updatePlayer/" + idPlayer);
     
     return this.http.patch(this.urlbase + idTenant + "/updatePlayer/" + idPlayer, body)
@@ -47,6 +54,8 @@ export class AuthService {
   }
 
   getPlayersMatches(idTenant, idMatch){
+    console.log("link: " + this.urlbase + idTenant + "/getMatchPlayers/" + idMatch);
+
     return this.http.get(this.urlbase + idTenant + "/getMatchPlayers/" + idMatch);
   }
 
@@ -57,14 +66,20 @@ export class AuthService {
   }
 
   addFeedbackStruttura(idPlayer, idTenant, body){
+    console.log("link: " + this.urlbase + idPlayer + "/createReview/" + idTenant);
+
     return this.http.post(this.urlbase + idPlayer + "/createReview/" + idTenant, body)
   }
 
   getTenantReviews(idTenant){
+    console.log("link: " + this.urlbase + "getTenantReviews/" + idTenant);
+
     return this.http.get(this.urlbase + "getTenantReviews/" + idTenant);
   }
 
   getPlayerReviews(idPlayer){
+    console.log("link: " + this.urlbase + "getPlayerReviews/" + idPlayer);
+
     return this.http.get(this.urlbase + "getPlayerReviews/" + idPlayer);
   }
 
@@ -74,13 +89,15 @@ export class AuthService {
   }
 
   getMatches(idTenant){
-    console.log(this.urlbase + idTenant + "/getMatches");
+    console.log("link: " + this.urlbase + idTenant + "/getMatches");
     
     return this.http.get(this.urlbase + idTenant + "/getMatches");
   }
 
   createMatches(idTenant, body){
     console.log(body);
+    console.log("link: " + this.urlbase + idTenant + "/createMatch");
+    
     
     return this.http.post(this.urlbase + idTenant + "/createMatch", body);
   }
@@ -90,9 +107,9 @@ export class AuthService {
       email : email,
       password : password
     }
-    console.log("link: "+this.urlLogin+email + "/" +  password);
+    console.log("link: "+this.urlbase + "loginTenant/" + email + "/" +  password);
     
-    return this.http.post(this.urlLogin+ email + "/" +  password, invia)
+    return this.http.post(this.urlbase + "loginTenant/" + email + "/" +  password, invia)
   }
 
   loginPlayer(email, password){
@@ -100,8 +117,9 @@ export class AuthService {
       email : email,
       password : password
     }
-    console.log("link: "+this.urlLoginPlayer+email + "/" +  password);
+    console.log("link: "+this.urlbase + "loginPlayer/" + email + "/" +  password);
     
-    return this.http.post(this.urlLoginPlayer+ email + "/" +  password, invia)
+    return this.http.post(this.urlbase + "loginPlayer/" + email + "/" +  password, invia)
   }
 }
+

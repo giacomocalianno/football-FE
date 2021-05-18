@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
 
   setForm() {
     this.formLogin = new FormGroup({
-      email: new FormControl('2@gmail.com', [Validators.required]),
-      password: new FormControl('2', [Validators.required])
+      email: new FormControl('@gmail.com', [Validators.required]),
+      password: new FormControl('', [Validators.required])
     })
   }
 

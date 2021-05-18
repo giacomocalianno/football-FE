@@ -46,7 +46,7 @@ export class AdminDashboardComponent implements OnInit {
 
   displayedInfo: string[] = ['idtenant', 'nomestruttura', 'citta', 'via', 'cap', 'email']
 
-  displayedColumnsFeedback: string[] = ["idgiocatore", "valutazione"];
+  displayedColumnsFeedback: string[] = ["data", "valutazione", "commento"];
 
   displayedColumnsImpostazioni: string[] = ["Crea partita", "Modifica partita", "Elimina partita"];
 
@@ -287,10 +287,12 @@ export class AdminDashboardComponent implements OnInit {
     } );
   }
 
+  listaFeedback; dataSourceFeedback;
   getFeedback(){
     this.auth.getTenantReviews(localStorage.getItem("IdTenant")).subscribe( (response) => {
-      console.log(JSON.stringify(response));
-      
+      console.log(JSON.stringify(response["reviews"]));
+      this.listaFeedback = response["reviews"];
+      this.dataSourceFeedback = new MatTableDataSource(this.listaFeedback)
     })
   }
 
@@ -304,7 +306,7 @@ export class AdminDashboardComponent implements OnInit {
   eliminaPartita(){
     // chiamo la funzione che elimina la partita selezionata
     this.spinnerElimina = true;
-    this.auth.deleteMatch(this.utils.idTenant, this.utils.idPartitaElimina).subscribe( () => {
+    this.auth.deleteMatch(localStorage.getItem("IdTenant"), this.utils.idPartitaElimina).subscribe( () => {
       console.log("Eliminato");
       this.eliminaOk = true;
       this.getMatches();

@@ -17,7 +17,7 @@ export class LoginUtenteComponent implements OnInit {
 
   setForm(){
     this.formLoginUtente = new FormGroup({
-      email : new FormControl('', [Validators.required]),
+      email : new FormControl('@gmail.com', [Validators.required]),
       password : new FormControl('', [Validators.required])
     })
   }
