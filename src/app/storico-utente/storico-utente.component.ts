@@ -11,8 +11,13 @@ export class StoricoUtenteComponent implements OnInit {
 
   constructor(private modalService: NgModule, private auth: AuthService) { }
 
+
+  dataSourceStorico;
+
+  displayedColumnsStorico = ['date', 'time']
+
   ngOnInit(): void {
-    
+
   }
 
 }

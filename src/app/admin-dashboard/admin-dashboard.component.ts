@@ -120,7 +120,6 @@ export class AdminDashboardComponent implements OnInit {
     this.tueInfo = false;
     this.getPrenotazioni();
   }
-  
 
   visualizzaFeedback(){
     this.vediPrenotazioni = false;
@@ -235,12 +234,18 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  checked(){
+  idGiocatoreEliminare;
+  checked(element){
     this.checkedCheckbox = true;
+    this.utils.idGiocatoreEliminare = element.id;
+    console.log("id del giocatore da eliminare è: " + this.utils.idGiocatoreEliminare);
   }
 
-  rimuoviGiocatori(){
-    //TODO funzione che rimuove giocatore/i selezionato/i
+  rimuoviGiocatori(element){
+    this.auth.removePlayer(localStorage.getItem("IdTenant"), this.idCorrente, this.utils.idGiocatoreEliminare, null).subscribe ((response) => {
+      console.log(JSON.stringify(response));
+      
+    })
   }
 
   divModifica = false;

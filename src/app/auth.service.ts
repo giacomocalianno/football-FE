@@ -88,6 +88,11 @@ export class AuthService {
     return this.http.post(this.urlbase + idTenant + "/createPlayer", body)
   }
 
+  removePlayer(idTenant, idGame, idPlayer, body){
+    console.log("link: " + this.urlbase + idTenant + "/" + idGame + "/removePlayer/" + idPlayer);
+    return this.http.patch(this.urlbase + idTenant + "/" + idGame + "/removePlayer/" + idPlayer, body)
+  }
+
   getMatches(idTenant){
     console.log("link: " + this.urlbase + idTenant + "/getMatches");
     
@@ -97,7 +102,6 @@ export class AuthService {
   createMatches(idTenant, body){
     console.log(body);
     console.log("link: " + this.urlbase + idTenant + "/createMatch");
-    
     
     return this.http.post(this.urlbase + idTenant + "/createMatch", body);
   }

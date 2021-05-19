@@ -84,7 +84,7 @@
 
                 <ng-container matColumnDef="checkbox" class="ml-4">
                     <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne2">Seleziona 1 o più</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna2"> <button class="btnSelect" (click)="checked()"></button> </td>
+                    <td mat-cell *matCellDef="let element" class="colonna2"> <button class="btnSelect" (click)="checked(this.element)"></button> </td>
                 </ng-container>
     
                 <ng-container matColumnDef="name">

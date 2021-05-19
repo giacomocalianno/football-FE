@@ -25,7 +25,7 @@ h3{
     background-size: cover;
     background-position: center;
     height: 240vh;
-    padding: 2%;
+    padding: 0%;
     padding-top: 0%;
     margin: 0%;
     width: 100vw;
@@ -37,10 +37,12 @@ h3{
 }
 
 .rowScrivi{
+    margin-left: 50px;
+    margin-right: 0px;
     margin: 0%;
-    padding: 0%;
+    padding: 10px;
     height: fit-content;
-    width: 90vw;
+    width: 100vw;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -217,6 +219,35 @@ h3{
     display: flex;
     justify-content: flex-start;
 }
+
+
+@media screen and (min-width: 0px) and (max-width: 480px) {
+    h3{
+        font-size: 22px;
+    }
+    .rowScrivi{
+        padding: 10px;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    h3{
+        font-size: 24px;
+    }
+    .rowScrivi{
+        padding: 10px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1279px) {
+    h3{
+        font-size: 26px;
+    }
+    .rowScrivi{
+        padding: 10px;
+    }
+}
+
 
 @media screen and (min-width: 1000px) and (max-width: 1850px) {
    .cardRecensione{
