@@ -241,10 +241,10 @@ export class AdminDashboardComponent implements OnInit {
     console.log("id del giocatore da eliminare è: " + this.utils.idGiocatoreEliminare);
   }
 
-  rimuoviGiocatori(element){
+  rimuoviGiocatori(){
     this.auth.removePlayer(localStorage.getItem("IdTenant"), this.idCorrente, this.utils.idGiocatoreEliminare, null).subscribe ((response) => {
       console.log(JSON.stringify(response));
-      
+      location.reload();
     })
   }
 

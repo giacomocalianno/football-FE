@@ -21,7 +21,7 @@ html, body {
     @include center();
 }
 
-.col{
+.col, .colruolo{
     margin-left: 3%;
     margin-right: 3%;
     background: rgba( 255, 255, 255, 0.35 );
@@ -57,4 +57,52 @@ html, body {
 
 .pointer{
     cursor: pointer;
+}
+
+@media screen and (min-width: 0px) and (max-width: 480px) {
+    .label{
+        font-size: 10px;
+    }
+    .col{
+        width: 50vw;
+    }
+    .btn{
+        width: 15vw;
+        height: 6vh;
+    }
+    .colruolo{
+        width: fit-content;
+        height: fit-content;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .label{
+        font-size: 13px;
+    }
+    .col{
+        width: 70vw;
+    }
+    .btn{
+        width: 15vw;
+        height: 8vh;
+    }
+    .colruolo{
+        width: fit-content;
+        height: fit-content;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1279px) {
+    .label{
+        font-size: 17px;
+    }
+    .btn{
+        width: 13vw;
+        height: 10vh;
+    }
+    .colruolo{
+        width: fit-content;
+        height: fit-content;
+    }
 }

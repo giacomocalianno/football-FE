@@ -67,3 +67,64 @@ html, body {
     left: 48%;
     transform: translate(-50deg, -50deg);
 }
+
+.rowDataSource{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (min-width: 0px) and (max-width: 480px) {
+    .testoColonne{
+        font-size: 9px;
+    }
+    .tabella{
+        display: flex;
+        justify-content: center;
+        padding: 0%;
+        margin: 0%;
+        width: 30vw;
+    }
+    .container-fluid{
+        width: 103vw;
+        margin: 0%;
+        padding: 0%;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .testoColonne{
+        font-size: 11px;
+    }
+    .tabella{
+        display: flex;
+        justify-content: center;
+        padding: 0%;
+        margin: 0%;
+        width: 70vw;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1279px) {
+    .testoColonne{
+        font-size: 16px;
+    }
+}
+
+
+@media screen and (min-width: 1000px) and (max-width: 1850px) {
+   .testoColonne{
+       font-size: 20px;
+   }
+    .btn{
+        font-size: 18px;
+        padding: 1%;
+    }
+    .bi{
+        width: 8vw;
+        height: 8vh;
+    }
+}
