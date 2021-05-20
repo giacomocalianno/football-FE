@@ -71,6 +71,12 @@ export class AuthService {
     return this.http.post(this.urlbase + idPlayer + "/createReview/" + idTenant, body)
   }
 
+  getStorico(idTenant, idPlayer){
+    console.log("link: " + this.urlbase + idTenant + "/" + idPlayer + "/getMatches");
+    
+    return this.http.get(this.urlbase + idTenant + "/" + idPlayer + "/getMatches")
+  }
+
   getTenantReviews(idTenant){
     console.log("link: " + this.urlbase + "getTenantReviews/" + idTenant);
 

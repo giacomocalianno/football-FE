@@ -133,6 +133,9 @@ html, body {
     .textRegistrati{
         font-size: 14px;
     }
+    .container-fluid{
+        padding: 5%;
+    }
 }
 
 @media screen and (max-width: 370px) {
@@ -148,6 +151,9 @@ html, body {
     .textRegistrati{
         font-size: 15px;
     }
+    .container-fluid{
+        padding: 5%;
+    }
 }
 
 @media screen and (max-width: 325px) {
@@ -162,5 +168,8 @@ html, body {
     }
     .textRegistrati{
         font-size: 12px;
+    }
+    .container-fluid{
+        padding: 5%;
     }
 }

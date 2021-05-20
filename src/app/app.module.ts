@@ -11,7 +11,6 @@ import { RecapRegistrazioneComponent } from './recap-registrazione/recap-registr
 import { HomeUtenteComponent } from './home-utente/home-utente.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FeedbackUtenteComponent } from './feedback-utente/feedback-utente.component';
-import { StoricoUtenteComponent } from './storico-utente/storico-utente.component';
 import { ImpostazioniUtenteComponent } from './impostazioni-utente/impostazioni-utente.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -29,6 +28,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoginUtenteComponent } from './login-utente/login-utente.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
+import { StoricoUtenteComponent } from './storico-utente/storico-utente.component';
 
 @NgModule({
   declarations: [
@@ -39,21 +39,21 @@ import {MatIconModule} from '@angular/material/icon';
     RecapRegistrazioneComponent,
     HomeUtenteComponent,
     FeedbackUtenteComponent,
-    StoricoUtenteComponent,
     ImpostazioniUtenteComponent,
     AdminDashboardComponent,
     PreRegistrazioneComponent,
     RegistrazioneAdminComponent,
     RecapAdminComponent,
     ScegliPartitaUserComponent,
-    LoginUtenteComponent
+    LoginUtenteComponent,
+    StoricoUtenteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule, ReactiveFormsModule, FormsModule, NgbModule, MatTableModule,
     MatFormFieldModule, ReactiveFormsModule, FormsModule, MatCardModule, MatInputModule, MatButtonModule, MatSidenavModule, MatProgressSpinnerModule,
-    HttpClientModule, MatTableModule, MatSnackBarModule,MatIconModule
+    HttpClientModule, MatTableModule, MatSnackBarModule, MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

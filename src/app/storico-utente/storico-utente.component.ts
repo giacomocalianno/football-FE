@@ -9,15 +9,25 @@ import { AuthService } from '../auth.service';
 })
 export class StoricoUtenteComponent implements OnInit {
 
-  constructor(private modalService: NgModule, private auth: AuthService) { }
-
+  constructor(private auth: AuthService) { }
 
   dataSourceStorico;
 
-  displayedColumnsStorico = ['date', 'time']
+  displayedColumnsStorico = ['date', 'time'];
+
+  prova;
+
+  getStorico() {
+    this.auth.getStorico(localStorage.getItem("idTenantScelto"), localStorage.getItem("idUtente")).subscribe( (response) => {
+      console.log(JSON.stringify(response));
+      console.log("fatto storico");
+      this.prova = response["matches"];
+      this.dataSourceStorico = new MatTableDataSource(this.prova);
+    })  
+  }
 
   ngOnInit(): void {
-
+    this.getStorico();
   }
 
 }

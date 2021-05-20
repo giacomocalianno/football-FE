@@ -79,7 +79,6 @@
                 <button *ngIf="checkedCheckbox" type="button" class="btn btn-warning" (click) = "rimuoviGiocatori()">Rimuovi selezionato/i</button>
             </div>
 
-            <!--TODO aggiornare datasource backend-->
             <table mat-table [dataSource]="arrayPartitaScelta" class="mat-elevation-z8 w-100 justify-content-center tabella">
 
                 <ng-container matColumnDef="checkbox" class="ml-4">

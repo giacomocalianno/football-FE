@@ -19,11 +19,12 @@ const routes: Routes = [
   { path: "", component: LoginUtenteComponent }, { path: "login", component: LoginComponent }, 
   { path: "registrazione", component: RegistrazioneComponent }, { path: "registrazione2", component: Registrazione2Component },
   { path: "recap", component: RecapRegistrazioneComponent }, { path: "homeUtente", component: HomeUtenteComponent },
-  { path: "feedbackUtente", component: FeedbackUtenteComponent }, { path: "storicoUtente", component: StoricoUtenteComponent }, 
+  { path: "feedbackUtente", component: FeedbackUtenteComponent }, 
   { path: "impostazioniUtente", component: ImpostazioniUtenteComponent },
   { path: "adminDashboard", component: AdminDashboardComponent }, { path: "preRegistrazione", component: PreRegistrazioneComponent }, 
   { path: "registrazioneAdmin", component: RegistrazioneAdminComponent }, { path: "recapAdmin", component: RecapAdminComponent }, 
-  { path: "scegliPartita", component: ScegliPartitaUserComponent }, { path : "loginUtente", component : LoginUtenteComponent}
+  { path: "scegliPartita", component: ScegliPartitaUserComponent }, { path : "loginUtente", component : LoginUtenteComponent},
+  { path: "storicoUtente", component: StoricoUtenteComponent }
 ]
 
 @NgModule({
