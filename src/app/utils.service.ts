@@ -27,6 +27,7 @@ export class UtilsService {
   idPartitaElimina; // l'id partita che l'admin ha scelto di eliminare
 
   idGiocatoreEliminare; // l'id del giocatore selezionato da eliminare
+  
   idSquadraElimina;
   constructor() { }
 }

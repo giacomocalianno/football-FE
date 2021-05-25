@@ -207,17 +207,24 @@ export class AdminDashboardComponent implements OnInit {
     
   }
 
+  idTeamRisposta1; idTeamRisposta2;
   formaSquadre(){
 
     this.auth.buildTeams(localStorage.getItem("IdTenant"), this.idCorrente).subscribe( (response) => {
-      console.log("build teams" + JSON.stringify(response));
+      console.log("build teams" + response);
+      this.idTeamRisposta1 = response[0];
+      this.idTeamRisposta2 = response[1];
+      
+      this.auth.getTeamPlayers(localStorage.getItem("IdTenant"), this.idCorrente, this.idTeamRisposta1).subscribe( (response) => {
+        console.log(JSON.stringify(response));
+      });
+      this.auth.getTeamPlayers(localStorage.getItem("IdTenant"), this.idCorrente, this.idTeamRisposta2).subscribe( (response) => {
+        console.log(JSON.stringify(response));
+      });
       
     } );
 
-    /*
-    this.auth.getTeamPlayers(localStorage.getItem("IdTenant"), this.idCorrente, ).subscribe( (response) => {
-      console.log(JSON.stringify(response));
-    })*/
+    
   }
 
   visualizzaQuesta2(){
@@ -286,7 +293,7 @@ export class AdminDashboardComponent implements OnInit {
     this.creaPartita = false;
     this.modificaPartita = false;
     this.eliminaPartita2 = true;
-    
+
     this.auth.getTeams(localStorage.getItem("IdTenant")).subscribe( (response) => {
       console.log(response["teams"]);
       console.log("fatto");
