@@ -8,8 +8,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  //urlgetTenants = "http://172.16.223.244:8080/getTenants"
-  //urlCreateTenant = "http://172.16.223.244:8080/createTenant"
+  // urlgetTenants = "http://172.16.223.244:8080/getTenants"
+  // urlCreateTenant = "http://172.16.223.244:8080/createTenant"
   // urlLogin = "http://172.16.223.244:8080/loginTenant/"
   // urlLoginPlayer = "http://172.16.223.244:8080/loginPlayer/" 
 
@@ -73,8 +73,35 @@ export class AuthService {
 
   getStorico(idTenant, idPlayer){
     console.log("link: " + this.urlbase + idTenant + "/" + idPlayer + "/getMatches");
-    
+
     return this.http.get(this.urlbase + idTenant + "/" + idPlayer + "/getMatches")
+  }
+
+  createTeams(idTenant, body){
+    return this.http.post(this.urlbase + idTenant + "/createTeam", body);
+  }
+
+  getTeams(idTenant){
+    return this.http.get(this.urlbase + idTenant + "/getTeams");
+  }
+
+  updateTeam(idTenant, idTeam, body){
+    return this.http.put(this.urlbase + idTenant + "/updateTeam/" + idTeam, body)
+  }
+
+  deleteTeam(idTenant, idTeam){
+    return this.http.delete(this.urlbase + idTenant + "/deleteTeam/" + idTeam);
+  }
+
+  getTeamPlayers(idTenant, idGame, idTeam){
+    console.log("link: " + this.urlbase + idTenant + "/" + idGame + "/getTeamPlayers/" + idTeam);
+    
+    return this.http.get(this.urlbase + idTenant + "/" + idGame + "/getTeamPlayers/" + idTeam);
+  }
+
+  buildTeams(idTenant, idGame){
+    console.log("link: " + this.urlbase + idTenant + "/" + idGame + "/buildTeams");
+    return this.http.patch(this.urlbase + idTenant + "/" + idGame + "/buildTeams", null);
   }
 
   getTenantReviews(idTenant){

@@ -230,6 +230,8 @@ export class AdminDashboardComponent implements OnInit {
     this.eliminaSquadra = false;
   }
 
+  divModificaSquadra = false; formModificaTeam;
+
   caricoModifica = false;
   visualizzaModificaPartita(){
     this.caricoModifica = true;
@@ -275,7 +277,7 @@ export class AdminDashboardComponent implements OnInit {
       console.log("fatto");
       this.teams = response["teams"];
       this.dataSourceUpdateTeams = new MatTableDataSource(this.teams);
-    })
+    });
     
   }
 
@@ -284,12 +286,13 @@ export class AdminDashboardComponent implements OnInit {
     this.creaPartita = false;
     this.modificaPartita = false;
     this.eliminaPartita2 = true;
+    
     this.auth.getTeams(localStorage.getItem("IdTenant")).subscribe( (response) => {
       console.log(response["teams"]);
       console.log("fatto");
       this.teams = response["teams"];
-      this.dataSourceDeleteTeams = new MatTableDataSource(this.teams);
-    })
+      this.dataSourceUpdateTeams = new MatTableDataSource(this.teams);
+    });
     
   }
 
@@ -348,6 +351,28 @@ export class AdminDashboardComponent implements OnInit {
     })  
   }
 
+  setIdSquadraDaModificare(id, name, color){
+        
+    console.log("La squadra da modificare ha id: " + id);
+    this.utils.idPartitaUpdate = id;
+
+    this.divModificaSquadra = true;
+
+    this.formModificaTeam = new FormGroup({
+      
+      name : new FormControl(name, [Validators.required]), 
+      color : new FormControl(color, [Validators.required])
+    })  
+  }
+
+  updateTeam(){
+    console.log(this.formModificaTeam.value);
+    this.auth.updateTeam(localStorage.getItem("IdTenant"), this.utils.idPartitaUpdate, this.formModificaTeam.value).subscribe( (response) => {
+      console.log(response);
+      location.reload();
+    })
+  }
+
   bodyPartitaModificata; putOk; spinner = false;
   updatePartita(){
     console.log(this.formModifica.value.date + " " + this.formModifica.value.time);
@@ -386,6 +411,12 @@ export class AdminDashboardComponent implements OnInit {
     this.utils.idPartitaElimina = idEliminare;
   }
 
+  impostaIdSquadraEliminare(idEliminare){
+    // salvo id della partita da eliminare
+    console.log("ID partita selezionata da eliminare: " + idEliminare);
+    this.utils.idSquadraElimina = idEliminare;
+  }
+
   spinnerElimina = false; eliminaOk;
   eliminaPartita(){
     // chiamo la funzione che elimina la partita selezionata
@@ -398,7 +429,12 @@ export class AdminDashboardComponent implements OnInit {
     } );
   }
 
-  
+  eliminaSquadraForm(){
+    this.auth.deleteTeam(localStorage.getItem("IdTenant"), this.utils.idSquadraElimina).subscribe(() => {
+      console.log("eliminata");
+      location.reload();
+    })
+  }
 
   logout(){
     localStorage.clear();

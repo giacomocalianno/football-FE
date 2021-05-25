@@ -273,6 +273,124 @@
             <label class="text-danger mt-3" style="font-size: 28px;" *ngIf="eliminaOk">La partita è stata eliminata con successo!</label>
 
         </div>
+
+        <table mat-table [dataSource]="dataSourceFeedback" class="mat-elevation-z8 mt-5 justify-content-center tabella">
+            <ng-container matColumnDef="Crea partita" class="ml-4">
+                <th class="colonna pointer" (click) = "visualizzaCreaPartita2(element)" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Crea squadra</b> </th>
+            </ng-container>
+
+            <ng-container matColumnDef="Modifica partita">
+                <th class="colonna pointer" (click) = "visualizzaModificaPartita2(element)" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Modifica squadra</b> </th>
+            </ng-container>
+            <ng-container matColumnDef="Elimina partita">
+                <th class="colonna pointer" (click) = "visualizzaEliminaPartita2(element)" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Elimina squadra</b> </th>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsImpostazioni"></tr>
+        </table>
+
+        <div class="row innertabella" *ngIf="creaPartita">
+            <form [formGroup]="formCreaSquadre">
+                <div class="row w-100">
+                    <div class="col-4">
+                        <label>Inserisci nome</label>
+                        <input type="text" formControlName="name"> <br>
+                    </div>
+                    <div class="col-4">
+                        <label>Inserisci colore</label>
+                        <input type="text" class="mr-1" formControlName="color"> <br>
+                    </div>
+                    <div class="col-4 ">
+                        <button type="submit" [disabled]="formCreaSquadre.invalid" (click)="submitCreaSquadre()" class="btn btn-success h-100">Conferma</button>
+                    </div>
+                </div>      
+            </form>
+
+            <label class="text-success mt-3" style="font-size: 28px;" *ngIf="squadraCreata">La squadra è stata creata con successo!</label>
+        </div>
+        <div class="row innertabella p-0 mt-3" *ngIf="modificaPartita">
+
+            <h2>Seleziona la squadra da <b>modificare</b> </h2>
+
+            <table mat-table [dataSource]="dataSourceUpdateTeams" class="mat-elevation-z8 w-100 justify-content-center tabellaModifica">
+
+                <ng-container matColumnDef="Checkbox" class="ml-4">
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne"></b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna p-0 pl-3"> <button class="btnSelect" (click)="setIdSquadraDaModificare(this.element.id, this.element.time, this.element.date)"></button> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Nome" class="ml-4">
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Nome squadra</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Colore" class="ml-4">
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Colore squadra</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.color}} </td>
+                </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsTeams"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsTeams;"></tr>
+            </table>
+            <mat-spinner *ngIf="caricoModifica"></mat-spinner>
+
+            <button type="button" (click)="modificaSquadra(this.name, this.color)" class="btn btn-warning mt-4">Modifica</button>
+            
+            <div *ngIf="divModificaSquadra" class="mt-3">
+                <form [formGroup]="formModificaTeam">
+                <div class="row w-100">
+                    <div class="col-4">
+                        <label>Inserisci nuovo nome</label>
+                        <input type="text" formControlName="name"> <br>
+                    </div>
+                    <div class="col-4">
+                        <label>Inserisci nuovo colore</label>
+                        <input type="text" class="mr-1" formControlName="color"> <br>
+                    </div>
+                    <div class="col-4 ">
+                        <button type="submit" (click)="updateTeam()" class="btn btn-success">Conferma</button>
+                    </div>
+
+                    <mat-spinner *ngIf="spinner" class="spinner"></mat-spinner> 
+                    <label class="text-warning mt-5" style="font-size: 28px;" *ngIf="putOk">La squadra è stata modificata con successo!</label>
+                </div>
+                </form>
+            </div>
+            
+            
+        </div>
+        <div class="row innertabella" *ngIf="eliminaPartita2">
+
+            <h2>Seleziona la squadra da <b>eliminare</b> </h2>
+
+            <table mat-table [dataSource]="dataSourceUpdateTeams" class="mat-elevation-z8 w-100 justify-content-center tabellaModifica">
+
+                <ng-container matColumnDef="Checkbox" class="ml-4">
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne"></b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna p-0 pl-3"> <button class="btnSelect" (click)="impostaIdSquadraEliminare(this.element.id)"></button> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Nome" class="ml-4">
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Nome squadra</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Colore" class="ml-4">
+                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Colore squadra</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna"> {{element.color}} </td>
+                </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsTeams"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsTeams;"></tr>
+            </table>
+            <mat-spinner *ngIf="caricoModifica"></mat-spinner>
+
+            <button type="button" class="btn btn-danger mt-4" (click)="eliminaSquadraForm()">Elimina</button>
+
+            <mat-spinner *ngIf="spinnerElimina" class="spinner"></mat-spinner> 
+            <label class="text-danger mt-3" style="font-size: 28px;" *ngIf="eliminaOk">La squadra è stata eliminata con successo!</label>
+
+        </div>
         
     </div>
 
