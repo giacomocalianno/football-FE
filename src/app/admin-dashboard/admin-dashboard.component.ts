@@ -50,6 +50,8 @@ export class AdminDashboardComponent implements OnInit {
 
   displayedColumnsImpostazioni: string[] = ["Crea partita", "Modifica partita", "Elimina partita"];
 
+  displayedColumnsTeams: string[] = ["Checkbox", "Nome", "Colore"];
+
   constructor(private utils: UtilsService, config: NgbNavConfig, private auth: AuthService, private router:Router) {
     config.destroyOnHide = false;
     config.roles = false;
@@ -166,7 +168,7 @@ export class AdminDashboardComponent implements OnInit {
     this.idCorrente = element.id;
     this.vediInnerTabella = true;
 
-    console.log("idTenant: " + this.utils.idTenant + ", id partita scelta: " + this.idCorrente);
+    console.log("idTenant: " + localStorage.getItem("IdTenant") + ", id partita scelta: " + this.idCorrente);
 
     this.auth.getPlayersMatches(localStorage.getItem("IdTenant"), this.idCorrente).subscribe( (response) => {
       console.log(JSON.stringify(response));
@@ -205,6 +207,19 @@ export class AdminDashboardComponent implements OnInit {
     
   }
 
+  formaSquadre(){
+
+    this.auth.buildTeams(localStorage.getItem("IdTenant"), this.idCorrente).subscribe( (response) => {
+      console.log("build teams" + JSON.stringify(response));
+      
+    } );
+
+    /*
+    this.auth.getTeamPlayers(localStorage.getItem("IdTenant"), this.idCorrente, ).subscribe( (response) => {
+      console.log(JSON.stringify(response));
+    })*/
+  }
+
   visualizzaQuesta2(){
     this.vediInnerTabellaImpostazioni = true;
   }
@@ -223,6 +238,70 @@ export class AdminDashboardComponent implements OnInit {
     this.eliminaSquadra = false;
     this.getDataUpdate();
     this.caricoModifica = false;
+  }
+
+  visualizzaEliminaPartita(){
+    this.creaSquadra = false;
+    this.modificaSquadra = false;
+    this.eliminaSquadra = true;
+    this.getDataUpdate();
+  }
+ 
+  creaPartita; modificaPartita; eliminaPartita2; formCreaSquadre;
+  visualizzaCreaPartita2(){
+    this.creaPartita = true;
+    this.modificaPartita = false;
+    this.eliminaPartita2 = false;
+
+    this.formCreaSquadre = new FormGroup({
+      name : new FormControl("", [Validators.required]),
+      color : new FormControl("", [Validators.required])
+    });
+
+  }
+
+  getTeams(){
+    
+  }
+
+  teams; dataSourceUpdateTeams;
+  visualizzaModificaPartita2(){
+    this.creaPartita = false;
+    this.modificaPartita = true;
+    this.eliminaPartita2 = false;
+
+    this.auth.getTeams(localStorage.getItem("IdTenant")).subscribe( (response) => {
+      console.log(response["teams"]);
+      console.log("fatto");
+      this.teams = response["teams"];
+      this.dataSourceUpdateTeams = new MatTableDataSource(this.teams);
+    })
+    
+  }
+
+  dataSourceDeleteTeams;
+  visualizzaEliminaPartita2(){
+    this.creaPartita = false;
+    this.modificaPartita = false;
+    this.eliminaPartita2 = true;
+    this.auth.getTeams(localStorage.getItem("IdTenant")).subscribe( (response) => {
+      console.log(response["teams"]);
+      console.log("fatto");
+      this.teams = response["teams"];
+      this.dataSourceDeleteTeams = new MatTableDataSource(this.teams);
+    })
+    
+  }
+
+  squadraCreata = false;
+  submitCreaSquadre(){
+    console.log(this.formCreaSquadre.value);
+    
+    this.auth.createTeams(localStorage.getItem("IdTenant"), this.formCreaSquadre.value).subscribe( (response) => {
+      console.log(JSON.stringify(response));
+      console.log("squadre create");
+      this.squadraCreata = true;
+    })
   }
 
   getDataUpdate(){
@@ -319,12 +398,7 @@ export class AdminDashboardComponent implements OnInit {
     } );
   }
 
-  visualizzaEliminaPartita(){
-    this.creaSquadra = false;
-    this.modificaSquadra = false;
-    this.eliminaSquadra = true;
-    this.getDataUpdate();
-  }
+  
 
   logout(){
     localStorage.clear();
