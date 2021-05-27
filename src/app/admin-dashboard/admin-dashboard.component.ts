@@ -67,7 +67,8 @@ export class AdminDashboardComponent implements OnInit {
 
   displayedColumnsGiocatoriPerPartita: string[] = ['checkbox', 'name', 'surname', "autovalutazione", "ruolo"];
 
-  displayedInfo: string[] = ['idtenant', 'nomestruttura', 'citta', 'via', 'cap', 'email']
+  displayedInfo1: string[] = ['idtenant', 'nomestruttura', 'citta'];
+  displayedInfo2: string[] = ['via', 'cap', 'email']
 
   displayedColumnsFeedback: string[] = ["data", "valutazione", "commento"];
 

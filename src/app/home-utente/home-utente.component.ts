@@ -35,10 +35,8 @@ export class HomeUtenteComponent implements OnInit {
 
   cambiaAutovalutazione = false;
 
-  // TODO aggiornare valore quando utente seleziona la partita
   partitaSelezionata = false;
 
-  //TODO da togliere, solo prova
   toggleCampo() {
     this.partitaSelezionata = true;
   }

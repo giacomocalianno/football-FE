@@ -18,8 +18,6 @@ export class ImpostazioniUtenteComponent implements OnInit {
 
   caricamento = true;
 
-  
-  // TODO ESEMPIO_Dichiarazione_colonne da togliere è prova
   displayedColumns2: string[] = ["seleziona", "name","surname","email","rating","role"];
   dataSourceBackend2;
 

@@ -20,14 +20,13 @@ export class RegistrazioneComponent implements OnInit {
   testoRuolo = "Indica il ruolo in cui vorresti giocare. \nTranquillo/a, potrai sempre cambiarlo."
 
   setForm(){
-    //TODO togliere i valori preimpostati
     this.formRegistrazione = new FormGroup({
-      nome : new FormControl('Nome', [Validators.required]),
-      cognome : new FormControl('Cognome', [Validators.required]),
-      email : new FormControl('email@gmail.com', [Validators.required, Validators.email]),
-      password : new FormControl('pass', [Validators.required]),
-      autovalutazione : new FormControl("", [Validators.required, Validators.min(1), Validators.max(5)]),
-      ruolo : new FormControl("", [Validators.required])
+      nome : new FormControl('', [Validators.required]),
+      cognome : new FormControl('', [Validators.required]),
+      email : new FormControl('@gmail.com', [Validators.required, Validators.email]),
+      password : new FormControl('', [Validators.required]),
+      autovalutazione : new FormControl([Validators.required, Validators.min(1), Validators.max(5)]),
+      ruolo : new FormControl([Validators.required])
     })
   }
 

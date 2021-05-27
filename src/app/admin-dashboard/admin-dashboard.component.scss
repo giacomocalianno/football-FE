@@ -11,7 +11,9 @@ h2{
     font-family: $font;
     font-size: 28px;
 }
-
+.tabella{
+    width: 100%;
+}
 .sliderScritta{
     padding: 0%;
     margin: 1%;
@@ -119,11 +121,12 @@ h2{
 }
 
 .innertabella, .innertabella2{
-    padding: 1%;
-    width: 100%;
-    height: 100%;
+    padding: 5%;
+    width: 100vw;
+    height: 100vh;
     margin-top: 70px;
     margin: 0%;
+    margin-right: 0%;
 }
 .innertabella2{
     width: 130%;
@@ -163,9 +166,32 @@ h2{
     transform: translate(-50deg, -50deg);
 }
 
+.tabellaModal{
+    width: fit-content;
+}
+
 @media screen and (max-width: 480px) {
+    .tabellaModal{
+        width: 60px;
+    }
+    .container-fluid, .container-fluid2{
+        width: 150vw;
+        height: 190vh;
+    }
+    .tabellaModifica{
+        width: 80vw;
+    }
+    .risultati{
+        height: 3vh;
+    }
+    .btn-warning{
+        height: 100px;
+    }
+    .btn-danger{
+        height: 100px;
+    }
     .logout{
-        font-size: 100%;
+        font-size: 55%;
     }
     .btn-logout{
         font-size: 18px;
@@ -182,17 +208,33 @@ h2{
     .h3PartitaScelta{
         font-size: 17px;
     }
-    .collogin{
-        display: none;
-    }
     .testoColonne2{
         font-size: 13px;
     }
     .colonna2{
         font-size: 15px;
     }
+    .risultatiInfo{
+        font-size: 15px;
+    }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
+    .tabellaModal{
+        width: 70px;
+    }
+    .container-fluid, .container-fluid2{
+        width: fit-content;
+        height: 150vh;
+    }
+    .risultati{
+        height: 3vh;
+    }
+    .btn-warning{
+        height: 100px;
+    }
+    .btn-danger{
+        height: 100px;
+    }
     .logout{
         font-size: 100%;
     }
@@ -208,9 +250,6 @@ h2{
     .h3PartitaScelta{
         font-size: 20px;
     }
-    .collogin2{
-        display: none;
-    }
     .testoColonne2{
         font-size: 16px;
     }
@@ -218,7 +257,30 @@ h2{
         font-size: 18px;
     }
 }
+
+@media screen and (max-width: 992px) {
+    .tabellaModal{
+        width: 10px;
+    }
+    .testoColonneModal{
+        font-size: 15px;
+    }
+}
+
 @media screen and (min-width: 769px) and (max-width: 1279px) {
+    .container-fluid, .container-fluid2{
+        width: fit-content;
+        height: 150vh;
+    }
+    .risultati{
+        height: 3vh;
+    }
+    .btn-warning{
+        height: 100px;
+    }
+    .btn-danger{
+        height: 100px;
+    }
     .logout{
         font-size: 120%;
     }
@@ -234,10 +296,6 @@ h2{
     .h3PartitaScelta{
         font-size: 23px;
     }
-    
-    .collogin2{
-        display: none;
-    }
     .testoColonne2{
         font-size: 19px;
     }
@@ -246,8 +304,21 @@ h2{
     }
 }
 @media screen and (min-width: 1280px) {
+    .container-fluid, .container-fluid2{
+        width: auto;
+        height: 150vh;
+    }
     .logout{
         font-size: 150%;
+    }
+    .risultati{
+        height: 5vh;
+    }
+    .btn-warning{
+        height: 100px;
+    }
+    .btn-danger{
+        height: 100px;
     }
     .sliderScritta{
         font-size: 30px;
@@ -260,10 +331,6 @@ h2{
     }
     .h3PartitaScelta{
         font-size: 27px;
-    }
-    
-    .collogin2{
-        display: none;
     }
     .testoColonne2{
         font-size: 23px;
