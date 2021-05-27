@@ -26,6 +26,7 @@
                     <div class="row w-100 justify-content-center">
                         <button type="submit" [disabled]="formFeedbackStruttura.invalid" (click)="sendFeedbackStruttura()" class="btn btn-success">Conferma</button>
                     </div>
+                    <label class="text-warning mt-5" style="font-size: 28px;" *ngIf="feedbackInviato">Il feedback è stato inviato con successo!</label>
                 </div>
             </form>
         </div>
@@ -123,7 +124,7 @@
                         </div>
     
                         <mat-spinner *ngIf="spinner" class="spinner"></mat-spinner> 
-                        <label class="text-warning mt-5" style="font-size: 28px;" *ngIf="feedbackInviato">Il feedback è stato inviato con successo!</label>
+                        <label class="text-warning mt-5" style="font-size: 28px;" *ngIf="feedbackUtenteInviato">Il feedback è stato inviato con successo!</label>
                     </div>
                     </form>
                 </div>

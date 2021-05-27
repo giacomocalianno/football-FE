@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -12,6 +13,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
+  closeResult = '';
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+  displayedColumnsSquadre = ["Nome squadra", "Colore squadra", "Nome", "Cognome", "Rating", "Ruolo"];
+  dataSourceSquadra1; dataSourceSquadra2;
 
   vediPrenotazioni = true;
   feedback = false;
@@ -49,10 +72,10 @@ export class AdminDashboardComponent implements OnInit {
   displayedColumnsFeedback: string[] = ["data", "valutazione", "commento"];
 
   displayedColumnsImpostazioni: string[] = ["Crea partita", "Modifica partita", "Elimina partita"];
-
+  displayedColumnsImpostazioni2: string[] = ["Crea partita", "Modifica partita"];
   displayedColumnsTeams: string[] = ["Checkbox", "Nome", "Colore"];
 
-  constructor(private utils: UtilsService, config: NgbNavConfig, private auth: AuthService, private router:Router) {
+  constructor(private utils: UtilsService, config: NgbNavConfig, private auth: AuthService, private router:Router, private modalService: NgbModal) {
     config.destroyOnHide = false;
     config.roles = false;
   }
@@ -207,24 +230,53 @@ export class AdminDashboardComponent implements OnInit {
     
   }
 
-  idTeamRisposta1; idTeamRisposta2;
+  idTeamRisposta1; idTeamRisposta2; squadreFormate = false; temp1; temp2; team1; team2;
   formaSquadre(){
 
+    this.auth.removePlayers(localStorage.getItem("IdTenant"), this.idCorrente, null).subscribe( (response) => {
+      console.log("removePlayers: " + response);
+    });
+
+    // costruisco le squadre
     this.auth.buildTeams(localStorage.getItem("IdTenant"), this.idCorrente).subscribe( (response) => {
+      // salvo gli id delle squadre ricevute dal backend
       console.log("build teams" + response);
       this.idTeamRisposta1 = response[0];
       this.idTeamRisposta2 = response[1];
-      
+
+      // faccio la get e visualizzo i giocatori della squadra 1
       this.auth.getTeamPlayers(localStorage.getItem("IdTenant"), this.idCorrente, this.idTeamRisposta1).subscribe( (response) => {
         console.log(JSON.stringify(response));
-      });
+
+        this.auth.getTenantTeam(localStorage.getItem("IdTenant"), this.idTeamRisposta1).subscribe((response) => {
+          console.log(response);
+          this.team1 = response;
+        });
+
+        this.squadreFormate = true;
+        this.temp1 = response["players"];
+        this.dataSourceSquadra1 = new MatTableDataSource(this.temp1);
+      }, (error) => {
+        this.squadreFormate = false;
+      } );
+      // faccio la get e visualizzo i giocatori della squadra 2
       this.auth.getTeamPlayers(localStorage.getItem("IdTenant"), this.idCorrente, this.idTeamRisposta2).subscribe( (response) => {
         console.log(JSON.stringify(response));
+        
+        this.auth.getTenantTeam(localStorage.getItem("IdTenant"), this.idTeamRisposta2).subscribe((response) => {
+          console.log(response);
+          
+          this.team2 = response;
+        });
+
+        this.squadreFormate = true;
+        this.temp2 = response["players"];
+        this.dataSourceSquadra2 = new MatTableDataSource(this.temp2);
+      }, (error) => {
+        this.squadreFormate = false;
       });
       
-    } );
-
-    
+    });
   }
 
   visualizzaQuesta2(){
@@ -267,10 +319,6 @@ export class AdminDashboardComponent implements OnInit {
       color : new FormControl("", [Validators.required])
     });
 
-  }
-
-  getTeams(){
-    
   }
 
   teams; dataSourceUpdateTeams;
@@ -434,13 +482,6 @@ export class AdminDashboardComponent implements OnInit {
       this.getMatches();
       this.spinnerElimina = false;
     } );
-  }
-
-  eliminaSquadraForm(){
-    this.auth.deleteTeam(localStorage.getItem("IdTenant"), this.utils.idSquadraElimina).subscribe(() => {
-      console.log("eliminata");
-      location.reload();
-    })
   }
 
   logout(){

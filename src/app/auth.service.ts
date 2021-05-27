@@ -53,6 +53,10 @@ export class AuthService {
     return this.http.patch(this.urlbase + idTenant + "/" + idPlayer + "/signToMatch/" + idMatch, body)
   }
 
+  removePlayers(idTenant, idGame, body){
+    return this.http.patch(this.urlbase + idTenant + "/" + idGame + "/removePlayers", body);
+  }
+
   getPlayersMatches(idTenant, idMatch){
     console.log("link: " + this.urlbase + idTenant + "/getMatchPlayers/" + idMatch);
 
@@ -85,12 +89,12 @@ export class AuthService {
     return this.http.get(this.urlbase + idTenant + "/getTeams");
   }
 
-  updateTeam(idTenant, idTeam, body){
-    return this.http.put(this.urlbase + idTenant + "/updateTeam/" + idTeam, body)
+  getTenantTeam(idTenant, idTeam){
+    return this.http.get(this.urlbase + idTenant + "/getTeam/" + idTeam);
   }
 
-  deleteTeam(idTenant, idTeam){
-    return this.http.delete(this.urlbase + idTenant + "/deleteTeam/" + idTeam);
+  updateTeam(idTenant, idTeam, body){
+    return this.http.put(this.urlbase + idTenant + "/updateTeam/" + idTeam, body)
   }
 
   getTeamPlayers(idTenant, idGame, idTeam){

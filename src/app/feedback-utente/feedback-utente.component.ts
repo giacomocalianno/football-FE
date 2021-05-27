@@ -64,19 +64,19 @@ export class FeedbackUtenteComponent implements OnInit {
       comment : new FormControl("", [Validators.required])
     })
   }
-
+  feedbackInviato = false;
   sendFeedbackStruttura(){
     console.log(this.formFeedbackStruttura.value);
 
     this.auth.addFeedbackStruttura(localStorage.getItem("idUtente"), localStorage.getItem("idTenantScelto"), 
     this.formFeedbackStruttura.value).subscribe( (response) => {
       console.log(JSON.stringify(response));
-      
+      this.feedbackInviato = true;
     } )
      
   }
 
-  bodyFeedback; feedbackInviato;
+  bodyFeedback; feedbackUtenteInviato = false;;
   sendFeedback(){
     console.log(this.formFeedback.value);
     this.bodyFeedback = {
@@ -87,7 +87,7 @@ export class FeedbackUtenteComponent implements OnInit {
     console.log("il body che gli sto mandando è " + JSON.stringify(this.bodyFeedback));
     this.auth.addFeedbackUtente(localStorage.getItem("idTenantScelto"), this.idGiocatoreFeedback, this.idCorrente, this.bodyFeedback).subscribe( () => {
       console.log("Fatto ? ");
-      this.feedbackInviato = true;
+      this.feedbackUtenteInviato = true;
       location.reload();
     } )
 
