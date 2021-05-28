@@ -14,7 +14,7 @@ export class FeedbackUtenteComponent implements OnInit {
   constructor(private auth: AuthService, private route: Router) { }
 
   displayedColumns = ['checkbox', 'id', 'date', 'time'];
-  displayedColumnsGiocatoriPerPartita: string[] = ['checkbox', 'name', 'surname', "autovalutazione", "ruolo", "email"];
+  displayedColumnsGiocatoriPerPartita: string[] = ['checkbox', 'name', 'surname', "autovalutazione", "ruolo"];
 
   vediInnerTabella;
 
@@ -39,8 +39,7 @@ export class FeedbackUtenteComponent implements OnInit {
     this.idCorrente = element.id;   
     this.vediInnerTabella = true;
 
-    //console.log("idTenant: " + this.utils.idTenant + ", id partita scelta: " + this.idCorrente);
-    
+    // faccio la get e visualizzo i giocatori di quella partita
     this.auth.getPlayersMatches(localStorage.getItem("idTenantScelto"), this.idCorrente).subscribe( (response) => {
       console.log(JSON.stringify(response));
       this.giocatoriPartita = response["players"];
@@ -66,6 +65,7 @@ export class FeedbackUtenteComponent implements OnInit {
   }
   feedbackInviato = false;
   sendFeedbackStruttura(){
+    // funzione che invia il feedback alla struttura
     console.log(this.formFeedbackStruttura.value);
 
     this.auth.addFeedbackStruttura(localStorage.getItem("idUtente"), localStorage.getItem("idTenantScelto"), 
@@ -82,20 +82,19 @@ export class FeedbackUtenteComponent implements OnInit {
     this.bodyFeedback = {
       rating : this.formFeedback.value.valutazione,
       id : this.idGiocatoreFeedback
-    }
+    };
 
     console.log("il body che gli sto mandando è " + JSON.stringify(this.bodyFeedback));
     this.auth.addFeedbackUtente(localStorage.getItem("idTenantScelto"), this.idGiocatoreFeedback, this.idCorrente, this.bodyFeedback).subscribe( () => {
       console.log("Fatto ? ");
       this.feedbackUtenteInviato = true;
       location.reload();
-    } )
-
+    } );
   }
- 
   
   feedback = false; idGiocatoreFeedback;
   checked(element){
+    // salvo l'id del giocatore selezionato
     console.log(JSON.stringify(element));
     this.feedback = true;
     this.idGiocatoreFeedback = element.id;

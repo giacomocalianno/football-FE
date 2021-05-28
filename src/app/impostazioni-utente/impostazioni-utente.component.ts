@@ -23,6 +23,7 @@ export class ImpostazioniUtenteComponent implements OnInit {
 
   name; surname; email; rating; role; password;
   getImpostazioni(){
+    // visualizzo le informazioni dell'utente salvate nel localstorage
     this.name = localStorage.getItem("NomeUtente");
     this.surname = localStorage.getItem("CognomeUtente");
     this.email = localStorage.getItem("EmailUtente");

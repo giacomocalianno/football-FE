@@ -13,6 +13,8 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
+
+  // parte che si occupa del pop up che visualizza le squadre formate
   closeResult = '';
 
   open(content) {
@@ -32,46 +34,35 @@ export class AdminDashboardComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+  // ---- fine
 
-  displayedColumnsSquadre = ["Nome squadra", "Colore squadra", "Nome", "Cognome", "Rating", "Ruolo"];
+  // dichiarazione variabili usate
   dataSourceSquadra1; dataSourceSquadra2;
-
   vediPrenotazioni = true;
   feedback = false;
   impostazioni = false;
   tueInfo = false;
   idCorrente: number;
-
   creaSquadra; modificaSquadra; eliminaSquadra;
-
   vediInnerTabella = false;
   vediInnerTabellaImpostazioni = false;
   arrayPartitaScelta;
-
   suffix = "users.json";
-
   showFiller = false;
   users:any;
-
   dataSource;
 
   /* 
   dichiarazione delle colonne delle tabelle di visualizzazione
   */
-
+  displayedColumnsSquadre = ["Nome squadra", "Colore squadra", "Nome", "Cognome", "Rating", "Ruolo"];
   displayedColumns1: string[] = ['idpartita', 'ora', 'data'];
-
   displayedColumns3: string[] = ['checkbox', 'idpartita', 'ora', 'data'];
-
   displayedColumnsModificaSquadra: string[] = ['checkbox', 'idgiocatore', 'name', 'surname', "username", "autovalutazione", "ruolo"];
-
   displayedColumnsGiocatoriPerPartita: string[] = ['checkbox', 'name', 'surname', "autovalutazione", "ruolo"];
-
   displayedInfo1: string[] = ['idtenant', 'nomestruttura', 'citta'];
   displayedInfo2: string[] = ['via', 'cap', 'email']
-
   displayedColumnsFeedback: string[] = ["data", "valutazione", "commento"];
-
   displayedColumnsImpostazioni: string[] = ["Crea partita", "Modifica partita", "Elimina partita"];
   displayedColumnsImpostazioni2: string[] = ["Crea partita", "Modifica partita"];
   displayedColumnsTeams: string[] = ["Checkbox", "Nome", "Colore"];
@@ -83,6 +74,7 @@ export class AdminDashboardComponent implements OnInit {
 
   nomestruttura; email; cap; via; password; citta; idtenant; caricamento = false;
 
+  // prende le informazioni contenute nel local storage e lo assegna a delle variabili
   retrieveLocalStorage(){
     this.idtenant = localStorage.getItem("IdTenant");
     this.nomestruttura = localStorage.getItem("NomeStruttura");
@@ -97,9 +89,7 @@ export class AdminDashboardComponent implements OnInit {
   formDataeOra; dataSourceUpdate;
 
   getMatches(){
-    /*
-    visualizzo tutte le partite che ho creato
-    */
+    // visualizzo tutte le partite che ho creato
     this.caricamento = true;
     console.log("id tenant: " + localStorage.getItem("IdTenant"));
       this.auth.getMatches(localStorage.getItem("IdTenant")).subscribe((response) => {
@@ -111,6 +101,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   setFormDataeOra(){
+    // setto come deve essere il form e le sue regole (Validators)
     this.formDataeOra = new FormGroup({
       data : new FormControl("", [Validators.required, Validators.pattern("^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$")]), 
       ora : new FormControl("", [Validators.required, Validators.pattern("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")])
@@ -126,9 +117,8 @@ export class AdminDashboardComponent implements OnInit {
     }
 
     console.log("id tenant corrente: " + localStorage.getItem("IdTenant"));
-    /*
-    funzione che crea il match passandogli i dati inseriti nel form formDataeOra
-    */
+
+    // funzione che crea il match passandogli i dati inseriti nel form formDataeOra
     this.auth.createMatches(localStorage.getItem("IdTenant"), bodyCreateMatch ).subscribe( () => {
       console.log("Ho creato la partita");
       this.caricamento2 = false;
@@ -140,6 +130,7 @@ export class AdminDashboardComponent implements OnInit {
   eliminaSi = false;
 
   visualizzaPrenotazioni(){
+    // visualizza le prenotazioni e nasconde il resto
     this.vediPrenotazioni = true;
     this.feedback = false;
     this.impostazioni = false;
@@ -148,6 +139,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   visualizzaFeedback(){
+    // visualizza i feedback e nasconde il resto
     this.vediPrenotazioni = false;
     this.feedback = true;
     this.impostazioni = false;
@@ -170,11 +162,12 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   getPrenotazioni(){
-      console.log("id tenant: " + this.utils.idTenant);
-      this.auth.getMatches(localStorage.getItem("IdTenant")).subscribe((response) => {
-      console.log("Elenco di partite del tenant: " + response["matches"]);
-      this.users = response["matches"];
-      this.dataSource = new MatTableDataSource(this.users);
+    // fa il get delle partite
+    console.log("id tenant: " + this.utils.idTenant);
+    this.auth.getMatches(localStorage.getItem("IdTenant")).subscribe((response) => {
+    console.log("Elenco di partite del tenant: " + response["matches"]);
+    this.users = response["matches"];
+    this.dataSource = new MatTableDataSource(this.users);
     });
   }
 
@@ -233,7 +226,7 @@ export class AdminDashboardComponent implements OnInit {
 
   idTeamRisposta1; idTeamRisposta2; squadreFormate = false; temp1; temp2; team1; team2;
   formaSquadre(){
-
+    // rimuovo prima i giocatori
     this.auth.removePlayers(localStorage.getItem("IdTenant"), this.idCorrente, null).subscribe( (response) => {
       console.log("removePlayers: " + response);
     });
@@ -249,17 +242,19 @@ export class AdminDashboardComponent implements OnInit {
       this.auth.getTeamPlayers(localStorage.getItem("IdTenant"), this.idCorrente, this.idTeamRisposta1).subscribe( (response) => {
         console.log(JSON.stringify(response));
 
+        // faccio la get della squadra 1 
         this.auth.getTenantTeam(localStorage.getItem("IdTenant"), this.idTeamRisposta1).subscribe((response) => {
           console.log(response);
           this.team1 = response;
         });
-
+        // la inserisco nella tabella
         this.squadreFormate = true;
         this.temp1 = response["players"];
         this.dataSourceSquadra1 = new MatTableDataSource(this.temp1);
       }, (error) => {
         this.squadreFormate = false;
       } );
+
       // faccio la get e visualizzo i giocatori della squadra 2
       this.auth.getTeamPlayers(localStorage.getItem("IdTenant"), this.idCorrente, this.idTeamRisposta2).subscribe( (response) => {
         console.log(JSON.stringify(response));
@@ -355,7 +350,7 @@ export class AdminDashboardComponent implements OnInit {
   squadraCreata = false;
   submitCreaSquadre(){
     console.log(this.formCreaSquadre.value);
-    
+    // funzione che crea squadre
     this.auth.createTeams(localStorage.getItem("IdTenant"), this.formCreaSquadre.value).subscribe( (response) => {
       console.log(JSON.stringify(response));
       console.log("squadre create");
@@ -374,12 +369,14 @@ export class AdminDashboardComponent implements OnInit {
 
   idGiocatoreEliminare;
   checked(element){
+    // salvo l'id del giocatore da eliminare
     this.checkedCheckbox = true;
     this.utils.idGiocatoreEliminare = element.id;
     console.log("id del giocatore da eliminare è: " + this.utils.idGiocatoreEliminare);
   }
 
   rimuoviGiocatori(){
+    // passo l'id e lo rimuovo
     this.auth.removePlayer(localStorage.getItem("IdTenant"), this.idCorrente, this.utils.idGiocatoreEliminare, null).subscribe ((response) => {
       console.log(JSON.stringify(response));
       location.reload();
@@ -392,7 +389,6 @@ export class AdminDashboardComponent implements OnInit {
   setIdPartitaDaModificare(id, time, date){
     
     // funzione che modifica o data o orario o entrambi di una partita
-    
     console.log("La partita da modificare ha id: " + id);
     this.utils.idPartitaUpdate = id;
 
@@ -401,21 +397,18 @@ export class AdminDashboardComponent implements OnInit {
     this.formModifica = new FormGroup({
       
       // con queste regex posso inserire solo una data formato gg/mm/aaaa e ora hh:mm
-      
       date : new FormControl(date, [Validators.required, Validators.pattern("^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$")]), 
       time : new FormControl(time, [Validators.required, Validators.pattern("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")])
     })  
   }
 
   setIdSquadraDaModificare(id, name, color){
-        
+    // salvo l'id della squadra da modificare
     console.log("La squadra da modificare ha id: " + id);
     this.utils.idPartitaUpdate = id;
-
     this.divModificaSquadra = true;
 
     this.formModificaTeam = new FormGroup({
-      
       name : new FormControl(name, [Validators.required]), 
       color : new FormControl(color, [Validators.required])
     })  
@@ -423,6 +416,7 @@ export class AdminDashboardComponent implements OnInit {
 
   updateTeam(){
     console.log(this.formModificaTeam.value);
+    // funzione che modifica il team
     this.auth.updateTeam(localStorage.getItem("IdTenant"), this.utils.idPartitaUpdate, this.formModificaTeam.value).subscribe( (response) => {
       console.log(response);
       location.reload();
@@ -454,6 +448,7 @@ export class AdminDashboardComponent implements OnInit {
 
   listaFeedback; dataSourceFeedback;
   getFeedback(){
+    // faccio la get e visualizzo i feedback
     this.auth.getTenantReviews(localStorage.getItem("IdTenant")).subscribe( (response) => {
       console.log(JSON.stringify(response["reviews"]));
       this.listaFeedback = response["reviews"];
@@ -468,7 +463,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   impostaIdSquadraEliminare(idEliminare){
-    // salvo id della partita da eliminare
+    // salvo id della squadra da eliminare
     console.log("ID partita selezionata da eliminare: " + idEliminare);
     this.utils.idSquadraElimina = idEliminare;
   }
@@ -487,7 +482,7 @@ export class AdminDashboardComponent implements OnInit {
 
   logout(){
     localStorage.clear();
-    this.router.navigateByUrl("login")
+    this.router.navigateByUrl("login");
   }
 
   ngOnInit(): void {

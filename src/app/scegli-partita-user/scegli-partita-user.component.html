@@ -20,55 +20,55 @@
                 </ng-container>
 
                 <ng-container matColumnDef="id">
-                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">ID partita</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna pointer">
+                    <th class="colonna text-center" mat-header-cell *matHeaderCellDef> <b class="testoColonne">ID partita</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna pointer text-center testoRisultato">
                         {{element.id}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="ora">
-                    <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Ora</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna pointer">
+                    <th class="colonna text-center" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Ora</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna pointer text-center testoRisultato">
                         {{element.time}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="data">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Data</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna pointer">
+                    <th mat-header-cell *matHeaderCellDef class="colonna text-center"> <b class="testoColonne">Data</b> </th>
+                    <td mat-cell *matCellDef="let element" class="colonna pointer text-center testoRisultato">
                         {{element.date}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="numeroGiocatori">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Num. giocatori</b>
+                    <th mat-header-cell *matHeaderCellDef class="colonna text-center"> <b class="testoColonne">N. giocatori</b>
                     </th>
-                    <td mat-cell *matCellDef="let element" class="colonna pointer text-center">
+                    <td mat-cell *matCellDef="let element" class="colonna pointer text-center testoRisultato">
                         {{element.numberOfPlayers}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="numPortieri">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Num. portieri</b>
+                    <th mat-header-cell *matHeaderCellDef class="colonna text-center testoNum"> <b class="testoColonne">N. portieri</b>
                     </th>
-                    <td mat-cell *matCellDef="let element" class="colonna pointer text-center">
+                    <td mat-cell *matCellDef="let element" class="colonna pointer text-center testoRisultato testoNum">
                         {{element.numberOfKeepers}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="numDifensori">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Num. difensori</b>
+                    <th mat-header-cell *matHeaderCellDef class="colonna text-center testoNum"> <b class="testoColonne">N. difensori</b>
                     </th>
-                    <td mat-cell *matCellDef="let element" class="colonna pointer text-center">
+                    <td mat-cell *matCellDef="let element" class="colonna pointer text-center testoRisultato testoNum">
                         {{element.numberOfBacks}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="numCentrocampisti">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Num.
+                    <th mat-header-cell *matHeaderCellDef class="colonna text-center testoNum"> <b class="testoColonne">N.
                             centrocampisti</b> </th>
-                    <td mat-cell *matCellDef="let element" class="colonna pointer text-center">
+                    <td mat-cell *matCellDef="let element" class="colonna pointer text-center testoRisultato testoNum">
                         {{element.numberOfMidfielders}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="numAttaccanti">
-                    <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Num. attaccanti</b>
+                    <th mat-header-cell *matHeaderCellDef class="colonna text-center testoNum"> <b class="testoColonne">N. attaccanti</b>
                     </th>
-                    <td mat-cell *matCellDef="let element" class="colonna pointer text-center">
+                    <td mat-cell *matCellDef="let element" class="colonna pointer text-center testoRisultato testoNum">
                         {{element.numberOfStrikers}} </td>
                 </ng-container>
 
@@ -76,7 +76,7 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
 
-            <div class="row w-100 m-0 align-items-center" style="display: flex; flex-direction: column; justify-content: center;">
+            <div class="row w-100 m-0 align-items-center rowBtnConferma" style="display: flex; flex-direction: column; justify-content: center;">
                 <span style="font-size: 30px; color: crimson;" *ngIf="!puoiIscriverti && toccato">Per la partita
                     selezionata, il tuo ruolo è al completo</span>
                 <button type="button" [disabled]="!puoiIscriverti" style="height: 50px; width: fit-content;" (click)="iscriviUtente()"

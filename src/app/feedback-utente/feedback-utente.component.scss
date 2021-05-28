@@ -222,11 +222,22 @@ h3{
 
 
 @media screen and (min-width: 0px) and (max-width: 480px) {
+    
     h3{
         font-size: 22px;
     }
-    .rowScrivi{
+    .rowScrivi, .innertabella2{
         padding: 10px;
+    }
+    .innertabella2{
+        width: 100%;
+    }
+    .colonna2, .colonna{
+        font-size: 11px;
+    }
+    .btnSelect{
+        width: 40px;
+        height: 30px;
     }
 }
 
@@ -234,8 +245,18 @@ h3{
     h3{
         font-size: 24px;
     }
-    .rowScrivi{
+    .rowScrivi, .innertabella2{
         padding: 10px;
+    }
+    .innertabella2{
+        width: 100%;
+    }
+    .colonna2, .colonna{
+        font-size: 13px;
+    }
+    .btnSelect{
+        width: 50px;
+        height: 40px;
     }
 }
 
@@ -243,8 +264,15 @@ h3{
     h3{
         font-size: 26px;
     }
-    .rowScrivi{
+    .rowScrivi, .innertabella2{
         padding: 10px;
+    }
+    .colonna2, .colonna{
+        font-size: 15px;
+    }
+    .btnSelect{
+        width: 50px;
+        height: 40px;
     }
 }
 
@@ -273,6 +301,9 @@ h3{
     .bi{
         width: 8vw;
         height: 8vh;
+    }
+    .colonna2, .colonna{
+        font-size: 16px;
     }
 }
 

@@ -40,14 +40,13 @@ export class HomeUtenteComponent implements OnInit {
   toggleCampo() {
     this.partitaSelezionata = true;
   }
-  // --------------------
 
   cambiaautovalutazione() {
     this.cambiaAutovalutazione = !this.cambiaAutovalutazione;
   }
 
+  // settaggi del pop up
   closeResult = '';
-
 
   open(content) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
