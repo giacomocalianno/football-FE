@@ -1,13 +1,13 @@
 <div class="container-fluid login justify-content-center">
     <form class="form w-100 justify-content-center" [formGroup]="formLoginUtente" (ngSubmit)="sendData()">
-        <div class="form-group row mt-3">
+        <div class="form-group row m-0 p-0 mb-3">
             <div class="col-sm-10 containerInput">
                 <div>
                     <label class="col-12 inputLabel">Login per l'utente</label>
                 </div>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row m-0 p-0">
             <div class="col-sm-10 containerInput">
                 <div>
                     <label class="col-sm-2 pb-4 inputLabel">Email</label>
@@ -15,7 +15,7 @@
                 <input type="email" class="input" placeholder="example@gmail.com" formControlName="email">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row m-0 p-0">
             <div class="col-sm-10 containerInput">
                 <div>
                     <label class="col-sm-2 py-4 inputLabel text-center">Password</label>
@@ -23,19 +23,19 @@
                 <input type="password" class="input" formControlName="password">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row m-0 my-4 p-0">
             <div class="col-sm-10 containerInput">
                 <button type="submit" class="btn btn-primary signin" [disabled]="formLoginUtente.invalid">Log in</button>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row m-0 mb-4 p-0">
             <span class="textRegistrati" routerLink="/preRegistrazione">Oppure registrati</span>
         </div>
-        <div class="form-group row">
+        <div class="form-group row m-0 p-0">
             <mat-spinner *ngIf="spinner" color="accent"></mat-spinner>
         </div>
         
-        <div class="row mt-3">
+        <div class="row m-0 p-0 mt-3">
             <button type="button" class="btn btn-info"  routerLink="/login">Passa alla login per le strutture</button>
         </div>
         <div *ngIf="errore" class="row rowcaricamento justify-content-center align-items-center mt-3">
