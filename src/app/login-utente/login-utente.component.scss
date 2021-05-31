@@ -62,7 +62,7 @@ html, body {
 }
 
 .signin{
-    width: 80%;
+    width: 50%;
     font-family: $font;
     font-size: 22px;
     font-weight: 600;
@@ -105,6 +105,26 @@ html, body {
     cursor: pointer;
 }
 
+@media screen and (max-width: 1500px) {
+    
+    ::placeholder{
+        font-size: 26px;
+    }
+    .inputLabel{
+        font-size: 33px;
+    }
+    .signin{
+        font-size: 24px;
+    }
+    .textRegistrati{
+        font-size: 25px;
+    }
+    .input{
+        width: 60vw;
+        height: 55px;
+    }
+}
+
 @media screen and (max-width: 800px) {
     ::placeholder{
         font-size: 12px;
@@ -117,6 +137,9 @@ html, body {
     }
     .textRegistrati{
         font-size: 15px;
+    }
+    .input{
+        width: 60vw;
     }
 }
 
@@ -136,6 +159,9 @@ html, body {
     .container-fluid{
         padding: 5%;
     }
+    .input{
+        width: 60vw;
+    }
 }
 
 @media screen and (max-width: 370px) {
@@ -154,6 +180,9 @@ html, body {
     .container-fluid{
         padding: 5%;
     }
+    .input{
+        width: 60vw;
+    }
 }
 
 @media screen and (max-width: 325px) {
@@ -171,5 +200,8 @@ html, body {
     }
     .container-fluid{
         padding: 5%;
+    }
+    .input{
+        width: 60vw;
     }
 }

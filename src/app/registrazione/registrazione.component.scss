@@ -15,10 +15,10 @@ html, body {
     background-image: url("../../assets/campo2.jpg");
     background-size: cover;
     background-position: center;
-    height: 100vh;
-    padding: 0;
-    margin: 0;
     height: 100%;
+    padding: 0;
+    width: 100%;
+    margin: 0;
     @include center();
 }
 ::placeholder{
@@ -32,6 +32,7 @@ html, body {
 
 .input{
     width: 90%;
+    height: 40px;
     border-radius: 5px;
     border: 2px solid white;
     margin: 0px;
@@ -94,7 +95,8 @@ html, body {
 }
 
 .signin{
-    width: 100%;
+    width: 80%;
+    height: 85%;
     font-family: $font;
     font-size: 22px;
     font-weight: 600;
@@ -109,7 +111,8 @@ html, body {
     border-radius: 19px;
     border-radius: 7px;
     background: transparent;
-    padding: 3%;
+    padding: 2%;
+    padding-bottom: 0%;
     margin: 0%;
     position: relative;
     border-radius: 10px;
@@ -146,4 +149,35 @@ html, body {
 }
 .btnAvanzamento2, .btnAvanzamento3{
     background-color: #fff;
+}
+
+@media screen and (min-width: 0px) and (max-width: 480px) {
+    .registrazione{
+        height: 140vh;
+        width: 140vw;
+    }
+    .form{
+        margin: 1%;
+        padding: 1%;
+        justify-content: center;
+    }
+    .tabella{
+        padding-left: 1%;
+    }
+}
+@media screen and (min-width: 451px) and (max-width: 556px) {
+    
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    
+}
+
+@media screen and (min-width: 769px) and (max-width: 1279px) {
+    
+}
+
+
+@media screen and (min-width: 1000px) and (max-width: 1850px) {
+   
 }

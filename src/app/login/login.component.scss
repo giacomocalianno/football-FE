@@ -39,6 +39,7 @@ html, body {
 
 .containerInput{
     @include center();
+    width: 100%;
     flex-direction: column;
 }
 
@@ -62,7 +63,7 @@ html, body {
 }
 
 .signin{
-    width: 80%;
+    width: 50%;
     font-family: $font;
     font-size: 22px;
     font-weight: 600;
@@ -70,7 +71,7 @@ html, body {
     border: none;
     background-color: #137238;
     border: none;
-    box-shadow: 1px 1px 0px rgba(255, 255, 255, 0.233);
+    box-shadow: 1px 1px #fff;
 } 
 .signin:hover{
     background-color: #198844;
@@ -110,6 +111,26 @@ html, body {
     cursor: pointer;
 }
 
+@media screen and (max-width: 1500px) {
+    
+    ::placeholder{
+        font-size: 26px;
+    }
+    .inputLabel{
+        font-size: 33px;
+    }
+    .signin{
+        font-size: 24px;
+    }
+    .textRegistrati{
+        font-size: 25px;
+    }
+    .input{
+        width: 60vw;
+        height: 55px;
+    }
+}
+
 @media screen and (max-width: 800px) {
     ::placeholder{
         font-size: 12px;
@@ -123,6 +144,9 @@ html, body {
     .textRegistrati{
         font-size: 15px;
     }
+    .input{
+        width: 60vw;
+    }
 }
 
 @media screen and (max-width: 470px) {
@@ -131,6 +155,9 @@ html, body {
     }
     .inputLabel{
         font-size: 20px;
+    }
+    .input{
+        width: 60vw;
     }
     .signin{
         font-size: 18px;
@@ -159,6 +186,9 @@ html, body {
     .container-fluid{
         padding: 5%;
     }
+    .input{
+        width: 60vw;
+    }
 }
 
 @media screen and (max-width: 325px) {
@@ -176,5 +206,8 @@ html, body {
     }
     .container-fluid{
         padding: 5%;
+    }
+    .input{
+        width: 60vw;
     }
 }

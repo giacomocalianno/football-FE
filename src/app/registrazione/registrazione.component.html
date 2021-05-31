@@ -1,21 +1,7 @@
-<div class="row bottoni m-0 p-0">
-    <div class="col-5"></div>
-    <div class="col-1">
-        <button disabled class="btnAvanzamento1 mt-3"></button>
-    </div>
-    <div class="col-1">
-        <button disabled class="btnAvanzamento2 mt-3"></button>
-    </div>
-    <div class="col-1">
-        <button disabled class="btnAvanzamento3 mt-3"></button>
-    </div>
-    <div class="col-4"></div>
-    
-</div>
-<div class="container-fluid registrazione">
+<div class="container-fluid registrazione pt-1">
     <div id="contenitoreform">
         <form class="form" [formGroup]="formRegistrazione" (ngSubmit)="sendData()">
-            <div class="row m-0 p-0">
+            <div class="row m-0 p-0" style="width: 100vw;">
                 <div class="col-6 m-0 p-0 ">
                     <div class="col-12 m-0 p-0">
                         <label class="col-sm-2 inputLabel pr-3">Nome</label>
@@ -32,7 +18,7 @@
                         <input type="text" class="input" placeholder="Rossi" formControlName="cognome">
                     </div>
                 </div>
-                <div class="col-6 m-0 p-0 mt-5">
+                <div class="col-6 m-0 p-0 mt-2">
                     <div class="col-12 m-0 p-0">
                         <label class="col-sm-2 inputLabel m-0 p-0">Email</label>
                     </div>
@@ -40,7 +26,7 @@
                         <input type="email" class="input" placeholder="example@gmail.com" formControlName="email">
                     </div>
                 </div>
-                <div class="col-6 m-0 p-0 mt-5">
+                <div class="col-6 m-0 p-0 mt-2">
                     <div class="col-12 m-0 p-0">
                         <label class="col-sm-2 inputLabel m-0 p-0">Password</label>
                     </div>
@@ -50,8 +36,8 @@
                 </div>
                 <div class="row w-100 mt-4">
                     <div class="col-6 w-100 d-flex justify-content-center ">
-                        <button type="button" class="btn aiuto" placement="left" ngbPopover={{testoAutovalutaz}}> Cos'è? <svg
-                                xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        <button type="button" class="btn aiuto" placement="left" ngbPopover={{testoAutovalutaz}}> Cos'è?
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="bi bi-arrow-down" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
                                     d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
@@ -74,7 +60,7 @@
                     </div>
                     <div class="col-12 m-0 p-0">
                         <input type="number" min="1" max="5" class="input inputRuolo m-0 p-2"
-                                formControlName="autovalutazione">
+                            formControlName="autovalutazione">
                     </div>
                 </div>
                 <div class="col-6 m-0 p-0 mt-1">
@@ -91,17 +77,19 @@
                         </select>
                     </div>
                 </div>
-                <div class="row w-100 h-100 justify-content-center mt-2">
+                <div class="row p-3 tabella pb-0 h-100 justify-content-center" style="width: 97vw;">
                     <label class="inputLabel">Seleziona la società a cui vuoi appartenere</label>
 
                     <table mat-table [dataSource]="dataSourceBackend"
-                        class="mat-elevation-z8 w-100 mt-2 justify-content-center">
+                        class="mat-elevation-z8 w-100 mt-2 justify-content-center ">
 
 
                         <ng-container matColumnDef="checkbox" class="ml-4">
-                            <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Seleziona struttura</b>
+                            <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Seleziona
+                                    struttura</b>
                             </th>
-                            <td mat-cell *matCellDef="let element" class="colonna pointer"> <input type="radio" (click)="stampaId(this.element.id)"> </td>
+                            <td mat-cell *matCellDef="let element" class="colonna pointer"> <input type="radio"
+                                    (click)="stampaId(this.element.id)"> </td>
                         </ng-container>
 
                         <ng-container matColumnDef="tenantId" class="ml-4">
@@ -117,24 +105,28 @@
                         </ng-container>
 
                         <ng-container matColumnDef="city">
-                            <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Città struttura</b>
+                            <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">Città
+                                    struttura</b>
                             </th>l
                             <td mat-cell *matCellDef="let element" class="colonna pointer"> {{element.city}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="address" class="ml-4">
-                            <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Indirizzo struttura</b>
+                            <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">Indirizzo
+                                    struttura</b>
                             </th>
                             <td mat-cell *matCellDef="let element" class="colonna pointer"> {{element.address}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="cap">
-                            <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">CAP struttura</b> </th>
+                            <th class="colonna" mat-header-cell *matHeaderCellDef> <b class="testoColonne">CAP
+                                    struttura</b> </th>
                             <td mat-cell *matCellDef="let element" class="colonna pointer"> {{element.cap}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="email">
-                            <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">E-mail struttura</b>
+                            <th mat-header-cell *matHeaderCellDef class="colonna"> <b class="testoColonne">E-mail
+                                    struttura</b>
                             </th>
                             <td mat-cell *matCellDef="let element" class="colonna pointer"> {{element.email}} </td>
                         </ng-container>
@@ -142,13 +134,13 @@
                         <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
                     </table>
-
                 </div>
-                
+
             </div>
-            <div class="row mt-2">
+            <div class="row text-center">
                 <div class="col-6 offset-3">
-                    <button type="submit" [disabled]="!this.formRegistrazione.valid" class="btn btn-primary signin">Avanti</button>
+                    <button type="submit" [disabled]="!this.formRegistrazione.valid"
+                        class="btn btn-primary signin">Avanti</button>
                 </div>
             </div>
         </form>
