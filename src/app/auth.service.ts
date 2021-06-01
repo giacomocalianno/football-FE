@@ -13,7 +13,8 @@ export class AuthService {
   // urlLogin = "http://172.16.223.244:8080/loginTenant/"
   // urlLoginPlayer = "http://172.16.223.244:8080/loginPlayer/" 
 
-  urlbase = "https://prenotazionecalcio.russi.ovh/api/"
+  // urlbase = "https://prenotazionecalcio.russi.ovh/api/"
+  urlbase = "http://172.16.222.233:8080/"
 
   get(){
     console.log("link: " + this.urlbase + "getTenants");
@@ -25,7 +26,7 @@ export class AuthService {
     console.log("body del admin che sto mandando" + body);
     console.log("link: " + this.urlbase + "createTenant");
     
-    return this.http.post(this.urlbase + "createTenant", body)
+    return this.http.post(this.urlbase + "createTenant", body);
   }
 
   updateMatch(idTenant, idPartita, body){
