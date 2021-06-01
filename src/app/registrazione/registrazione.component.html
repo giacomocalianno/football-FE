@@ -1,7 +1,7 @@
 <div class="container-fluid registrazione pt-1">
     <div id="contenitoreform">
         <form class="form" [formGroup]="formRegistrazione" (ngSubmit)="sendData()">
-            <div class="row m-0 p-0" style="width: 100vw;">
+            <div class="row m-0 p-0 w-100">
                 <div class="col-6 m-0 p-0 ">
                     <div class="col-12 m-0 p-0">
                         <label class="col-sm-2 inputLabel pr-3">Nome</label>
@@ -77,7 +77,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="row p-3 tabella pb-0 h-100 justify-content-center" style="width: 97vw;">
+                <div class="row p-3 tabella pb-0 h-100 w-100 justify-content-center">
                     <label class="inputLabel">Seleziona la società a cui vuoi appartenere</label>
 
                     <table mat-table [dataSource]="dataSourceBackend"

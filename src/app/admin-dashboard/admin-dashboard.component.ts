@@ -87,15 +87,15 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   formDataeOra; dataSourceUpdate;
-
   getMatches(){
     // visualizzo tutte le partite che ho creato
     this.caricamento = true;
     console.log("id tenant: " + localStorage.getItem("IdTenant"));
       this.auth.getMatches(localStorage.getItem("IdTenant")).subscribe((response) => {
-      console.log("Elenco di partite del tenant: " + response["matches"]);
+      console.log("Elenco di partite del tenant: " + JSON.stringify(response["matches"]));
       this.users = response["matches"];
       this.caricamento = false;
+      
       this.dataSourceUpdate = new MatTableDataSource(this.users);
     } )
   }
@@ -108,22 +108,20 @@ export class AdminDashboardComponent implements OnInit {
     })
   }
 
-  creata = false; caricamento2 = false;
+  creata = false; caricamento2 = false; esistePartitaconStessoOrario;
   submit(){
     this.caricamento2 = true;
     const bodyCreateMatch = {
       date : this.formDataeOra.value.data,
       time : this.formDataeOra.value.ora
     }
-
-    console.log("id tenant corrente: " + localStorage.getItem("IdTenant"));
-
-    // funzione che crea il match passandogli i dati inseriti nel form formDataeOra
-    this.auth.createMatches(localStorage.getItem("IdTenant"), bodyCreateMatch ).subscribe( () => {
+      console.log("id tenant corrente: " + localStorage.getItem("IdTenant"));
+      // funzione che crea il match passandogli i dati inseriti nel form formDataeOra
+      this.auth.createMatches(localStorage.getItem("IdTenant"), bodyCreateMatch ).subscribe( () => {
       console.log("Ho creato la partita");
       this.caricamento2 = false;
       this.creata = true;
-    })
+    });
   }
 
   modificaSi = false;
@@ -166,6 +164,7 @@ export class AdminDashboardComponent implements OnInit {
     console.log("id tenant: " + this.utils.idTenant);
     this.auth.getMatches(localStorage.getItem("IdTenant")).subscribe((response) => {
     console.log("Elenco di partite del tenant: " + response["matches"]);
+    
     this.users = response["matches"];
     this.dataSource = new MatTableDataSource(this.users);
     });
@@ -283,6 +282,8 @@ export class AdminDashboardComponent implements OnInit {
     this.creaSquadra = true;
     this.modificaSquadra = false;
     this.eliminaSquadra = false;
+    this.creaPartita = false;
+    this.modificaPartita = false;
   }
 
   divModificaSquadra = false; formModificaTeam;
@@ -295,6 +296,8 @@ export class AdminDashboardComponent implements OnInit {
     this.eliminaSquadra = false;
     this.getDataUpdate();
     this.caricoModifica = false;
+    this.creaPartita = false;
+    this.modificaPartita = false;
   }
 
   visualizzaEliminaPartita(){
@@ -302,6 +305,8 @@ export class AdminDashboardComponent implements OnInit {
     this.modificaSquadra = false;
     this.eliminaSquadra = true;
     this.getDataUpdate();
+    this.creaPartita = false;
+    this.modificaPartita = false;
   }
  
   creaPartita; modificaPartita; eliminaPartita2; formCreaSquadre;
@@ -309,6 +314,9 @@ export class AdminDashboardComponent implements OnInit {
     this.creaPartita = true;
     this.modificaPartita = false;
     this.eliminaPartita2 = false;
+    this.creaSquadra = false;
+    this.modificaSquadra = false;
+    this.eliminaSquadra = false;
 
     this.formCreaSquadre = new FormGroup({
       name : new FormControl("", [Validators.required]),
@@ -322,6 +330,9 @@ export class AdminDashboardComponent implements OnInit {
     this.creaPartita = false;
     this.modificaPartita = true;
     this.eliminaPartita2 = false;
+    this.creaSquadra = false;
+    this.modificaSquadra = false;
+    this.eliminaSquadra = false;
 
     this.auth.getTeams(localStorage.getItem("IdTenant")).subscribe( (response) => {
       console.log(response["teams"]);
