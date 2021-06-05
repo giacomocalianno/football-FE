@@ -108,7 +108,7 @@ export class AdminDashboardComponent implements OnInit {
     })
   }
 
-  creata = false; caricamento2 = false; esistePartitaconStessoOrario;
+  creata = false; caricamento2 = false; possoCreare; partitaEsistente = false;
   submit() {
     this.caricamento2 = true;
     const bodyCreateMatch = {
@@ -116,12 +116,50 @@ export class AdminDashboardComponent implements OnInit {
       time: this.formDataeOra.value.ora
     }
     console.log("id tenant corrente: " + localStorage.getItem("IdTenant"));
-    // funzione che crea il match passandogli i dati inseriti nel form formDataeOra
-    this.auth.createMatches(localStorage.getItem("IdTenant"), bodyCreateMatch).subscribe(() => {
-      console.log("Ho creato la partita");
-      this.caricamento2 = false;
-      this.creata = true;
+
+    this.auth.getMatches(localStorage.getItem("IdTenant")).subscribe((response) => {
+      console.log("Elenco di partite del tenant: " + response["matches"]);
+      let partite = response["matches"];
+
+      if (partite.length == 0) {
+        console.log("Array partite vuoto, posso crearla senza problemi");
+        this.auth.createMatches(localStorage.getItem("IdTenant"), bodyCreateMatch).subscribe(() => {
+          console.log("Ho creato la partita");
+          this.caricamento2 = false;
+          this.partitaEsistente = false;
+          this.creata = true;
+        });
+      } else {
+        partite.forEach(partita => {
+
+          if (partita["time"] == bodyCreateMatch.time && partita["date"] == bodyCreateMatch.date) {
+            console.log("esiste partita con stessa data e ora");
+            this.possoCreare = false;
+          } else {
+            console.log("non esiste partita con stessa data e ora, tutto okay");
+            // funzione che crea il match passandogli i dati inseriti nel form formDataeOra
+            this.possoCreare = true;
+          }
+        });
+      }
+      if (this.possoCreare) { 
+        console.log("Sono nella funzione per creare");
+        
+        this.auth.createMatches(localStorage.getItem("IdTenant"), bodyCreateMatch).subscribe(() => {
+          console.log("Ho creato la partita");
+          this.caricamento2 = false;
+          this.creata = true;
+          this.partitaEsistente = false;
+        });
+        this.possoCreare = false;
+      } else {
+        console.warn("Non posso creare sono nell'else");
+        this.partitaEsistente = true;
+        this.caricamento2 = false;
+        this.creata = false;
+      }
     });
+
   }
 
   modificaSi = false;
@@ -164,10 +202,10 @@ export class AdminDashboardComponent implements OnInit {
     console.log("id tenant: " + this.utils.idTenant);
     this.auth.getMatches(localStorage.getItem("IdTenant")).subscribe((response) => {
       console.log("Elenco di partite del tenant: " + response["matches"]);
-
       this.users = response["matches"];
       this.dataSource = new MatTableDataSource(this.users);
     });
+
   }
 
   checkedCheckbox = false; giocatoriPartita; numeroGiocatori;
