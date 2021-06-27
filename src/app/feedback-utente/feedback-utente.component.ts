@@ -23,7 +23,7 @@ export class FeedbackUtenteComponent implements OnInit {
     this.auth.getMatches(localStorage.getItem("idTenantScelto")).subscribe( (response) => {
       console.log("Questa è la risposta intera");
       console.log(response);
-      this.prova = response["matches"];
+      this.prova = response["games"];
 
       let temp = this.prova.filter( (element) => {
         return element.id == localStorage.getItem("IdPartitaIscritto");
@@ -93,7 +93,7 @@ export class FeedbackUtenteComponent implements OnInit {
   }
   
   feedback = false; idGiocatoreFeedback;
-  checked(element){
+  checked(element){ 
     // salvo l'id del giocatore selezionato
     console.log(JSON.stringify(element));
     this.feedback = true;

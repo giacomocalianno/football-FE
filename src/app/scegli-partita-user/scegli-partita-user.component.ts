@@ -30,7 +30,7 @@ export class ScegliPartitaUserComponent implements OnInit {
     this.auth.getMatches(localStorage.getItem("idTenantScelto")).subscribe((response) => {
       console.log("Questa è la risposta intera");
       console.log(response);
-      this.prova = response["matches"];
+      this.prova = response["games"];
 
       this.prova.forEach(element => {
         if (element["numberOfPlayers"] < 14) {

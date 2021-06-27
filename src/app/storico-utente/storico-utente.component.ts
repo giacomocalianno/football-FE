@@ -21,7 +21,7 @@ export class StoricoUtenteComponent implements OnInit {
     this.auth.getStorico(localStorage.getItem("idTenantScelto"), localStorage.getItem("idUtente")).subscribe( (response) => {
       console.log(JSON.stringify(response));
       console.log("fatto storico");
-      this.prova = response["matches"];
+      this.prova = response["games"];
       this.dataSourceStorico = new MatTableDataSource(this.prova);
     })  
   }

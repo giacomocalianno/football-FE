@@ -7,14 +7,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AuthService {
 
   constructor(private http: HttpClient) { }
-
-  // urlgetTenants = "http://172.16.223.244:8080/getTenants"
-  // urlCreateTenant = "http://172.16.223.244:8080/createTenant"
-  // urlLogin = "http://172.16.223.244:8080/loginTenant/"
-  // urlLoginPlayer = "http://172.16.223.244:8080/loginPlayer/" 
-
+  
   // urlbase = "https://prenotazionecalcio.russi.ovh/api/"
-  urlbase = "http://172.16.222.233:8080/"
+  urlbase = "http://172.16.223.169:8080/"
 
   get(){
     console.log("link: " + this.urlbase + "getTenants");
