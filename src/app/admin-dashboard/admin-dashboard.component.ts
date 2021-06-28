@@ -439,7 +439,6 @@ export class AdminDashboardComponent implements OnInit {
   formModifica;
 
   setIdPartitaDaModificare(id, time, date) {
-
     // funzione che modifica o data o orario o entrambi di una partita
     console.log("La partita da modificare ha id: " + id);
     this.utils.idPartitaUpdate = id;
