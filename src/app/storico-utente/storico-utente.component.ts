@@ -18,6 +18,7 @@ export class StoricoUtenteComponent implements OnInit {
   prova;
 
   getStorico() {
+    // richiamo la funzione che mi restituisce lo storico delle partite a cui sono iscritto
     this.auth.getStorico(localStorage.getItem("idTenantScelto"), localStorage.getItem("idUtente")).subscribe( (response) => {
       console.log(JSON.stringify(response));
       console.log("fatto storico");

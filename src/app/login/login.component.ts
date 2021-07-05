@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   formLogin;
 
   setForm() {
+    // setto le impostazioni del form
     this.formLogin = new FormGroup({
       email: new FormControl('@gmail.com', [Validators.required]),
       password: new FormControl('', [Validators.required])
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
   spinner = false; errore = false;
 
   sendData() {
+    // funzione che manda i dati
     console.log("La mail inserita è: " + this.formLogin.value.email);
     console.log("La password inserita è: " + this.formLogin.value.password);
     
@@ -46,9 +48,10 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("Citta", response["city"]);
       localStorage.setItem("Via", response["address"]);
       localStorage.setItem("Cap", response["cap"]);
-      
+      // mi sposto alla dashboard dell'admin
       this.router.navigateByUrl("/adminDashboard");
     }, (error) => {
+      // gestisco l'errore
       console.log("non esiste nessun admin");
       this.spinner = false;
       console.log(error);

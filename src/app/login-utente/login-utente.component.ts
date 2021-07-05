@@ -28,7 +28,7 @@ export class LoginUtenteComponent implements OnInit {
     this.spinner = true;
     console.log("La mail inserita è: " + this.formLoginUtente.value.email);
     console.log("La password inserita è: " + this.formLoginUtente.value.password);
-
+    // faccio la login coi dati inseriti nel form
     this.auth.loginPlayer(this.formLoginUtente.value.email, this.formLoginUtente.value.password).subscribe( (response) => {
       this.spinner = false;
       console.log(response);
@@ -41,6 +41,7 @@ export class LoginUtenteComponent implements OnInit {
       localStorage.setItem("idTenantScelto", response["tenant"]);
       this.router.navigateByUrl("/homeUtente");
     }, (error) => {
+      // gestisco l'errore
       this.spinner = false;
       console.log("non esiste nessun utente");
       console.log(error);

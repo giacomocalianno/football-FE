@@ -16,6 +16,7 @@ export class RegistrazioneComponent implements OnInit {
 
   formRegistrazione;
 
+  // testo che si visualizza nei bottoni helper
   testoAutovalutaz = "Valuta la tua bravura con un numero da 1 a 5. \nQuesto valore ci servirà per la creazione delle squadre.\nAffinchè le squadre siano equilibrate, sii onesto/a"
   testoRuolo = "Indica il ruolo in cui vorresti giocare. \nTranquillo/a, potrai sempre cambiarlo."
 
@@ -34,6 +35,7 @@ export class RegistrazioneComponent implements OnInit {
 
   dataSourceBackend; prova;
   getSocietà(){
+    // visualizzo tutti i tenant
     this.auth.get().subscribe((response) => {
       console.log("Questa è la risposta intera");
       console.log(response);
@@ -45,6 +47,7 @@ export class RegistrazioneComponent implements OnInit {
   }
 
   stampaId(id){
+    // salvo l'id scelto 
     console.log("id: " + id);
     this.utils.idTenant = id;
     localStorage.setItem("IdTenantScelto", id);
@@ -75,6 +78,7 @@ export class RegistrazioneComponent implements OnInit {
     localStorage.setItem('Autovalutazione', recapDati.rating);
     localStorage.setItem('Ruolo', recapDati.role);
 
+    // salvo nel utils i dati
     this.utils.nome = this.formRegistrazione.value.nome;
     this.utils.cognome = this.formRegistrazione.value.cognome;
     this.utils.email = this.formRegistrazione.value.email;
@@ -88,18 +92,18 @@ export class RegistrazioneComponent implements OnInit {
       console.log(JSON.stringify(response));
       
       console.log("Post utente fatta");
+      // mi sposto nel recap
       this.route.navigateByUrl("/recap")
     }, (error) => {
+      // gestisco l'errore
       alert("Esiste utente con la stessa mail")
       console.log(error);
       console.log("esiste utente con stessa mail");
     });
   }
 
-  
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-
 
   ngOnInit(): void {
     this.setForm();

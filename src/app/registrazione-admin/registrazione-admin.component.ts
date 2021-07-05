@@ -27,7 +27,7 @@ export class RegistrazioneAdminComponent implements OnInit {
   }
 
   sendData(){
-
+    // salvo i dati e gli mando
     console.log("Nome: " + this.formRegistrazioneAdmin.value.nomestruttura);
     console.log("Città: " + this.formRegistrazioneAdmin.value.citta);
     console.log("Email: " + this.formRegistrazioneAdmin.value.email);
@@ -43,7 +43,7 @@ export class RegistrazioneAdminComponent implements OnInit {
     this.utils.nomestruttura = this.formRegistrazioneAdmin.value.nomestruttura;
     
     console.log(this.formRegistrazioneAdmin.value);
-
+    // formo l'oggetto da mandare
     const recapDati = {
       email: this.formRegistrazioneAdmin.value.email,
       password: this.formRegistrazioneAdmin.value.password,
@@ -54,11 +54,12 @@ export class RegistrazioneAdminComponent implements OnInit {
     }
 
     console.log(recapDati);
-
+    // faccio la post e mi sposto in recap
     this.auth.postRequest(recapDati).subscribe( (response) => {
       console.log("Post admin fatta: " + JSON.stringify(response));
       this.router.navigateByUrl("/recapAdmin");
     }, (error) => {
+      // gestisco l'errore
       console.log(error);
       console.log("esiste admin con stessa mail");
       alert("Esiste admin con stessa mail")

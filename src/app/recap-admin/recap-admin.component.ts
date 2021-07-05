@@ -20,6 +20,7 @@ export class RecapAdminComponent implements OnInit {
   bodyAdmin;
 
   concatena(){
+    // formo l'oggetto da inviare al database
     this.recapDati = {
       email : this.utils.emailAdmin,
       password : this.utils.passwordAdmin,
@@ -32,13 +33,14 @@ export class RecapAdminComponent implements OnInit {
 
   errore = false;
   salvaLocalStorage(){
+    // salvo i dati nel localstorage
     localStorage.setItem("Email", this.utils.emailAdmin);
     localStorage.setItem("password", this.utils.passwordAdmin);
     localStorage.setItem("name", this.recapDati.name);
     localStorage.setItem("citta", this.recapDati.city);
     localStorage.setItem("via", this.recapDati.address);
     localStorage.setItem("cap", this.recapDati.cap);
-
+    // ritorno alla login
     this.route.navigateByUrl("/login");
   }
 

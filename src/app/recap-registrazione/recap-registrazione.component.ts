@@ -19,10 +19,10 @@ export class RecapRegistrazioneComponent implements OnInit {
   username = this.usernameSporca.trim().toLowerCase();
 
   salvaLocalStorage(){
-   
+    // salvo nel localstorage i dati
     localStorage.setItem("recappdatiutente", this.recapDati)
     console.log("Recap dati registrazione utente: " + this.recapDati);
-    
+    // ritorno alla login
     this.route.navigateByUrl("/loginUtente");
   }
 
@@ -30,6 +30,7 @@ export class RecapRegistrazioneComponent implements OnInit {
 
   errore = false;
   concatena(){
+    // formo l'oggetto da inviare al backend
     this.recapDati = {
       name : this.utils.nome,
       surname : this.utils.cognome,

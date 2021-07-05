@@ -18,13 +18,15 @@ export class HomeUtenteComponent implements OnInit {
   dataSourceBackend;
   constructor(private modalService: NgbModal, private auth: AuthService, private utils: UtilsService, private route: Router) { }
 
+  // la funzione logout cancella i dati salvati nel localstorage
   logout(){
     localStorage.clear();
     this.route.navigateByUrl("/login")
   }
   
   name; surname; email; rating; role; recapDati
-
+  
+  // prendo tutto ciò che c'è nel localstorage e me lo salvo nelle variabili
   retrieveLocalStorage() {
     this.name = localStorage.getItem("NomeUtente");
     this.surname = localStorage.getItem("CognomeUtente");

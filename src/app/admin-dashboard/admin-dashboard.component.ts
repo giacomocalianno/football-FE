@@ -110,6 +110,7 @@ export class AdminDashboardComponent implements OnInit {
 
   creata = false; caricamento2 = false; possoCreare; partitaEsistente = false; partite = [];
   submit() {
+    // submit form data e ora
     this.caricamento2 = true;
     const bodyCreateMatch = {
       date: this.formDataeOra.value.data,
@@ -228,7 +229,6 @@ export class AdminDashboardComponent implements OnInit {
       this.giocatoriPartita = response["players"];
 
       // filtro i giocatori cosicchè vedo i giocatori che si sono iscritti a quella partita e non tutti
-
       let temp = this.giocatoriPartita.filter((player) => {
         return player.idpartita == element.idpartita;
       })
@@ -248,6 +248,7 @@ export class AdminDashboardComponent implements OnInit {
           countAttaccanti++;
         }
       });
+
       console.log("Portieri: " + countPortieri + "; Difensori: " + countDifensori + "; Centrocamp: " + countCentrocampisti + "; Attacco: " + countAttaccanti);
       this.numPortieri = countPortieri;
       this.numDifensori = countDifensori;
@@ -359,7 +360,6 @@ export class AdminDashboardComponent implements OnInit {
       name: new FormControl("", [Validators.required]),
       color: new FormControl("", [Validators.required])
     });
-
   }
 
   teams; dataSourceUpdateTeams;
@@ -470,7 +470,7 @@ export class AdminDashboardComponent implements OnInit {
     // funzione che modifica il team
     this.auth.updateTeam(localStorage.getItem("IdTenant"), this.utils.idPartitaUpdate, this.formModificaTeam.value).subscribe((response) => {
       console.log(response);
-      location.reload();
+      location.reload(); //ricarico la pagina
     })
   }
 

@@ -14,6 +14,7 @@ export class ScegliPartitaUserComponent implements OnInit {
 
   constructor(private auth: AuthService, private utils: UtilsService, private route: Router) { }
 
+  // colonne da visualizzare nella tabella
   displayedColumns: string[] = ['checkbox', 'id', 'ora', 'data', 'numeroGiocatori', 'numPortieri', 'numDifensori', 'numCentrocampisti', 'numAttaccanti'];
 
   dataSourcePartite; prova;

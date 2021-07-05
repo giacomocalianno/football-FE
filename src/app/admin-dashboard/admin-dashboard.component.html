@@ -119,7 +119,7 @@
         </ng-template>
         <!-- FINE visualizza le squadre formate -->
 
-        <div class="row pt-4 w-100" style="display: flex; align-items: center; justify-content: center;">
+    <div class="row pt-4 w-100" style="display: flex; align-items: center; justify-content: center;">
             <div class="col-md-3 m-0 p-0">
 
             </div>
@@ -159,7 +159,7 @@
         </div>
     </div>
 
-    <!-- PRENOTAZIONI -->
+    <!-- Sezione: PRENOTAZIONI -->
     <div *ngIf="vediPrenotazioni" class="row justify-content-center w-100 p-0 m-0">
 
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100 justify-content-center tabella">
@@ -244,7 +244,7 @@
 
     </div>
 
-    <!-- FEEDBACK -->
+    <!-- Sezione: FEEDBACK -->
     <div *ngIf="feedback" class="w-100">
 
         <table mat-table [dataSource]="dataSourceFeedback" class="mat-elevation-z8 justify-content-center tabella">
@@ -269,7 +269,7 @@
         </table>
     </div>
 
-    <!-- IMPOSTAZIONI -->
+    <!-- Sezione: IMPOSTAZIONI -->
     <div *ngIf="impostazioni" class="w-100">
         <table mat-table [dataSource]="dataSourceFeedback" class="mat-elevation-z8 justify-content-center tabella">
             <ng-container matColumnDef="Crea partita" class="ml-4">
@@ -515,7 +515,7 @@
 
     </div>
 
-    <!-- LE TUE INFO -->
+    <!-- Sezione: LE TUE INFO -->
     <div *ngIf="tueInfo" class="w-100">
         <table mat-table class="mat-elevation-z8 w-100 justify-content-center tabella">
 
